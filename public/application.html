@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Use Case Management - Dashboard</title>
+
+        <link href="css/bootstrap.css" rel="stylesheet">
+
+        <link href="css/sb-admin.css" rel="stylesheet">
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+    </head>
+
+    <body>
+
+        <div id="wrapper">
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">Use Case Management</a>
+                </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav side-nav">
+                        <li class="active"><a href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                        <li><a href="application.html"><i class="fa fa-bar-chart-o"></i> Application</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Application <small>Create you application to manage use cases</small></h1>
+                        <ol class="breadcrumb">
+                            <li><a href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                            <li class="active"><i class="fa fa-edit"></i> Application</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form role="form">
+                            <div class="form-group">
+                                <label>Application name</label>
+                                <input class="form-control">
+                                <p class="help-block">Give to you application a name</p>
+                            </div>
+                            <button type="submit" class="btn btn-default">Create application</button>
+                        </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
+        <script src="js/morris/chart-data-morris.js"></script>
+        <script src="js/tablesorter/jquery.tablesorter.js"></script>
+        <script src="js/tablesorter/tables.js"></script>
+    </body>
+</html>
