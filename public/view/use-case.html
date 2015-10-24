@@ -1,0 +1,67 @@
+<div class="row">
+    <success-message submitted="submitted">
+        <strong>Well done!</strong> You successfully created a use case.
+    </success-message>
+    <div class="col-lg-6">
+        <form role="form" name="form" ng-submit="create()">
+            <div class="form-group">
+                <label>Application</label>
+                <select class="form-control" required name="application" ng-model="useCase.application">
+                    <option ng-repeat="app in application">{{app.name}}</option>
+                </select>
+                <p class="help-block">Select an application to create a use case</p>
+                <div class="alert alert-dismissable alert-danger" ng-show="form.application.$error.required">
+                    Application is required.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control" name="description" rows="3" required ng-model="useCase.description"></textarea>
+                <p class="help-block">Give a description to your use case</p>
+                <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required">
+                    Description is required.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+                <select class="form-control" name="status" ng-model="useCase.status" required>
+                    <option>Active</option>
+                    <option>Deleted</option>
+                    <option>Disabled</option>
+                </select>
+                <p class="help-block">Select a status</p>
+                <div class="alert alert-dismissable alert-danger" ng-show="form.status.$error.required">
+                    Status is required.
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">Submit Button</button>
+        </form>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <h2>Bordered Table</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover tablesorter">
+                <thead>
+                    <tr>
+                        <th>Page <i class="fa fa-sort"></i></th>
+                        <th>Visits <i class="fa fa-sort"></i></th>
+                        <th>% New Visits <i class="fa fa-sort"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="useCase in useCases">
+                        <td>{{useCase.application}}</td>
+                        <td>{{useCase.description}}</td>
+                        <td>{{useCase.status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

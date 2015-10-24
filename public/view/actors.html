@@ -1,0 +1,52 @@
+<div ng-controller="ActorsController">
+    <div class="row">
+        <success-message submitted="submitted">
+            <strong>Well done!</strong> You successfully created a actor.
+        </success-message>
+
+        <div class="col-lg-6">
+            <form role="form" ng-submit="create()" name="form">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input class="form-control" name="name" ng-model="actor.name" required ng-class=""/>
+                    <p class="help-block">Define a name to an actor</p>
+                    <div class="alert alert-dismissable alert-danger" ng-show="form.name.$error.required">
+                        Name is required.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" rows="3" name="description" ng-model="actor.description" required></textarea>
+                    <p class="help-block">Give a description to your actor. "This actor is related to requirement X"</p>
+                    <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required">
+                        Description is required.
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">Create actor</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Bordered Table</h2>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <th>Name</th>
+                    <th>Description</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="actor in actors">
+                            <td>
+                                {{actor.name}}</td>
+                            <td>
+                                {{actor.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
