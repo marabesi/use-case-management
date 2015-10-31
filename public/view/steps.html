@@ -1,145 +1,162 @@
-<div class="panel panel-default" ng-controller="StepsController">
-    <div class="panel-heading">Elements</div>
-    <div class="panel-body">
-        <div class="col-lg-4">
-            <form role="form" name="form">
-                <div class="form-group">
-                    <label>Complementary Information</label>
-                    <textarea class="form-control" name="name" ng-model="name" required></textarea>
+<div ng-controller="StepsController">
+    <div class="panel panel-default">
+        <div class="panel-heading">Elements</div>
+        <div class="panel-body">
+            <div class="col-lg-4">
+                <form role="form" name="complementaryForm" ng-submit="createComplementary()">
+                    <div class="form-group">
+                        <label>Complementary Information</label>
+                        <textarea class="form-control" name="description" ng-model="complementary.description" required></textarea>
+                        <div class="alert alert-dismissable alert-danger" ng-show="complementaryForm.description.$error.required">
+                            Field required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default" ng-disabled="complementaryForm.$invalid">Create</button>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="complementary in complementaries">
+                                <td>{{complementary.description}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">Create</button>
+            </div>
+            <div class="col-lg-4">
+                <form role="form" name="RuleForm" ng-submit="createRule()">
+                    <div class="form-group">
+                        <label>Business Rules</label>
+                        <textarea class="form-control" name="rule" ng-model="rule.description" required></textarea>
+                        <div class="alert alert-dismissable alert-danger" ng-show="RuleForm.rule.$error.required">
+                            Field required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default" ng-disabled="RuleForm.$invalid">Create</button>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="rule in rules">
+                                <td>{{rule.description}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </form>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                    <th>Name</th>
-                    <th>Description</th>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="actor in actors">
-                            <td>
-                                {{actor.name}}</td>
-                            <td>
-                                {{actor.description}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            </div>
+            <div class="col-lg-4">
+                <form role="form" name="ReferenceForm" ng-submit="createReference()">
+                    <div class="form-group">
+                        <label>Reference</label>
+                        <textarea class="form-control" name="reference" ng-model="reference.description" required></textarea>
+                        <div class="alert alert-dismissable alert-danger" ng-show="ReferenceForm.reference.$error.required">
+                            Field required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default" ng-disabled="ReferenceForm.$invalid">Create</button>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="reference in references">
+                                <td>{{reference.description}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <form role="form" name="form">
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Flow</div>
+        <div class="panel-body">
+            <div class="col-lg-3">
                 <div class="form-group">
-                    <label>Business Rules</label>
-                    <textarea class="form-control" name="name" ng-model="name" required></textarea>
+                    <label>Type</label>
+                    <select class="form-control" required name="application" ng-model="flow.type">
+                        <option value="basic">Basic</option>
+                        <option value="alternate">Alternate</option>
+                        <option value="exception">Exception</option>
+                    </select>
                 </div>
+            </div>
+            <div class="col-lg-3">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">Create</button>
+                    <label>Version</label>
+                    <select class="form-control" required name="application" ng-model="useCase.application">
+                    </select>
                 </div>
-            </form>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                    <th>Name</th>
-                    <th>Description</th>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="actor in actors">
-                            <td>
-                                {{actor.name}}</td>
-                            <td>
-                                {{actor.description}}</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
-        <div class="col-lg-4">
-            <form role="form" name="form">
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Step</div>
+        <div class="panel-body" ng-repeat="(index, step) in steps">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" name="name" ng-model="name" required></textarea>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label>Complementary</label>
+                    <select class="form-control">
+                        <option value=""></option>
+                        <option ng-repeat="complementary in complementaries">
+                            {{complementary.description}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label>Business</label>
+                    <select class="form-control">
+                        <option value=""></option>
+                        <option ng-repeat="rule in rules">
+                            {{rule.description}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3">
                 <div class="form-group">
                     <label>Reference</label>
-                    <textarea class="form-control" name="name" ng-model="name" required></textarea>
+                    <select class="form-control">
+                        <option value=""></option>
+                        <option ng-repeat="reference in references">
+                            {{reference.description}}
+                        </option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">Create</button>
+            </div>
+            <div class="col-lg-3" ng-show="index == 0">
+                <div class="form-group fix-top-button">
+                    <button type="button" class="btn btn-success" ng-click="createNewStep()">+</button>
                 </div>
-            </form>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                    <th>Name</th>
-                    <th>Description</th>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="actor in actors">
-                            <td>
-                                {{actor.name}}</td>
-                            <td>
-                                {{actor.description}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="panel panel-default" ng-controller="StepsController">
-    <div class="panel-heading">Flow</div>
-    <div class="panel-body">
-        <div class="col-lg-3">
-            <div class="form-group">
-                <label>Type</label>
-                <select class="form-control" required name="application" ng-model="useCase.application">
-                    <option>Basic</option>
-                    <option>Alternate</option>
-                    <option>Exception</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="form-group">
-                <label>Version</label>
-                <select class="form-control" required name="application" ng-model="useCase.application">
-                </select>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="panel panel-default" ng-controller="StepsController">
-    <div class="panel-heading">Step</div>
-    <div class="panel-body" ng-repeat="(index, step) in steps">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label>Description</label>
-                <textarea class="form-control" name="name" ng-model="name" required></textarea>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="col-lg-3">
-            <div class="form-group">
-                <label>Name</label>
-                <select class="form-control"></select>
-                <p class="help-block">Create an application to manage your use cases</p>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="form-group">
-                <label>Name</label>
-                <select class="form-control"></select>
-                <p class="help-block">Create an application to manage your use cases</p>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="form-group">
-                <label>Name</label>
-                <select class="form-control"></select>
-                <p class="help-block">Create an application to manage your use cases</p>
-            </div>
-        </div>
-        <div class="col-lg-3" ng-show="index == 0">
-            <div class="form-group fix-top-button">
-                <button type="button" class="btn btn-success" ng-click="createNewStep()">+</button>
             </div>
         </div>
     </div>
