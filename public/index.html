@@ -16,9 +16,8 @@
     </head>
 
     <body>
-
         <div id="wrapper">
-            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="LanguageMenuController">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -26,7 +25,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/#/">Use Case Management</a>
+                    <a class="navbar-brand" href="/#/">{{ 'USE_CASE_MANAGEMENT' | translate }}</a>
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
@@ -37,14 +36,25 @@
                         <li><a href="/#/actors/">Actors</a></li>
                         <li><a href="/#/steps/">Steps</a></li>
                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown alerts-dropdown">
+                            <a ng-href="" class="dropdown-toggle hand" data-toggle="dropdown">
+                                <i class="fa fa-long-arrow-down"></i> {{ 'LANGUAGE' | translate }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a ng-href="" ng-click="changeLanguage('en')" class="hand">English <span ng-show="currentLanguage == 'en'" class="label label-default">{{ 'CURRENT_LANGUAGE' | translate }}</span></a></li>
+                                <li><a ng-href="" ng-click="changeLanguage('ptBR')" class="hand">Portuguese (PT-BR) <span ng-show="currentLanguage == 'ptBR'" class="label label-default">{{ 'CURRENT_LANGUAGE' | translate }}</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </nav>
-
             <div id="page-wrapper" ng-view></div>
         </div>
 
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/angular-route/angular-route.min.js"></script>
+        <script src="bower_components/angular-translate/angular-translate.min.js"></script>
         <script src="js/app.js"></script>
         <script src="js/controller/DashboardController.js"></script>
         <script src="js/controller/ApplicationController.js"></script>
@@ -52,6 +62,7 @@
         <script src="js/controller/ActorsController.js"></script>
         <script src="js/controller/StepsController.js"></script>
         <script src="js/controller/VersionController.js"></script>
+        <script src="js/controller/LanguageMenuController.js"></script>
         <script src="js/directive/SuccessMessage.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="js/bootstrap.js"></script>
