@@ -1,94 +1,5 @@
 <div ng-controller="StepsController">
     <div class="panel panel-default">
-        <div class="panel-heading">{{ 'ELEMENTS' | translate }}</div>
-        <div class="panel-body">
-            <div class="col-lg-4">
-                <form role="form" name="complementaryForm" ng-submit="createComplementary()">
-                    <div class="form-group">
-                        <label>{{ 'COMPLEMENTARY_INFORMATION' | translate }}</label>
-                        <textarea class="form-control" name="description" ng-model="complementary.description" required></textarea>
-                        <div class="alert alert-dismissable alert-danger" ng-show="complementaryForm.description.$error.required">
-                            {{ 'REQUIRED_FIELD' | translate }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-default" ng-disabled="complementaryForm.$invalid">{{ 'CREATE' | translate }}</button>
-                    </div>
-                </form>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>{{ 'DESCRIPTION' | translate }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="complementary in complementaries">
-                                <td>{{complementary.description}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <form role="form" name="RuleForm" ng-submit="createRule()">
-                    <div class="form-group">
-                        <label>Business Rules</label>
-                        <textarea class="form-control" name="rule" ng-model="rule.description" required></textarea>
-                        <div class="alert alert-dismissable alert-danger" ng-show="RuleForm.rule.$error.required">
-                            {{ 'REQUIRED_FIELD' | translate }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-default" ng-disabled="RuleForm.$invalid">Create</button>
-                    </div>
-                </form>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>{{ 'DESCRIPTION' | translate }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="rule in rules">
-                                <td>{{rule.description}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <form role="form" name="ReferenceForm" ng-submit="createReference()">
-                    <div class="form-group">
-                        <label>Reference</label>
-                        <textarea class="form-control" name="reference" ng-model="reference.description" required></textarea>
-                        <div class="alert alert-dismissable alert-danger" ng-show="ReferenceForm.reference.$error.required">
-                            {{ 'REQUIRED_FIELD' | translate }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-default" ng-disabled="ReferenceForm.$invalid">Create</button>
-                    </div>
-                </form>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>{{ 'DESCRIPTION' | translate }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="reference in references">
-                                <td>{{reference.description}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
         <div class="panel-heading">Flow</div>
         <div class="panel-body">
             <div class="col-lg-3">
@@ -101,18 +12,11 @@
                     </select>
                 </div>
             </div>
-            <div class="col-lg-3">
-                <div class="form-group">
-                    <label>Version</label>
-                    <select class="form-control" required name="application" ng-model="useCase.application">
-                    </select>
-                </div>
-            </div>
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">Step</div>
-        <div class="panel-body" ng-repeat="(index, step) in steps">
+        <div class="panel-body">
             <div class="col-lg-6">
                 <div class="form-group">
                     <label>{{ 'DESCRIPTION' | translate }}</label>
@@ -120,15 +24,18 @@
                 </div>
             </div>
             <div class="clearfix"></div>
+        </div>
+        <div class="panel-body" ng-repeat="(index, step) in steps">
             <div class="col-lg-3">
                 <div class="form-group">
                     <label>Complementary</label>
                     <select class="form-control">
                         <option value=""></option>
-                        <option ng-repeat="complementary in complementaries">
-                            {{complementary.description}}
+                        <option ng-repeat="complementary in complementaries" value="{{complementary.id}}">
+                            {{complementary.identifier}} - {{complementary.description}}
                         </option>
                     </select>
+                    <button ng-show="index == 0" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#newElementModal" ng-click="createComplementary()">+</button>
                 </div>
             </div>
             <div class="col-lg-3">
@@ -136,10 +43,11 @@
                     <label>Business</label>
                     <select class="form-control">
                         <option value=""></option>
-                        <option ng-repeat="rule in rules">
-                            {{rule.description}}
+                        <option ng-repeat="rule in rules" value="{{rule.id}}">
+                            {{rule.identifier}} - {{rule.description}}
                         </option>
                     </select>
+                    <button ng-show="index == 0" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#newElementModal" ng-click="createRule()">+</button>
                 </div>
             </div>
             <div class="col-lg-3">
@@ -147,15 +55,50 @@
                     <label>Reference</label>
                     <select class="form-control">
                         <option value=""></option>
-                        <option ng-repeat="reference in references">
-                            {{reference.description}}
+                        <option ng-repeat="reference in references" value="{{reference.id}}">
+                            {{reference.identifier}} - {{reference.description}}
                         </option>
                     </select>
+                    <button  ng-show="index == 0" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#newElementModal" ng-click="createReference()">+</button>
                 </div>
             </div>
             <div class="col-lg-3" ng-show="index == 0">
                 <div class="form-group fix-top-button">
-                    <button type="button" class="btn btn-success" ng-click="createNewStep()">+</button>
+                    <button type="button" class="btn btn-primary" ng-click="createNewStep()">Novo passo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="newElementModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{modal.title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" ng-submit="createOption(modal.active)" name="form">
+                        <div class="form-group">
+                            <label>Identifier</label>
+                            <input class="form-control" name="identifier" ng-model="option.identifier" required ng-class=""/>
+                            <p class="help-block">Define an identifier for your new option</p>
+                            <div class="alert alert-dismissable alert-danger" ng-show="form.identifier.$error.required">
+                                Identifier is required.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" rows="3" name="description" ng-model="option.description" required></textarea>
+                            <p class="help-block">Give to your option a description.</p>
+                            <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required">
+                                Description is required.
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-default" ng-disabled="form.$invalid" modal-close> Create {{modal.title}}</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

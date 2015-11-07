@@ -37,6 +37,17 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label>Version</label>
+                <select class="form-control" name="version" ng-model="useCase.version" required>
+                    <option ng-repeat="option in options">{{option.name}}</option>
+                </select>
+                <p class="help-block">Select a version</p>
+                <div class="alert alert-dismissable alert-danger" ng-show="form.version.$error.required">
+                    Version is required.
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">Submit Button</button>
         </form>
 

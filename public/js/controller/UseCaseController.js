@@ -1,6 +1,10 @@
-app.controller('UseCaseController', ['$scope', '$timeout', function($scope, $timeout) {
+app.controller('UseCaseController', ['$scope', '$timeout', function($scope) {
     $scope.application = [
         {name: 'system 1'}
+    ]
+    
+    $scope.options = [
+        {name: '1.0.1'}
     ]
     
     $scope.useCases = [

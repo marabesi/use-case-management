@@ -7,40 +7,50 @@ app.controller('StepsController', ['$scope', function($scope) {
         type : 'basic'
     }
     
+    $scope.modal = {
+        title: '',
+        active: false
+    }
+    
     $scope.complementaries = [];
     $scope.rules = [];
     $scope.references = [];
     
     $scope.createComplementary = function() {
-        var complementary = {
-            description: $scope.complementary.description
-        }
-        $scope.complementaries.push(complementary);
-        
-        $scope.complementary = null;
+        $scope.modal.title = 'Complementary';
+        $scope.modal.active = 'complementary';
     }
     
     $scope.createRule = function() {
-        var rule = {
-            description: $scope.rule.description
-        }
-        $scope.rules.push(rule);
-        
-        $scope.rule = null;
+        $scope.modal.title = 'Rule';
+        $scope.modal.active = 'rule';
     }
     
     $scope.createReference = function() {
-        var reference = {
-            description: $scope.reference.description
-        }
-        $scope.references.push(reference);
-        
-        $scope.reference = null;
+        $scope.modal.title = 'Reference';
+        $scope.modal.active = 'reference';
     }
     
     $scope.createNewStep = function() {
         var step = {};
         
         $scope.steps.unshift(step);
+    }
+    
+    $scope.createOption = function(active) {
+        switch(active) {
+            case 'complementary' :
+                $scope.complementaries.unshift($scope.option);
+            break;
+            case 'rule' :
+                $scope.rules.unshift($scope.option);
+            break;
+            case 'reference' :
+                $scope.references.unshift($scope.option);
+            break;
+        }
+        
+        $scope.option = null;
+        $scope.dismiss();
     }
 }]);
