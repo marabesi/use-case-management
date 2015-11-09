@@ -1,6 +1,18 @@
 <div ng-controller="StepsController">
+    <success-message submitted="submitted">
+        <strong>Well done!</strong> You successfully created a use case.
+    </success-message>
     <div class="panel panel-default">
-        <div class="panel-heading">Flow</div>
+        <div class="panel-heading">Step</div>
+        <div class="panel-body">
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label>Use case</label>
+                    <select class="form-control" required name="application" ng-model="flow.useCase">
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="panel-body">
             <div class="col-lg-3">
                 <div class="form-group">
@@ -12,10 +24,13 @@
                     </select>
                 </div>
             </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label>Identificador</label>
+                    <input class="form-control" name="name" required/>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">Step</div>
         <div class="panel-body">
             <div class="col-lg-6">
                 <div class="form-group">
@@ -25,48 +40,108 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <div class="panel-body" ng-repeat="(index, step) in steps">
+        <div class="panel-body" ng-repeat="(index, step) in elements">
             <div class="col-lg-3">
-                <div class="form-group">
+                <div class="form-group" ng-show="index == 0">
                     <label>Complementary</label>
+                </div>
+                <div class="input-group">
                     <select class="form-control">
                         <option value=""></option>
                         <option ng-repeat="complementary in complementaries" value="{{complementary.id}}">
                             {{complementary.identifier}} - {{complementary.description}}
                         </option>
                     </select>
-                    <button ng-show="index == 0" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#newElementModal" ng-click="createComplementary()">+</button>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newElementModal" ng-click="createComplementary()">+</button>
+                    </span>
                 </div>
             </div>
             <div class="col-lg-3">
-                <div class="form-group">
+                <div class="form-group" ng-show="index == 0">
                     <label>Business</label>
+                </div>
+                <div class="input-group">
                     <select class="form-control">
                         <option value=""></option>
                         <option ng-repeat="rule in rules" value="{{rule.id}}">
                             {{rule.identifier}} - {{rule.description}}
                         </option>
                     </select>
-                    <button ng-show="index == 0" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#newElementModal" ng-click="createRule()">+</button>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newElementModal" ng-click="createRule()">+</button>
+                    </span>
                 </div>
             </div>
             <div class="col-lg-3">
-                <div class="form-group">
+                <div class="form-group" ng-show="index == 0">
                     <label>Reference</label>
+                </div>
+                <div class="input-group">
                     <select class="form-control">
                         <option value=""></option>
                         <option ng-repeat="reference in references" value="{{reference.id}}">
                             {{reference.identifier}} - {{reference.description}}
                         </option>
                     </select>
-                    <button  ng-show="index == 0" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#newElementModal" ng-click="createReference()">+</button>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newElementModal" ng-click="createReference()">+</button>
+                    </span>
                 </div>
             </div>
             <div class="col-lg-3" ng-show="index == 0">
                 <div class="form-group fix-top-button">
-                    <button type="button" class="btn btn-primary" ng-click="createNewStep()">Novo passo</button>
+                    <button type="button" class="btn btn-primary" ng-click="createNewElement()">
+                        <span title="Clicando nesse botão será possível vincular novas regras ao passo desejado">Nova regra</span></button>
+                    <button type="button" class="btn btn-danger" ng-click="createNewStep()">
+                        <span title="Após vincular todas as regras desejadas clique nesse botão para salvar o trabalho feito">
+                            Salvar passo
+                        </span>
+                    </button>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Use cases</div>
+        <div class="panel-body">
+            <ul>
+                <li>
+                    System
+                    <ul>
+                        <li>
+                            <ul>
+                                Caso de uso 1
+                                <li>
+                                    Fluxo basico
+                                    <ul>
+                                        <li>fluxo 1</li>
+                                        <li>fluxo 2</li>
+                                        <li>fluxo 3</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Fluxo alternativo
+                                    <ul>
+                                        <li>fluxo alter 1</li>
+                                        <li>fluxo alter 2</li>
+                                        <li>fluxo alter 3</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Fluxo exeção
+                                    <ul>
+                                        <li>fluxo exce 1</li>
+                                        <li>fluxo exce 2</li>
+                                        <li>fluxo exce 3</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
     <div id="newElementModal" class="modal fade" role="dialog">

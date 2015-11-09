@@ -1,7 +1,9 @@
 app.controller('StepsController', ['$scope', function($scope) {
-    $scope.steps = [
+    $scope.elements = [
         {}
     ];
+    
+    $scope.steps = [];
     
     $scope.flow = {
         type : 'basic'
@@ -15,6 +17,7 @@ app.controller('StepsController', ['$scope', function($scope) {
     $scope.complementaries = [];
     $scope.rules = [];
     $scope.references = [];
+    $scope.submitted = false;
     
     $scope.createComplementary = function() {
         $scope.modal.title = 'Complementary';
@@ -31,10 +34,14 @@ app.controller('StepsController', ['$scope', function($scope) {
         $scope.modal.active = 'reference';
     }
     
-    $scope.createNewStep = function() {
+    $scope.createNewElement = function() {
         var step = {};
         
-        $scope.steps.unshift(step);
+        $scope.elements.unshift(step);
+    }
+    
+    $scope.createNewStep = function() {
+       $scope.submitted = true;
     }
     
     $scope.createOption = function(active) {
