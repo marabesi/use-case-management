@@ -12,8 +12,6 @@
                     </select>
                 </div>
             </div>
-        </div>
-        <div class="panel-body">
             <div class="col-lg-3">
                 <div class="form-group">
                     <label>Type</label>
@@ -24,21 +22,20 @@
                     </select>
                 </div>
             </div>
-            <div class="col-lg-3">
+        </div>
+        <div class="panel-body">
+            <div class="col-lg-1">
                 <div class="form-group">
                     <label>Identificador</label>
                     <input class="form-control" name="name" required/>
                 </div>
             </div>
-        </div>
-        <div class="panel-body">
-            <div class="col-lg-6">
+            <div class="col-lg-9">
                 <div class="form-group">
                     <label>{{ 'DESCRIPTION' | translate }}</label>
                     <textarea class="form-control" name="name" ng-model="name" required></textarea>
                 </div>
             </div>
-            <div class="clearfix"></div>
         </div>
         <div class="panel-body" ng-repeat="(index, step) in elements">
             <div class="col-lg-3">
@@ -92,7 +89,7 @@
             <div class="col-lg-3" ng-show="index == 0">
                 <div class="form-group fix-top-button">
                     <button type="button" class="btn btn-primary" ng-click="createNewElement()">
-                        <span title="Clicando nesse botão será possível vincular novas regras ao passo desejado">Nova regra</span></button>
+                        <span title="Clicando nesse botão será possível vincular novas regras ao passo desejado">Nova linha</span></button>
                     <button type="button" class="btn btn-danger" ng-click="createNewStep()">
                         <span title="Após vincular todas as regras desejadas clique nesse botão para salvar o trabalho feito">
                             Salvar passo

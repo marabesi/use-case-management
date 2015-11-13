@@ -1,8 +1,6 @@
 app.controller('ActorsController', ['$scope', '$timeout', function($scope, $timeout) {
     $scope.submitted = false;
-    $scope.actors = [
-        {name: 'Actor1', description: 'asusauh'}
-    ]
+    $scope.actors = [];
         
     $scope.create = function() {
         $scope.submitted = true;
@@ -10,7 +8,6 @@ app.controller('ActorsController', ['$scope', '$timeout', function($scope, $time
         var actor = {
             name: $scope.actor.name,
             description: $scope.actor.description
-            
         }
         
         $scope.actors.push(actor);

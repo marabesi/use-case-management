@@ -6,7 +6,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Use Case Management - Dashboard</title>
+        <title>{{ 'USE_CASE_MANAGEMENT' | translate }}</title>
 
         <link href="css/bootstrap.css" rel="stylesheet">
 
@@ -29,12 +29,12 @@
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
-                        <li><a href="/#/">Dashboard</a></li>
-                        <li><a href="/#/application/">Application</a></li>
-                        <li><a href="/#/use-case/"></i> Use Case</a></li>
-                        <li><a href="/#/version/">Version</a></li>
-                        <li><a href="/#/actors/">Actors</a></li>
-                        <li><a href="/#/steps/">Steps</a></li>
+                        <li><a href="/#/">{{ 'DASHBOARD' | translate }}</a></li>
+                        <li><a href="/#/application/">{{ 'APPLICATION' | translate }}</a></li>
+                        <li><a href="/#/use-case/"></i> {{ 'USE_CASE' | translate }}</a></li>
+                        <li><a href="/#/version/">{{ 'VERSION' | translate }}</a></li>
+                        <li><a href="/#/actors/">{{ 'ACTORS' | translate }}</a></li>
+                        <li><a href="/#/steps/">{{ 'STEPS' | translate }}</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown alerts-dropdown">
@@ -42,8 +42,16 @@
                                 <i class="fa fa-long-arrow-down"></i> {{ 'LANGUAGE' | translate }}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a ng-href="" ng-click="changeLanguage('en')" class="hand">English <span ng-show="currentLanguage == 'en'" class="label label-default">{{ 'CURRENT_LANGUAGE' | translate }}</span></a></li>
-                                <li><a ng-href="" ng-click="changeLanguage('ptBR')" class="hand">Portuguese (PT-BR) <span ng-show="currentLanguage == 'ptBR'" class="label label-default">{{ 'CURRENT_LANGUAGE' | translate }}</span></a></li>
+                                <li>
+                                    <a ng-href="" ng-click="changeLanguage('en')" class="hand">{{ 'ENGLISH' | translate }} 
+                                        <span ng-show="currentLanguage == 'en'" class="label label-default">{{ 'CURRENT_LANGUAGE' | translate }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a ng-href="" ng-click="changeLanguage('ptBR')" class="hand">{{ 'PORTUGUESE_PT_BR' | translate }} 
+                                        <span ng-show="currentLanguage == 'ptBR'" class="label label-default">{{ 'CURRENT_LANGUAGE' | translate }}</span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

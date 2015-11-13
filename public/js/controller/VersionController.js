@@ -3,10 +3,7 @@ app.controller('VersionController', ['$scope', function($scope) {
         {versionName: '1.0.1', description: 'test'}
     ]
     
-    $scope.versions = [
-        {versionName: '1.0.0', description: 'test'},
-        {versionName: '2.0.0', description: 'test2'}
-    ]
+    $scope.versions = []
     
     $scope.create = function() {
         var version = {

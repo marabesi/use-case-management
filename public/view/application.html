@@ -1,36 +1,38 @@
 <div class="row">
     <success-message submitted="submitted">
-        <strong>Well done!</strong> You successfully created an application.
+        <strong>{{ 'WELL_DONE' | translate }}</strong> {{ 'YOU_SUCCESSFULLY_CREATED_AN_APPLICATION' | translate }}
     </success-message>
     <div class="col-lg-6">
         <form role="form" name="form" ng-submit="create()">
             <div class="form-group">
-                <label>Name</label>
+                <label>{{ 'NAME' | translate }}</label>
                 <input class="form-control" name="name" ng-model="application.name" required/>
-                <p class="help-block">Create an application to manage your use cases</p>
                 <div class="alert alert-dismissable alert-danger" ng-show="form.name.$error.required">
-                    Name is required.
+                    {{ 'NAME_IS_REQUIRED' | translate }}
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">Create</button>
+            <button type="submit" class="btn btn-default" ng-disabled="form.$invalid"> {{ 'CREATE_APPLICATION' | translate }}</button>
         </form>
 
     </div>
 </div>
 <div class="row">
     <div class="col-lg-6">
-        <h2>Bordered Table</h2>
+        <h2>Lista de sistemas</h2>
         <div class="table-responsive">
             <table class="table table-bordered table-hover tablesorter">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>{{ 'NAME' | translate }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="app in applications">
                         <td>{{app.name}}</td>
+                    </tr>
+                    <tr ng-show="applications.length == 0" class="warning">
+                        <td align="center">{{ 'APPLICATION_NOT_FOUND' | translate }}</td>
                     </tr>
                 </tbody>
             </table>

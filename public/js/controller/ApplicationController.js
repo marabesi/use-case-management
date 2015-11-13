@@ -1,10 +1,7 @@
 app.controller('ApplicationController', ['$scope', function($scope) {
     $scope.submitted = false;
-    $scope.applications = [
-        {name: 'system1'},
-        {name: 'system2'},
-        {name: 'system3'},
-    ];
+    $scope.applications = [];
+    
     $scope.create = function() {
         var app = {
             name: $scope.application.name

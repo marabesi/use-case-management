@@ -1,6 +1,6 @@
 app.controller('StepsController', ['$scope', function($scope) {
     $scope.elements = [
-        {}
+        {},
     ];
     
     $scope.steps = [];
@@ -37,7 +37,7 @@ app.controller('StepsController', ['$scope', function($scope) {
     $scope.createNewElement = function() {
         var step = {};
         
-        $scope.elements.unshift(step);
+        $scope.elements.push(step);
     }
     
     $scope.createNewStep = function() {

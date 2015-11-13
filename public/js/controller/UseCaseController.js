@@ -7,10 +7,7 @@ app.controller('UseCaseController', ['$scope', '$timeout', function($scope) {
         {name: '1.0.1'}
     ]
     
-    $scope.useCases = [
-        {application: 'System1', description: 'test', status: 'active'},
-        {application: 'System2', description: 'test2', status: 'active'}
-    ]
+    $scope.useCases = []
     
     $scope.create = function() {
         var useCase = {

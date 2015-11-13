@@ -1,47 +1,48 @@
 <div class="row">
     <success-message submitted="submitted">
-        <strong>Well done!</strong> You successfully created a version.
+        <strong>{{ 'WELL_DONE' | translate }}</strong> {{ 'YOU_SUCCESSFULLY_CREATED_A_VERSION' | translate }}
     </success-message>
     <div class="col-lg-6">
         <form role="form" name="form" ng-submit="create()">
             <div class="form-group">
-                <label>Version</label>
+                <label>{{ 'VERSION' | translate }}</label>
                 <input class="form-control" name="version" ng-model="version.name" required ng-class=""/>
-                <p class="help-block">Eg: 2.0, 1.0.1</p>
                 <div class="alert alert-dismissable alert-danger" ng-show="form.version.$error.required">
-                    Version name is required.
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label>Description</label>
-                <textarea class="form-control" name="description" rows="3" required ng-model="version.description"></textarea>
-                <p class="help-block">Describe what this version will does. Eg: Updated use case for better radability</p>
-                <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required">
-                    Description is required.
+                    {{ 'VERSION_NAME_IS_REQUIRED' | translate }}
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">Create version</button>
+            <div class="form-group">
+                <label>{{ 'DESCRIPTION' | translate }}</label>
+                <textarea class="form-control" name="description" rows="3" required ng-model="version.description"></textarea>
+                <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required">
+                    {{ 'DESCRIPTION_IS_REQUIRED' | translate }}
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">{{ 'CREATE_VERSION' | translate }}</button>
         </form>
 
     </div>
 </div>
 <div class="row">
     <div class="col-lg-6">
-        <h2>Versions</h2>
+        <h2>{{ 'LIST_VERSION' | translate }}</h2>
         <div class="table-responsive">
             <table class="table table-bordered table-hover tablesorter">
                 <thead>
                     <tr>
-                        <th>Version name <i class="fa fa-sort"></i></th>
-                        <th>Description <i class="fa fa-sort"></i></th>
+                        <th>{{ 'VERSION' | translate }} <i class="fa fa-sort"></i></th>
+                        <th>{{ 'DESCRIPTION' | translate }} <i class="fa fa-sort"></i></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="version in versions">
                         <td>{{version.versionName}}</td>
                         <td>{{version.description}}</td>
+                    </tr>
+                    <tr ng-show="versions.length == 0" class="warning">
+                        <td colspan="2" align="center">{{ 'VERSION_NOT_FOUND' | translate }}</td>
                     </tr>
                 </tbody>
             </table>
