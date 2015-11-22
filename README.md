@@ -1,7 +1,7 @@
-# Use Case Management (under development)
+# UseCaseManagement (under development)
 
-Use Case Management is a project developed to help developers to keep requirements up to date. 
-This tool has focs on use case and requirements, easy to update, easy to create and manage use cases.
+UseCaseManagement is a project developed to help developers to keep requirements up to date. 
+This tool has focus on use case and requirements, easy to update, easy to create and manage use cases.
 
 ## Why ?
 

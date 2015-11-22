@@ -1,14 +1,73 @@
-app.controller('ApplicationController', ['$scope', function($scope) {
+app.controller('ApplicationController', ['$scope', 'NgTableParams', 'TableFactory', 'CrudFactory',
+    function($scope, NgTableParams, TableFactory, CrudFactory) {
+    
     $scope.submitted = false;
-    $scope.applications = [];
+    $scope.message = 'CREATE_APPLICATION';
+    
+    var urlService = 'api/application';
+
+    var initialSettings = {
+      count: TableFactory.DEFAULT_COUNT,
+      page: TableFactory.DEFAULT_PAGE,
+      getData: function($defer, params){
+        var request = {
+            page: params.page(),
+            limit: params.count()
+        };
+
+        TableFactory.getAll(urlService, request).success(function(result) {
+          $defer.resolve(result.data);
+          $scope.customConfigParams.total(result.total);
+        });
+      }
+    };
+    
+    $scope.customConfigParams = new NgTableParams(
+        {count: TableFactory.DEFAULT_COUNT},
+        initialSettings
+    );
     
     $scope.create = function() {
-        var app = {
-            name: $scope.application.name
+        if ($scope.application.id !== undefined) {
+            var app = {
+                nome: $scope.application.name
+            }
+
+            CrudFactory.edit(urlService, $scope.application.id, app);
+        } else {
+            var app = {
+                name: $scope.application.name
+            }
+
+            CrudFactory.create(urlService, app);
         }
         
-        $scope.applications.push(app);
         $scope.submitted = true;
-        $scope.application = null;
+        $scope.cancel();
+        $scope.customConfigParams.reload();
     }
+    
+    $scope.remove = function(id) {
+        CrudFactory.remove(urlService, id);
+        
+        $scope.customConfigParams.reload();
+    }
+    
+    $scope.edit = function(index) {
+        if (index !== undefined) {
+            var app = $scope.customConfigParams.data[index];
+            
+            $scope.application = {
+                id: app.id_sistema,
+                name: app.nome
+            };
+            $scope.message = 'UPDATE_APPLICATION';
+        }
+    }
+    
+    $scope.cancel = function() {
+        $scope.application = null;
+        $scope.message = 'CREATE_APPLICATION';
+    }
+    
 }]);

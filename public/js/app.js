@@ -1,4 +1,4 @@
-var app = angular.module('useCaseManagement', ['ngRoute', 'SuccessMessage', 'pascalprecht.translate']);
+var app = angular.module('useCaseManagement', ['ngRoute', 'SuccessMessage', 'pascalprecht.translate', 'ngTable', 'ngResource']);
 
 app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/application', {
@@ -31,7 +31,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             STEPS: 'Steps',
             ENGLISH: 'English',
             PORTUGUESE_PT_BR: 'Portuguese (PT-BR)',
-            USE_CASE_MANAGEMENT: 'Use Case Management',
+            USE_CASE_MANAGEMENT: 'UseCaseManagement',
             LANGUAGE: 'Language',
             CURRENT_LANGUAGE: 'Current language',
             COMPLEMENTARY_INFORMATION: 'Complementary information',
@@ -53,6 +53,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             VERSION_IS_REQUIRED: 'Version is required',
             STATUS: 'Status',
             CREATE_APPLICATION: 'Create application',
+            UPDATE_APPLICATION: 'Update application',
             LIST_APPLICATION: 'Application list',
             APPLICATION_NOT_FOUND: 'Application not found',
             YOU_SUCCESSFULLY_CREATED_AN_APPLICATION: 'You successfully created an application',
@@ -61,6 +62,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             CREATE_VERSION: 'Create version',
             LIST_VERSION: 'List version',
             VERSION_NOT_FOUND: 'Version not found',
+            ACTION: 'Action',
+            DELETE: 'Delete',
+            EDIT: 'Edit',
+            CANCEL: 'Cancel',
         })
         .translations('ptBR', {
             DASHBOARD: 'Painel',
@@ -93,6 +98,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             VERSION_IS_REQUIRED: 'Versão é obrigatória',
             STATUS: 'Status',
             CREATE_APPLICATION: 'Criar sistema',
+            UPDATE_APPLICATION: 'Atualizar sistema',
             LIST_APPLICATION: 'Lista de sistemas',
             APPLICATION_NOT_FOUND: 'Nenhum sistema encontrado',
             YOU_SUCCESSFULLY_CREATED_AN_APPLICATION: 'Você criou um sistema com sucesso',
@@ -101,6 +107,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             CREATE_VERSION: 'Criar versão',
             LIST_VERSION: 'Lista de versões',
             VERSION_NOT_FOUND: 'Nenhuma versão encontrada',
+            ACTION: 'Ação',
+            DELETE: 'Deletar',
+            EDIT: 'Editar',
+            CANCEL: 'Cancelar',
         });
         
         $translateProvider.preferredLanguage('ptBR');

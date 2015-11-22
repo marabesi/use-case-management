@@ -4,6 +4,7 @@
     </success-message>
     <div class="col-lg-6">
         <form role="form" name="form" ng-submit="create()">
+            <input name="id" type="hidden" value="{{application.id}}" />
             <div class="form-group">
                 <label>{{ 'NAME' | translate }}</label>
                 <input class="form-control" name="name" ng-model="application.name" required/>
@@ -12,27 +13,32 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-default" ng-disabled="form.$invalid"> {{ 'CREATE_APPLICATION' | translate }}</button>
+            <button type="submit" class="btn btn-default" ng-disabled="form.$invalid"> {{ message | translate }}</button>
+            <button type="submit" class="btn btn-danger" ng-show="application.id" ng-click="cancel()"> {{ 'CANCEL' | translate }}</button>
         </form>
-
     </div>
 </div>
 <div class="row">
     <div class="col-lg-6">
-        <h2>Lista de sistemas</h2>
+        <h2>{{ 'LIST_APPLICATION' | translate }}</h2>
         <div class="table-responsive">
-            <table class="table table-bordered table-hover tablesorter">
+            <table ng-table="customConfigParams" class="table table-bordered table-hover tablesorter">
                 <thead>
                     <tr>
                         <th>{{ 'NAME' | translate }}</th>
+                        <th>{{ 'ACTION' | translate }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="app in applications">
-                        <td>{{app.name}}</td>
+                    <tr ng-repeat="app in $data track by $index">
+                        <td>{{app.nome}}</td>
+                        <td>
+                            <button class="btn btn-primary" ng-click="edit($index)">{{ 'EDIT' | translate }}</button> 
+                            <button class="btn btn-danger" ng-click="remove(app.id_sistema)">{{ 'DELETE' | translate }}</button>
+                        </td>
                     </tr>
-                    <tr ng-show="applications.length == 0" class="warning">
-                        <td align="center">{{ 'APPLICATION_NOT_FOUND' | translate }}</td>
+                    <tr ng-show="$data.length == 0" class="warning">
+                        <td align="center" colspan="2">{{ 'APPLICATION_NOT_FOUND' | translate }}</td>
                     </tr>
                 </tbody>
             </table>
