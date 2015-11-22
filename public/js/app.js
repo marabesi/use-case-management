@@ -66,6 +66,8 @@ app.config(['$routeProvider', function ($routeProvider) {
             DELETE: 'Delete',
             EDIT: 'Edit',
             CANCEL: 'Cancel',
+            CONFIRM_DELETE: 'Do you really wnat to delete this register?',
+            CONFIRM_DELETE: 'Do you really wnat to delete this register?',
         })
         .translations('ptBR', {
             DASHBOARD: 'Painel',
@@ -111,6 +113,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             DELETE: 'Deletar',
             EDIT: 'Editar',
             CANCEL: 'Cancelar',
+            CONFIRM_DELETE: 'Você realmente deseja deletar esse registro?',
         });
         
         $translateProvider.preferredLanguage('ptBR');

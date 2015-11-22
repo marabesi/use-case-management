@@ -1,31 +1,34 @@
-app.controller('ApplicationController', ['$scope', 'NgTableParams', 'TableFactory', 'CrudFactory',
-    function($scope, NgTableParams, TableFactory, CrudFactory) {
+app.controller('ApplicationController', ['$scope', 'NgTableParams', 'TableFactory', 'CrudFactory', '$translate',
+    function($scope, NgTableParams, TableFactory, CrudFactory, $translate) {
     
     $scope.submitted = false;
     $scope.message = 'CREATE_APPLICATION';
     
     var urlService = 'api/application';
+    
+    function createTable() {
 
-    var initialSettings = {
-      count: TableFactory.DEFAULT_COUNT,
-      page: TableFactory.DEFAULT_PAGE,
-      getData: function($defer, params){
-        var request = {
-            page: params.page(),
-            limit: params.count()
+        var initialSettings = {
+          count: TableFactory.DEFAULT_COUNT,
+          page: TableFactory.DEFAULT_PAGE,
+          getData: function($defer, params){
+            var request = {
+                page: params.page(),
+                limit: params.count()
+            };
+
+            TableFactory.getAll(urlService, request).success(function(result) {
+              $defer.resolve(result.data);
+              $scope.customConfigParams.total(result.total);
+            });
+          }
         };
 
-        TableFactory.getAll(urlService, request).success(function(result) {
-          $defer.resolve(result.data);
-          $scope.customConfigParams.total(result.total);
-        });
-      }
-    };
-    
-    $scope.customConfigParams = new NgTableParams(
-        {count: TableFactory.DEFAULT_COUNT},
-        initialSettings
-    );
+        $scope.customConfigParams = new NgTableParams(
+            {count: TableFactory.DEFAULT_COUNT},
+            initialSettings
+        );
+    }
     
     $scope.create = function() {
         if ($scope.application.id !== undefined) {
@@ -44,13 +47,20 @@ app.controller('ApplicationController', ['$scope', 'NgTableParams', 'TableFactor
         
         $scope.submitted = true;
         $scope.cancel();
+        
+        createTable();
         $scope.customConfigParams.reload();
     }
     
     $scope.remove = function(id) {
-        CrudFactory.remove(urlService, id);
+        var message = $translate.instant('CONFIRM_DELETE');
         
-        $scope.customConfigParams.reload();
+        if (confirm(message)) {
+            CrudFactory.remove(urlService, id);
+
+            createTable();
+            $scope.customConfigParams.reload();
+        }
     }
     
     $scope.edit = function(index) {
@@ -70,4 +80,5 @@ app.controller('ApplicationController', ['$scope', 'NgTableParams', 'TableFactor
         $scope.message = 'CREATE_APPLICATION';
     }
     
+    createTable();
 }]);

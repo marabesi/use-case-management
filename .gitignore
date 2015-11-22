@@ -1,3 +1,4 @@
 /nbproject/private/
 public/bower_components/
 vendor/
+.env
