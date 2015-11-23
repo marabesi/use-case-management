@@ -4,6 +4,7 @@
     </success-message>
     <div class="col-lg-6">
         <form role="form" name="form" ng-submit="create()">
+            <input name="id" type="hidden" value="{{version.id}}" />
             <div class="form-group">
                 <label>{{ 'VERSION' | translate }}</label>
                 <input class="form-control" name="version" ng-model="version.name" required ng-class=""/>
@@ -20,7 +21,8 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">{{ 'CREATE_VERSION' | translate }}</button>
+            <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">{{ message | translate }}</button>
+            <button type="button" class="btn btn-danger" ng-show="version.id" ng-click="cancel()"> {{ 'CANCEL' | translate }}</button>
         </form>
 
     </div>
@@ -29,20 +31,25 @@
     <div class="col-lg-6">
         <h2>{{ 'LIST_VERSION' | translate }}</h2>
         <div class="table-responsive">
-            <table class="table table-bordered table-hover tablesorter">
+            <table ng-table="customConfigParams" class="table table-bordered table-hover tablesorter">
                 <thead>
                     <tr>
-                        <th>{{ 'VERSION' | translate }} <i class="fa fa-sort"></i></th>
-                        <th>{{ 'DESCRIPTION' | translate }} <i class="fa fa-sort"></i></th>
+                        <th>{{ 'VERSION' | translate }}</th>
+                        <th>{{ 'DESCRIPTION' | translate }}</th>
+                        <th>{{ 'ACTION' | translate }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="version in versions">
-                        <td>{{version.versionName}}</td>
-                        <td>{{version.description}}</td>
+                    <tr ng-repeat="version in $data track by $index">
+                        <td>{{version.versao}}</td>
+                        <td>{{version.descricao}}</td>
+                        <td>
+                            <button class="btn btn-primary" ng-click="edit($index)">{{ 'EDIT' | translate }}</button> 
+                            <button class="btn btn-danger" ng-click="remove(version.id_dados_revisao)">{{ 'DELETE' | translate }}</button>
+                        </td>
                     </tr>
-                    <tr ng-show="versions.length == 0" class="warning">
-                        <td colspan="2" align="center">{{ 'VERSION_NOT_FOUND' | translate }}</td>
+                    <tr ng-show="$data.length == 0" class="warning">
+                        <td colspan="3" align="center">{{ 'VERSION_NOT_FOUND' | translate }}</td>
                     </tr>
                 </tbody>
             </table>

@@ -4,10 +4,12 @@
     </success-message>
     <div class="col-lg-6">
         <form role="form" name="form" ng-submit="create()">
+            <input name="id" type="hidden" value="{{useCase.id}}" />
             <div class="form-group">
                 <label>{{ 'APPLICATION' | translate }}</label>
                 <select class="form-control" required name="application" ng-model="useCase.application">
-                    <option ng-repeat="app in application">{{app.name}}</option>
+                    <option value="">{{ 'SELECT' | translate }}</option>
+                    <option ng-repeat="app in application" value="{{app.id_sistema}}">{{app.nome}}</option>
                 </select>
                 <div class="alert alert-dismissable alert-danger" ng-show="form.application.$error.required">
                     {{ 'APPLICATION_IS_REQUIRED' | translate }}
@@ -24,9 +26,11 @@
             <div class="form-group">
                 <label>Status</label>
                 <select class="form-control" name="status" ng-model="useCase.status" required>
-                    <option>Active</option>
-                    <option>Deleted</option>
-                    <option>Disabled</option>
+                    <option value="">{{ 'SELECT' | translate }}</option>
+                    <option value="1">Concluído</option>
+                    <option value="2">Excluído</option>
+                    <option value="3">Desenvolvimento</option>
+                    <option value="4">Suspenso</option>
                 </select>
                 <p class="help-block">Select a status</p>
                 <div class="alert alert-dismissable alert-danger" ng-show="form.status.$error.required">
@@ -36,7 +40,8 @@
             <div class="form-group">
                 <label>{{ 'VERSION' | translate }}</label>
                 <select class="form-control" name="version" ng-model="useCase.version" required>
-                    <option ng-repeat="option in options">{{option.name}}</option>
+                    <option value="">{{ 'SELECT' | translate }}</option>
+                    <option ng-repeat="option in version" value="{{option.id_dados_revisao}}">{{option.versao}}</option>
                 </select>
                 <p class="help-block">Select a version</p>
                 <div class="alert alert-dismissable alert-danger" ng-show="form.version.$error.required">
@@ -45,6 +50,7 @@
             </div>
 
             <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">{{ 'CREATE_USE_CASE' | translate }}</button>
+            <button type="button" class="btn btn-danger" ng-show="useCase.id" ng-click="cancel()"> {{ 'CANCEL' | translate }}</button>
         </form>
 
     </div>
@@ -53,22 +59,27 @@
     <div class="col-lg-6">
         <h2>Lista de casos de uso</h2>
         <div class="table-responsive">
-            <table class="table table-bordered table-hover tablesorter">
+            <table ng-table="customConfigParams" class="table table-bordered table-hover tablesorter">
                 <thead>
                     <tr>
-                        <th>{{ 'APPLICATION' | translate }} <i class="fa fa-sort"></i></th>
-                        <th>{{ 'DESCRIPTION' | translate }} <i class="fa fa-sort"></i></th>
-                        <th>{{ 'STATUS' | translate }} <i class="fa fa-sort"></i></th>
+                        <th>{{ 'APPLICATION' | translate }}</th>
+                        <th>{{ 'DESCRIPTION' | translate }}</th>
+                        <th>{{ 'STATUS' | translate }}</th>
+                        <th>{{ 'ACTION' | translate }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="useCase in useCases">
+                    <tr ng-repeat="useCase in $data track by $index">
                         <td>{{useCase.application}}</td>
                         <td>{{useCase.description}}</td>
                         <td>{{useCase.status}}</td>
+                        <td>
+                            <button class="btn btn-primary" ng-click="edit($index)">{{ 'EDIT' | translate }}</button> 
+                            <button class="btn btn-danger" ng-click="remove(useCase.id_caso_de_uso)">{{ 'DELETE' | translate }}</button>
+                        </td>
                     </tr>
-                    <tr ng-show="useCases.length == 0" class="warning">
-                        <td colspan="3" align="center">{{ 'USE_CASE_NOT_FOUND' | translate }}</td>
+                    <tr ng-show="$data.length == 0" class="warning">
+                        <td colspan="4" align="center">{{ 'USE_CASE_NOT_FOUND' | translate }}</td>
                     </tr>
                 </tbody>
             </table>

@@ -6,6 +6,7 @@
 
         <div class="col-lg-6">
             <form role="form" ng-submit="create()" name="form">
+                <input name="id" type="hidden" value="{{actor.id}}" />
                 <div class="form-group">
                     <label>{{ 'NAME' | translate }}</label>
                     <input class="form-control" name="name" ng-model="actor.name" required ng-class=""/>
@@ -22,7 +23,8 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">{{ 'CREATE_ACTOR' | translate }}</button>
+                <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">{{ message | translate }}</button>
+                <button type="button" class="btn btn-danger" ng-show="actor.id" ng-click="cancel()"> {{ 'CANCEL' | translate }}</button>
             </form>
         </div>
     </div>
@@ -30,22 +32,25 @@
         <div class="col-lg-6">
             <h2>{{ 'ACTOR_LIST' | translate }}</h2>
             <div class="table-responsive">
-                <table class="table">
+                <table ng-table="customConfigParams" class="table">
                     <thead>
                         <tr>
                             <th>{{ 'NAME' | translate }}</th>
                             <th>{{ 'DESCRIPTION' | translate }}</th>
+                            <th>{{ 'ACTION' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="actor in actors">
+                        <tr ng-repeat="actor in $data track by $index">
+                            <td>{{actor.nome}}</td>
+                            <td>{{actor.descricao}}</td>
                             <td>
-                                {{actor.name}}</td>
-                            <td>
-                                {{actor.description}}</td>
+                                <button class="btn btn-primary" ng-click="edit($index)">{{ 'EDIT' | translate }}</button> 
+                                <button class="btn btn-danger" ng-click="remove(actor.id_ator)">{{ 'DELETE' | translate }}</button>
+                            </td>
                         </tr>
-                        <tr ng-show="actors.length == 0" class="warning">
-                            <td colspan="2" align="center">{{ 'ACTOR_NOT_FOUND' | translate }}</td>
+                        <tr ng-show="$data.length == 0" class="warning">
+                            <td colspan="3" align="center">{{ 'ACTOR_NOT_FOUND' | translate }}</td>
                         </tr>
                     </tbody>
                 </table>

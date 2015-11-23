@@ -1,4 +1,4 @@
-app.factory('CrudFactory', ['$http', '$q', function($http, $q) {
+app.factory('CrudFactory', ['$http', function($http) {
     return {
         create: function(url, data) {
             return $http.post(url, data);

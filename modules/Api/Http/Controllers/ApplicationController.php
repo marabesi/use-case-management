@@ -1,9 +1,8 @@
 <?php namespace Modules\Api\Http\Controllers;
 
-use Pingpong\Modules\Routing\Controller;
 use Modules\Api\Models\Application;
+use Modules\Api\Http\Controllers\RestBaseController as Controller;
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 
 class ApplicationController extends Controller {
 
@@ -26,10 +25,11 @@ class ApplicationController extends Controller {
      */
     public function getIndex(Request $request)
     {
-        $limit = $request->input('limit', Application::DEFAULT_LIMIT);
+        $limit = $request->input('limit', \Modules\Api\Models\Base::DEFAULT_LIMIT);
 
-        return new JsonResponse(
-            $this->application->fetchAll($limit)
+        return $this->getJsonResponse(
+            $this->application->fetchAll($limit),
+            false
         );
     }
 
@@ -44,7 +44,7 @@ class ApplicationController extends Controller {
         $application->nome = $request->input('name');
         $application->save();
 
-        return new JsonResponse(
+        return $this->getJsonResponse(
             $application->id_sistema
         );
     }
@@ -55,13 +55,13 @@ class ApplicationController extends Controller {
      */
     public function deleteIndex($id)
     {
-        $model = $this->application->find($id);
+        $application = $this->application->find($id);
 
-        if ($model) {
-            $model->delete();
+        if ($application) {
+            $application->delete();
         }
 
-        return new JsonResponse(
+        return $this->getJsonResponse(
             $id
         );
     }
@@ -82,8 +82,19 @@ class ApplicationController extends Controller {
             $application->save();
         }
 
-        return new JsonResponse(
+        return $this->getJsonResponse(
             $id
+        );
+    }
+
+    /**
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function getFetch()
+    {
+        return $this->getJsonResponse(
+            $this->application->get(),
+            false
         );
     }
 }
