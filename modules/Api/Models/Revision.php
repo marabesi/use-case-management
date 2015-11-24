@@ -8,4 +8,5 @@ class Revision extends Model
 {
     protected $table = 'revisao';
     protected $primaryKey = 'id_revisao';
+    public $timestamps = false;
 }

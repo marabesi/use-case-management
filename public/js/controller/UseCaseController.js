@@ -71,11 +71,11 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory', 
             var useCase = $scope.customConfigParams.data[index];
             
             $scope.useCase = {
-//                id: useCase.
-//                application : useCase.id_sistema,
-//                description : useCase.descricao,
-//                status : useCase.status,
-//                version : useCase.version
+                id: useCase.id_caso_de_uso,
+                application : useCase.id_sistema,
+                description : useCase.descricao,
+                status : useCase.status,
+                version : useCase.id_dados_revisao
             };
             
             $scope.message = 'UPDATE_USE_CASE';

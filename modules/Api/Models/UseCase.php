@@ -12,7 +12,10 @@ class UseCase extends Base
 
     public function fetchAll($limit)
     {
-        return $this->paginate($limit);
+        return $this->join(
+            'revisao', 'revisao.id_caso_de_uso', '=',
+            'caso_de_uso.id_caso_de_uso'
+        )->paginate($limit);
     }
 
 }

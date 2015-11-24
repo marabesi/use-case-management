@@ -51,6 +51,7 @@ class UseCaseController extends Controller {
         $revision = new Revision();
         $revision->id_dados_revisao = $request->input('version');
         $revision->id_caso_de_uso = $idUseCase;
+        $revision->save();
 
         return $this->getJsonResponse(
             $idUseCase
@@ -60,13 +61,21 @@ class UseCaseController extends Controller {
     public function putIndex($id, Request $request)
     {
         $useCase = $this->useCase->find($id);
-
+        
         if ($useCase) {
-            foreach ($request->input() as $key => $value) {
-                $useCase->$key = $value;
-            }
-
+            $useCase->id_sistema = $request->input('application');
+            $useCase->descricao = $request->input('description');
+            $useCase->status = $request->input('status');
             $useCase->save();
+
+            $id_dados_revisao = $request->input('version');
+
+            $revision = new Revision();
+            $revision->find($id_dados_revisao);
+            
+            $revision->id_dados_revisao = $request->input('version');
+            $revision->id_caso_de_uso = $id;
+            $revision->save();
         }
 
         return $this->getJsonResponse(
