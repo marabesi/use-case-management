@@ -2,7 +2,7 @@
     <success-message submitted="submitted">
         <strong>{{ 'WELL_DONE' | translate }}</strong> {{ 'YOU_SUCCESSFULLY_CREATED_AN_APPLICATION' | translate }}
     </success-message>
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         <form role="form" name="form" ng-submit="create()">
             <input name="id" type="hidden" value="{{application.id}}" />
             <div class="form-group">
@@ -19,7 +19,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         <h2>{{ 'LIST_APPLICATION' | translate }}</h2>
         <div class="table-responsive">
             <table ng-table="customConfigParams" class="table table-bordered table-hover tablesorter">

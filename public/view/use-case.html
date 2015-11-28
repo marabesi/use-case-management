@@ -2,7 +2,7 @@
     <success-message submitted="submitted">
         <strong>{{ 'WELL_DONE' | translate }}</strong> {{ 'YOU_SUCCESSFULLY_CREATED_A_USE_CASE' | translate }}
     </success-message>
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         <form role="form" name="form" ng-submit="create()">
             <input name="id" type="hidden" value="{{useCase.id}}" />
             <input name="id_revision" type="hidden" value="{{useCase.id_revision}}" />
@@ -77,7 +77,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         <h2>{{ 'LIST_USE_CASE' | translate }}</h2>
         <div class="table-responsive">
             <table ng-table="customConfigParams" class="table table-bordered table-hover tablesorter">
