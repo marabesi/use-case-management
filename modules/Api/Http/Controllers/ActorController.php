@@ -71,4 +71,15 @@ class ActorController extends Controller {
             $id
         );
     }
+
+    /**
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function getFetch()
+    {
+        return $this->getJsonResponse(
+            $this->actor->get(),
+            false
+        );
+    }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="useCaseManagement">
+<html lang="en" ng-app="useCaseManagement" ng-cloak>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,9 +31,9 @@
                     <ul class="nav navbar-nav side-nav">
                         <li><a href="/#/">@{{ 'DASHBOARD' | translate }}</a></li>
                         <li><a href="/#/application/">@{{ 'APPLICATION' | translate }}</a></li>
-                        <li><a href="/#/use-case/"></i> @{{ 'USE_CASE' | translate }}</a></li>
-                        <li><a href="/#/version/">@{{ 'VERSION' | translate }}</a></li>
                         <li><a href="/#/actors/">@{{ 'ACTORS' | translate }}</a></li>
+                        <li><a href="/#/version/">@{{ 'VERSION' | translate }}</a></li>
+                        <li><a href="/#/use-case/"></i> @{{ 'USE_CASE' | translate }}</a></li>
                         <li><a href="/#/steps/">@{{ 'STEPS' | translate }}</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -79,6 +79,7 @@
         <script src="js/factory/CrudFactory.js"></script>
         <script src="js/factory/ApplicationFactory.js"></script>
         <script src="js/factory/VersionFactory.js"></script>
+        <script src="js/factory/ActorFactory.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="js/bootstrap.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>

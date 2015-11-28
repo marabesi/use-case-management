@@ -11,7 +11,8 @@ Route::group(['prefix' => 'api', 'namespace' => 'Modules\Api\Http\Controllers'],
     Route::delete('version/{id}', 'VersionController@deleteIndex');
     Route::resource('version', 'VersionController@putIndex');
     Route::controller('version', 'VersionController');
-    
+
+    Route::get('actor/fetch', 'ActorController@getFetch');
     Route::delete('actor/{id}', 'ActorController@deleteIndex');
     Route::resource('actor', 'ActorController@putIndex');
     Route::controller('actor', 'ActorController');
