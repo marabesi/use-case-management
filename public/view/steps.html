@@ -7,14 +7,16 @@
         <div class="panel-body">
             <div class="col-lg-3">
                 <div class="form-group">
-                    <label>Use case</label>
-                    <select class="form-control" required name="application" ng-model="flow.useCase">
+                    <label>{{ 'USE_CASE' | translate }}</label>
+                    <select class="form-control" required name="useCase" ng-model="step.useCase">
+                        <option value="">{{ 'SELECT' | translate }}</option>
+                        <option ng-repeat="useCase in useCases" value="{{useCase.id_caso_de_uso}}">{{useCase.descricao}}</option>
                     </select>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="form-group">
-                    <label>Type</label>
+                    <label>{{ 'TYPE' | translate }}</label>
                     <select class="form-control" required name="application" ng-model="flow.type">
                         <option value="basico">Basic</option>
                         <option value="alternativo">Alternate</option>

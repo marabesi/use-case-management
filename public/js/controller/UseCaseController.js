@@ -1,5 +1,9 @@
-app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory', 'CrudFactory', '$translate', 'ApplicationFactory', 'VersionFactory', 'ActorFactory',
-    function($scope, NgTableParams, TableFactory, CrudFactory, $translate, ApplicationFactory, VersionFactory, ActorFactory) {
+app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory',
+    'CrudFactory', '$translate', 'ApplicationFactory', 'VersionFactory', 'ActorFactory',
+    'UseCaseFactory',
+    function($scope, NgTableParams, TableFactory,
+    CrudFactory, $translate, ApplicationFactory, VersionFactory, ActorFactory,
+    UseCaseFactory) {
 
     ApplicationFactory.fetch().then(function(data) {
         $scope.application = data;
@@ -94,18 +98,23 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory', 
     
     $scope.edit = function(index) {
         if (index !== undefined) {
-            var useCase = $scope.customConfigParams.data[index];
+            var id_caso_de_uso = $scope.customConfigParams.data[index].id_caso_de_uso;
             
-            $scope.useCase = {
-                id: useCase.id_caso_de_uso,
-                id_revision: useCase.id_revisao,
-                id_actor_revision: useCase.id_relacionamento_dados_revisao,
-                application : useCase.id_sistema,
-                description : useCase.descricao,
-                status : useCase.status,
-                version : useCase.id_dados_revisao,
-                actor: useCase.id_ator
-            };
+            UseCaseFactory.fetchUseCase(id_caso_de_uso).then(function(data) {
+                var useCase = {
+                    id: data.id_caso_de_uso,
+                    id_revision: data.id_revisao,
+                    id_actor_revision: data.id_relacionamento_dados_revisao,
+                    application : data.id_sistema,
+                    description : data.descricao,
+                    status : data.status,
+                    version : data.id_dados_revisao,
+                    actor: data.atores
+                };
+
+                $scope.actorsElements = data.atores;
+                $scope.useCase = useCase;
+            });
             
             $scope.message = 'UPDATE_USE_CASE';
         }

@@ -1,4 +1,9 @@
-app.controller('StepsController', ['$scope', function($scope) {
+app.controller('StepsController', ['$scope', 'UseCaseFactory', function($scope, UseCaseFactory) {
+    
+    UseCaseFactory.fetch().then(function(data) {
+        $scope.useCases = data;
+    });    
+    
     $scope.elements = [
         {},
     ];

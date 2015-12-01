@@ -140,4 +140,26 @@ class UseCaseController extends Controller {
             $id
         );
     }
+
+    /**
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function getFetch()
+    {
+        return $this->getJsonResponse(
+            $this->useCase->get(),
+            false
+        );
+    }
+    
+    /**
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function getFetchUseCase($id)
+    {
+        return $this->getJsonResponse(
+            $this->useCase->fetchUseCase($id),
+            false
+        );
+    }
 }
