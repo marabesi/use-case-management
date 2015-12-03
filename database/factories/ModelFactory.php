@@ -11,11 +11,15 @@
 |
 */
 
-$factory->define(UseCaseManagement\User::class, function (Faker\Generator $faker) {
+$factory->define(\Modules\Api\Models\Application::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-        'password' => bcrypt(str_random(10)),
-        'remember_token' => str_random(10),
+        'nome' => $faker->name
+    ];
+});
+
+$factory->define(\Modules\Api\Models\Actor::class, function(Faker\Generator $faker) {
+    return [
+        'nome' => $faker->name,
+        'descricao' => $faker->description
     ];
 });
