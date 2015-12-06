@@ -2,3 +2,5 @@
 public/bower_components/
 vendor/
 .env
+node_modules/
+npm-debug.log
