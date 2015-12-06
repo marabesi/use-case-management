@@ -70,6 +70,7 @@ class UseCase extends Base
                     'id_dados_revisao' => $array['id_dados_revisao'],
                     'versao' => $array['versao'],
                     'nome' => $array['nome'],
+                    'id_relacionamento_dados_revisao' => $array['id_relacionamento_dados_revisao']
                 ];
             }
             

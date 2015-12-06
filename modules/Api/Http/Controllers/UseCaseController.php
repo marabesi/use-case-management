@@ -130,10 +130,15 @@ class UseCaseController extends Controller {
             $findRevision->id_caso_de_uso = $id;
             $findRevision->save();
 
-            $id_relacionamento_dados_revisao = $request->input('id_relacionamento_dados_revisao');
-            $findActor = $this->revisionActors->find($id_relacionamento_dados_revisao);
-            $findActor->id_ator = $request->input('id_ator');
-            $findActor->save();
+            $findActor = $this->revisionActors->findByRevision($request->input('id_dados_revisao'));
+            $findActor->delete();
+            
+            foreach ($request->input('id_ator', []) as $id) {
+                $r = new RevisionActors();
+                $r->id_dados_revisao = $request->input('id_dados_revisao');
+                $r->id_ator = $id;
+                $r->save();
+            }
         }
 
         return $this->getJsonResponse(
