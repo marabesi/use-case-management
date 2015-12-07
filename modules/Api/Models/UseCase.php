@@ -28,7 +28,9 @@ class UseCase extends Base
             'relacionamento_dados_revisao AS rdr', 'd.id_dados_revisao',
             '=', 'rdr.id_dados_revisao'
         )
-        ->groupBy('c.id_caso_de_uso')
+        ->groupBy( 'c.id_caso_de_uso', 'c.id_sistema', 'c.descricao',
+            'c.status', 'r.id_revisao', 'd.id_dados_revisao',
+            'd.versao', 's.nome', 'rdr.id_ator', 'rdr.id_relacionamento_dados_revisao')
         ->paginate($limit);
     }
 
