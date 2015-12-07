@@ -96,8 +96,11 @@ class UseCaseController extends Controller {
         $revision->id_caso_de_uso = $idUseCase;
         $revision->save();
 
+        $id_revisao = $revision->id_revisao;
+
         foreach ($request->input('actor', []) as $actor) {
             $revisionActors = new RevisionActors();
+            $revisionActors->id_revisao = $id_revisao;
             $revisionActors->id_ator = $actor;
             $revisionActors->id_dados_revisao = $request->input('version');
             $revisionActors->save();
@@ -137,6 +140,7 @@ class UseCaseController extends Controller {
                 $r = new RevisionActors();
                 $r->id_dados_revisao = $request->input('id_dados_revisao');
                 $r->id_ator = $id;
+                $r->id_revisao = $id_revisao;
                 $r->save();
             }
         }
@@ -160,10 +164,10 @@ class UseCaseController extends Controller {
     /**
      * @return Illuminate\Http\JsonResponse
      */
-    public function getFetchUseCase($id)
+    public function getFetchUseCase($id, $revision)
     {
         return $this->getJsonResponse(
-            $this->useCase->fetchUseCase($id),
+            $this->useCase->fetchUseCase($id, $revision),
             false
         );
     }

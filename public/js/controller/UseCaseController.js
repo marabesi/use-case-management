@@ -99,8 +99,9 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory',
     $scope.edit = function(index) {
         if (index !== undefined) {
             var id_caso_de_uso = $scope.customConfigParams.data[index].id_caso_de_uso;
+            var id_revisao = $scope.customConfigParams.data[index].id_revisao;
             
-            UseCaseFactory.fetchUseCase(id_caso_de_uso).then(function(data) {
+            UseCaseFactory.fetchUseCase(id_caso_de_uso, id_revisao).then(function(data) {
                 var useCase = {
                     id: data.id_caso_de_uso,
                     id_revision: data.id_revisao,

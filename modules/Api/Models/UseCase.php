@@ -35,7 +35,7 @@ class UseCase extends Base
     /**
      * @param int $id
      */
-    public function fetchUseCase($id)
+    public function fetchUseCase($id, $revision)
     {
         $data = $this->select(
             'c.id_caso_de_uso', 'c.id_sistema', 'c.descricao',
@@ -54,7 +54,8 @@ class UseCase extends Base
             'relacionamento_dados_revisao AS rdr', 'd.id_dados_revisao',
             '=', 'rdr.id_dados_revisao'
         )
-        ->where('c.id_caso_de_uso', $id);
+        ->where('c.id_caso_de_uso', $id)
+        ->where('rdr.id_revisao', $revision);
 
         $hydrate = [];
         $atores = [];
