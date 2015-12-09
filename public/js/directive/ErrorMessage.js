@@ -1,5 +1,5 @@
-angular.module('ErrorMessage', [])
-    .directive('ErrorMessage', ['$timeout', function($timeout) {
+angular.module('errorMessage', [])
+    .directive('errorMessage', ['$timeout', function($timeout) {
         return {
             restrict: 'E',
             templateUrl: 'view/partial/errorMessage.html',
@@ -12,7 +12,7 @@ angular.module('ErrorMessage', [])
                     if (scope.error === true) {
                         $timeout(function() {
                             scope.error = false;
-                        }, 2000);
+                        }, 15000);
                     }
                 });
             }

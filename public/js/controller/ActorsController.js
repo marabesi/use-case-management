@@ -4,6 +4,7 @@ app.controller('ActorsController', ['$scope',  'NgTableParams', 'TableFactory', 
     $scope.submitted = false;
     $scope.error = false;
     $scope.message = 'CREATE_ACTOR';
+    $scope.messageError = '';
     
     var urlService = 'api/actor';
     
@@ -43,7 +44,7 @@ app.controller('ActorsController', ['$scope',  'NgTableParams', 'TableFactory', 
             var actor = {
                 name: $scope.actor.name,
                 description: $scope.actor.description
-            }
+            };
 
             CrudFactory.create(urlService, actor);
         }
@@ -59,10 +60,17 @@ app.controller('ActorsController', ['$scope',  'NgTableParams', 'TableFactory', 
         var message = $translate.instant('CONFIRM_DELETE');
         
         if (confirm(message)) {
-            CrudFactory.remove(urlService, id);
-
-            createTable();
-            $scope.customConfigParams.reload();
+            var http = CrudFactory.remove(urlService, id);
+            
+            http.success(function(data) {
+                if (data.error) {
+                    $scope.messageError = $translate.instant(data.data);
+                    $scope.error = true;
+                } else {
+                    createTable();
+                    $scope.customConfigParams.reload();
+                }
+            });
         }
     }
     

@@ -1,4 +1,4 @@
-var app = angular.module('useCaseManagement', ['ngRoute', 'SuccessMessage', 'pascalprecht.translate', 'ngTable', 'ngResource', 'ErrorMessage']);
+var app = angular.module('useCaseManagement', ['ngRoute', 'SuccessMessage', 'pascalprecht.translate', 'ngTable', 'ngResource', 'errorMessage']);
 
 app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/application', {
@@ -80,6 +80,8 @@ app.config(['$routeProvider', function ($routeProvider) {
             USE_CASE_STATUS: 'Status',
             USE_CASE_STATUS_IS_REQUIRED: 'Use case status is required',
             ACTOR_IS_REQUIRED: 'Actor is required',
+            SORRY_SOMETHING_WENT_WRONG: 'Sorry something went wrong',
+            COULD_NOT_DELETE_ACTOR: 'could not delete the actor',
         })
         .translations('ptBR', {
             DASHBOARD: 'Painel',
@@ -139,6 +141,8 @@ app.config(['$routeProvider', function ($routeProvider) {
             USE_CASE_STATUS: 'Status',
             USE_CASE_STATUS_IS_REQUIRED: 'Status do caso de uso é obrigatório',
             ACTOR_IS_REQUIRED: 'Ator é obrigatório',
+            SORRY_SOMETHING_WENT_WRONG: 'Desculpe ocorreu um erro',
+            COULD_NOT_DELETE_ACTOR: 'não foi possível deletar o ator desejado',
         });
         
         $translateProvider.preferredLanguage('ptBR');
