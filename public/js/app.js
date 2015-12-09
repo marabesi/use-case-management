@@ -1,4 +1,4 @@
-var app = angular.module('useCaseManagement', ['ngRoute', 'SuccessMessage', 'pascalprecht.translate', 'ngTable', 'ngResource']);
+var app = angular.module('useCaseManagement', ['ngRoute', 'SuccessMessage', 'pascalprecht.translate', 'ngTable', 'ngResource', 'ErrorMessage']);
 
 app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/application', {

@@ -2,6 +2,7 @@ app.controller('ActorsController', ['$scope',  'NgTableParams', 'TableFactory', 
     function($scope, NgTableParams, TableFactory, CrudFactory, $translate) {
     
     $scope.submitted = false;
+    $scope.error = false;
     $scope.message = 'CREATE_ACTOR';
     
     var urlService = 'api/actor';

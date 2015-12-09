@@ -1,6 +1,7 @@
 <?php namespace Modules\Api\Http\Controllers;
 
 use Modules\Api\Models\Actor;
+use Modules\Api\Models\RevisionActors;
 use Modules\Api\Http\Controllers\RestBaseController as Controller;
 use Illuminate\Http\Request;
 
@@ -12,26 +13,53 @@ class ActorController extends Controller {
     private $actor;
 
     /**
+     * @var Modules\Api\Models\RevisionActors
+     */
+    private $revisionActor;
+    
+    /**
      * @param Modules\Api\Models\Actor $actor
      */
-    public function __construct(Actor $actor)
+    public function __construct(Actor $actor, RevisionActors $revisionActors)
     {
         $this->actor = $actor;
+        $this->revisionActor = $revisionActors;
     }
 
+    /**
+     * @param int $id
+     * @return Illuminate\Http\JsonResponse
+     */
     public function deleteIndex($id)
     {
-        $actor = $this->actor->find($id);
+        try {
+            $count = $this->revisionActor->findByActor($id)->count();
+            if ($count > 0) {
+                throw new \Exception('COULD_NOT_DELETE_ACTOR');
+            }
+            
+            $actor = $this->actor->find($id);
 
-        if ($actor) {
-            $actor->delete();
+            if ($actor) {
+                $actor->delete();
+            }
+
+            return $this->getJsonResponse(
+                $id
+            );
+        } catch (\Exception $exception) {
+            return $this->getJsonResponse([
+                'data' => $exception->getMessage(),
+                'error' => true
+            ], false);
         }
-
-        return $this->getJsonResponse(
-            $id
-        );
     }
 
+    /**
+     *
+     * @param Illuminate\Http\Request $request
+     * @return Illuminate\Http\JsonResponse
+     */
     public function getIndex(Request $request)
     {
         $limit = $request->input('limit', \Modules\Api\Models\Base::DEFAULT_LIMIT);
@@ -42,6 +70,10 @@ class ActorController extends Controller {
         );
     }
 
+    /**
+     * @param Illuminate\Http\Request $request
+     * @return Illuminate\Http\JsonResponse
+     */
     public function postIndex(Request $request)
     {
         $application = new Actor();
@@ -55,6 +87,11 @@ class ActorController extends Controller {
         );
     }
 
+    /**
+     * @param int $id
+     * @param Illuminate\Http\Request $request
+     * @return Illuminate\Http\JsonResponse
+     */
     public function putIndex($id, Request $request)
     {
         $actor = $this->actor->find($id);

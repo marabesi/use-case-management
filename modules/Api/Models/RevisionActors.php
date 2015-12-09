@@ -20,4 +20,15 @@ class RevisionActors extends Model
                 ->from('relacionamento_dados_revisao')
                 ->where('id_dados_revisao', $id);
     }
+
+    /**
+     * @param int $id
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function findByActor($id)
+    {
+        return $this->select('id_relacionamento_dados_revisao')
+            ->from('relacionamento_dados_revisao')
+            ->where('id_ator', $id);
+    }
 }
