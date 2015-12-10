@@ -6,16 +6,32 @@ use Modules\Api\Models\Base;
 
 class UseCase extends Base
 {
+    
+    /**
+     * @var string
+     */
     protected $table = 'caso_de_uso';
+
+    /**
+     * @var string
+     */
     protected $primaryKey = 'id_caso_de_uso';
+
+    /**
+     * @var boolean
+     */
     public $timestamps = false;
 
+    /**
+     * @param int $limit
+     * @return Illuminate\Database\Eloquent\Collection
+     */
     public function fetchAll($limit)
     {
         return $this->select(
             'c.id_caso_de_uso', 'c.id_sistema', 'c.descricao',
             'c.status', 'r.id_revisao', 'd.id_dados_revisao',
-            'd.versao', 's.nome', 'rdr.id_ator', 'rdr.id_relacionamento_dados_revisao'
+            'd.versao', 's.nome'
         )
         ->from('caso_de_uso AS c')
         ->join('revisao AS r', 'r.id_caso_de_uso', '=', 'c.id_caso_de_uso')
@@ -30,12 +46,13 @@ class UseCase extends Base
         )
         ->groupBy( 'c.id_caso_de_uso', 'c.id_sistema', 'c.descricao',
             'c.status', 'r.id_revisao', 'd.id_dados_revisao',
-            'd.versao', 's.nome', 'rdr.id_ator', 'rdr.id_relacionamento_dados_revisao')
+            'd.versao', 's.nome')
         ->paginate($limit);
     }
 
     /**
      * @param int $id
+     * @return array
      */
     public function fetchUseCase($id, $revision)
     {

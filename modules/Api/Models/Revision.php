@@ -6,8 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Revision extends Model
 {
+
+    /**
+     * @var string
+     */
     protected $table = 'revisao';
+
+    /**
+     * @var string
+     */
     protected $primaryKey = 'id_revisao';
+
+    /**
+     * @var boolean
+     */
     public $timestamps = false;
 
     /**

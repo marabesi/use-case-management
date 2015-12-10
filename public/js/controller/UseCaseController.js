@@ -102,7 +102,7 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory',
             var id_revisao = $scope.customConfigParams.data[index].id_revisao;
             
             UseCaseFactory.fetchUseCase(id_caso_de_uso, id_revisao).then(function(data) {
-                var useCase = {
+                $scope.useCase = {
                     id: data.id_caso_de_uso,
                     id_revision: data.id_revisao,
                     id_actor_revision: data.id_relacionamento_dados_revisao,
@@ -112,9 +112,8 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory',
                     version : data.id_dados_revisao,
                     actor: data.atores
                 };
-
+                
                 $scope.actorsElements = data.atores;
-                $scope.useCase = useCase;
             });
             
             $scope.message = 'UPDATE_USE_CASE';

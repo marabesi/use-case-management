@@ -18,7 +18,11 @@ class VersionController extends Controller {
     {
         $this->version = $version;
     }
-    
+
+    /**
+     * @param int $id
+     * @return Illuminate\Http\JsonResponse
+     */
     public function deleteIndex($id)
     {
         $version = $this->version->find($id);
@@ -32,6 +36,11 @@ class VersionController extends Controller {
         );
     }
 
+    /**
+     *
+     * @param Illuminate\Http\Request $request
+     * @return Illuminate\Http\JsonResponse
+     */
     public function getIndex(Request $request)
     {
         $limit = $request->input('limit', \Modules\Api\Models\Base::DEFAULT_LIMIT);
@@ -42,6 +51,11 @@ class VersionController extends Controller {
         );
     }
 
+    /**
+     *
+     * @param Illuminate\Http\Request $request
+     * @return Illuminate\Http\JsonResponse
+     */
     public function postIndex(Request $request)
     {
         $version = new Version();
@@ -55,6 +69,12 @@ class VersionController extends Controller {
         );
     }
 
+    /**
+     *
+     * @param int $id
+     * @param Illuminate\Http\Request $request
+     * @return Illuminate\Http\JsonResponse
+     */
     public function putIndex($id, Request $request)
     {
         $version = $this->version->find($id);

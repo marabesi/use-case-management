@@ -12,7 +12,7 @@
                 <label>{{ 'APPLICATION' | translate }}</label>
                 <select class="form-control" required name="application" ng-model="useCase.application">
                     <option value="">{{ 'SELECT' | translate }}</option>
-                    <option ng-repeat="app in application" value="{{app.id_sistema}}">{{app.nome}}</option>
+                    <option ng-repeat="app in application" ng-selected="useCase.application" value="{{app.id_sistema}}">{{app.nome}}</option>
                 </select>
                 <div class="alert alert-dismissable alert-danger" ng-show="form.application.$error.required">
                     {{ 'APPLICATION_IS_REQUIRED' | translate }}
@@ -23,7 +23,7 @@
                 <label>{{ 'VERSION' | translate }}</label>
                 <select class="form-control" name="version" ng-model="useCase.version" required>
                     <option value="">{{ 'SELECT' | translate }}</option>
-                    <option ng-repeat="option in version" value="{{option.id_dados_revisao}}">{{option.versao}}</option>
+                    <option ng-repeat="option in version" ng-selected="useCase.version" value="{{option.id_dados_revisao}}">{{option.versao}}</option>
                 </select>
                 <div class="alert alert-dismissable alert-danger" ng-show="form.version.$error.required">
                     {{ 'VERSION_IS_REQUIRED' | translate }}
@@ -37,7 +37,7 @@
                 <div class="input-group">
                     <select class="form-control" name="actor[{{$index}}]" ng-model="useCase.actor[$index]" required>
                         <option value="">{{ 'SELECT' | translate }}</option>
-                        <option ng-repeat="actor in actors" value="{{actor.id_ator}}">{{actor.nome}}</option>
+                        <option ng-repeat="actor in actors" ng-selected="useCase.actor[$index]" value="{{actor.id_ator}}">{{actor.nome}}</option>
                     </select>
 
                     <span class="input-group-btn">
@@ -55,10 +55,10 @@
                 <label>{{ 'USE_CASE_STATUS' | translate }}</label>
                 <select class="form-control" name="status" ng-model="useCase.status" required>
                     <option value="">{{ 'SELECT' | translate }}</option>
-                    <option value="1">{{ 1 | translate }}</option>
-                    <option value="2">{{ 2 | translate }}</option>
-                    <option value="3">{{ 3 | translate }}</option>
-                    <option value="4">{{ 4 | translate }}</option>
+                    <option value="1" ng-selected="useCase.status">{{ 1 | translate }}</option>
+                    <option value="2" ng-selected="useCase.status">{{ 2 | translate }}</option>
+                    <option value="3" ng-selected="useCase.status">{{ 3 | translate }}</option>
+                    <option value="4" ng-selected="useCase.status">{{ 4 | translate }}</option>
                 </select>
                 <div class="alert alert-dismissable alert-danger" ng-show="form.status.$error.required">
                     {{ 'USE_CASE_STATUS_IS_REQUIRED' | translate }}
@@ -96,7 +96,7 @@
                         <td>{{ useCase.status | translate }}</td>
                         <td>
                             <button class="btn btn-primary" ng-click="edit($index)">{{ 'EDIT' | translate }}</button> 
-                            <button class="btn btn-danger" ng-click="remove(useCase.id_caso_de_uso, useCase.id_relacionamento_dados_revisao)">{{ 'DELETE' | translate }}</button>
+                            <button class="btn btn-danger" ng-click="remove(useCase.id_caso_de_uso, useCase.id_revisao)">{{ 'DELETE' | translate }}</button>
                         </td>
                     </tr>
                     <tr ng-show="$data.length == 0" class="warning">

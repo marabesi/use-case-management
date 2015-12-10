@@ -48,7 +48,7 @@ class UseCaseController extends Controller {
         $revision = $this->revision->findByUseCase($idUseCase);
 
         if ($revision) {
-            $actors = $this->revisionActors->find($actor);
+            $actors = $this->revisionActors->findByRevision($actor);
             $actors->delete();
 
             $revision->delete();

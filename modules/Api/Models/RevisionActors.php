@@ -6,8 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class RevisionActors extends Model
 {
+
+    /**
+     * @var string
+     */
     protected $table      = 'relacionamento_dados_revisao';
+
+    /**
+     * @var string
+     */
     protected $primaryKey = 'id_relacionamento_dados_revisao';
+
+    /**
+     * @var boolean
+     */
     public $timestamps    = false;
 
     /**
