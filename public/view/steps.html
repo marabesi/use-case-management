@@ -1,9 +1,9 @@
 <div ng-controller="StepsController">
     <success-message submitted="submitted">
-        <strong>Well done!</strong> You successfully created a use case.
+        <strong>{{ 'WELL_DONE' | translate }}</strong> {{ 'YOU_SUCCESSFULLY_CREATED_AN_STEP' | translate }}
     </success-message>
     <div class="panel panel-default">
-        <div class="panel-heading">Step</div>
+        <div class="panel-heading">{{ 'STEP' | translate }}</div>
         <div class="panel-body">
             <div class="col-lg-3">
                 <div class="form-group">
@@ -18,9 +18,9 @@
                 <div class="form-group">
                     <label>{{ 'TYPE' | translate }}</label>
                     <select class="form-control" required name="application" ng-model="flow.type">
-                        <option value="basico">Basic</option>
-                        <option value="alternativo">Alternate</option>
-                        <option value="excecao">Exception</option>
+                        <option value="1">Basic</option>
+                        <option value="2">Alternate</option>
+                        <option value="3">Exception</option>
                     </select>
                 </div>
             </div>
@@ -102,7 +102,7 @@
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">Use cases</div>
+        <div class="panel-heading">{{ 'USE_CASE' | translate }}</div>
         <div class="panel-body">
             <ul>
                 <li>
