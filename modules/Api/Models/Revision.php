@@ -32,4 +32,15 @@ class Revision extends Model
             ->from('revisao')
             ->where('id_caso_de_uso', $id);
     }
+
+    /**
+     * @param int $id
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function findByRevision($id)
+    {
+        return $this->select('id_revisao')
+            ->from('revisao')
+            ->where('id_dados_revisao', $id);
+    }
 }

@@ -2,6 +2,11 @@
     <success-message submitted="submitted">
         <strong>{{ 'WELL_DONE' | translate }}</strong> {{ 'YOU_SUCCESSFULLY_CREATED_A_VERSION' | translate }}
     </success-message>
+    
+    <error-message error="error">
+        <strong>{{ 'SORRY_SOMETHING_WENT_WRONG' | translate }}</strong> {{messageError}}
+    </error-message>
+
     <div class="col-lg-12">
         <form role="form" name="form" ng-submit="create()">
             <input name="id" type="hidden" value="{{version.id}}" />

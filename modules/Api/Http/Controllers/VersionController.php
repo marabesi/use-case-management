@@ -3,6 +3,7 @@
 use Modules\Api\Models\Version;
 use Modules\Api\Http\Controllers\RestBaseController as Controller;
 use Illuminate\Http\Request;
+use Modules\Api\Models\Revision;
 
 class VersionController extends Controller {
 
@@ -12,11 +13,18 @@ class VersionController extends Controller {
     private $version;
 
     /**
-     * @param Modules\Api\Models\Version $version
+     * @var Modules\Api\Models\Revision
      */
-    public function __construct(Version $version)
+    private $revision;
+
+    /**
+     * @param Modules\Api\Models\Version $version
+     * @param Modules\Api\Models\Revision
+     */
+    public function __construct(Version $version, Revision $revision)
     {
         $this->version = $version;
+        $this->revision = $revision;
     }
 
     /**
@@ -25,15 +33,28 @@ class VersionController extends Controller {
      */
     public function deleteIndex($id)
     {
-        $version = $this->version->find($id);
+        try {
+            $count = $this->revision->findByRevision($id)->count();
+            
+            if ($count > 0) {
+                throw new \Exception('COULD_NOT_DELETE_REVISION');
+            }
 
-        if ($version) {
-            $version->delete();
+            $version = $this->version->find($id);
+            
+            if ($version) {
+                $version->delete();
+            }
+            
+            return $this->getJsonResponse(
+                $id
+            );
+        } catch (\Exception $exception) {
+            return $this->getJsonResponse([
+                'data' => $exception->getMessage(),
+                'error' => true
+            ], false);
         }
-
-        return $this->getJsonResponse(
-            $id
-        );
     }
 
     /**

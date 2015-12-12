@@ -4,7 +4,9 @@ app.controller('VersionController', ['$scope', 'NgTableParams', 'TableFactory', 
     var urlService = 'api/version';
     
     $scope.message = 'CREATE_VERSION';
-    
+    $scope.error = false;
+    $scope.messageError = '';
+        
     function createTable() {
         var initialSettings = {
           count: TableFactory.DEFAULT_COUNT,
@@ -69,8 +71,18 @@ app.controller('VersionController', ['$scope', 'NgTableParams', 'TableFactory', 
         var message = $translate.instant('CONFIRM_DELETE');
         
         if (confirm(message)) {
-            CrudFactory.remove(urlService, id);
-
+            var http = CrudFactory.remove(urlService, id);
+            
+            http.success(function(data) {
+                if (data.error) {
+                    $scope.messageError = $translate.instant(data.data);
+                    $scope.error = true;
+                } else {
+                    createTable();
+                    $scope.customConfigParams.reload();
+                }
+            });
+            
             createTable();
             $scope.customConfigParams.reload();
         }

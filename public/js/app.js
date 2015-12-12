@@ -84,6 +84,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             COULD_NOT_DELETE_ACTOR: 'could not delete the actor',
             YOU_SUCCESSFULLY_CREATED_AN_STEP: 'You successfully created an step',
             STEP: 'Step',
+            COULD_NOT_DELETE_REVISION: 'could not delete the version',
         })
         .translations('ptBR', {
             DASHBOARD: 'Painel',
@@ -147,6 +148,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             COULD_NOT_DELETE_ACTOR: 'não foi possível deletar o ator desejado',
             YOU_SUCCESSFULLY_CREATED_AN_STEP: 'Você criou um passo com sucesso',
             STEP: 'Passo',
+            COULD_NOT_DELETE_REVISION: 'não foi possível deletar a versão desejada',
         });
         
         $translateProvider.preferredLanguage('ptBR');
