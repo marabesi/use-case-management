@@ -25,17 +25,17 @@ app.controller('StepsController', ['$scope', 'UseCaseFactory', function($scope, 
     $scope.submitted = false;
     
     $scope.createComplementary = function() {
-        $scope.modal.title = 'Complementary';
+        $scope.modal.title = 'COMPLEMENTARY';
         $scope.modal.active = 'complementary';
     }
     
     $scope.createRule = function() {
-        $scope.modal.title = 'Rule';
+        $scope.modal.title = 'BUSINESS';
         $scope.modal.active = 'rule';
     }
     
     $scope.createReference = function() {
-        $scope.modal.title = 'Reference';
+        $scope.modal.title = 'REFERENCE';
         $scope.modal.active = 'reference';
     }
     
