@@ -45,8 +45,9 @@ app.controller('StepsController', ['$scope', 'UseCaseFactory', function($scope, 
         $scope.elements.push(step);
     }
     
-    $scope.createNewStep = function() {
-       $scope.submitted = true;
+    $scope.create = function() {
+        console.log($scope.useCase);
+        $scope.submitted = true;
     }
     
     $scope.createOption = function(active) {

@@ -2,106 +2,145 @@
     <success-message submitted="submitted">
         <strong>{{ 'WELL_DONE' | translate }}</strong> {{ 'YOU_SUCCESSFULLY_CREATED_AN_STEP' | translate }}
     </success-message>
+
     <div class="panel panel-default">
         <div class="panel-heading">{{ 'STEP' | translate }}</div>
-        <div class="panel-body">
-            <div class="col-lg-3">
-                <div class="form-group">
-                    <label>{{ 'USE_CASE' | translate }}</label>
-                    <select class="form-control" required name="useCase" ng-model="step.useCase">
-                        <option value="">{{ 'SELECT' | translate }}</option>
-                        <option ng-repeat="useCase in useCases" value="{{useCase.id_caso_de_uso}}">{{useCase.descricao}}</option>
-                    </select>
+        <form role="form" ng-submit="create()" name="form">
+            <div class="panel-body">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label>{{ 'USE_CASE' | translate }}</label>
+                        <select class="form-control" name="useCase" ng-model="useCase.useCase" required>
+                            <option value="">{{ 'SELECT' | translate }}</option>
+                            <option ng-repeat="useCase in useCases" value="{{useCase.id_caso_de_uso}}">{{useCase.descricao}}</option>
+                        </select>
+                        <div class="alert alert-dismissable alert-danger" ng-show="form.useCase.$error.required">
+                            {{ 'USE_CASE_IS_REQUIRED' | translate }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label>{{ 'TYPE' | translate }}</label>
+                        <select class="form-control" required name="type" ng-model="useCase.type">
+                            <option value="">{{ 'SELECT' | translate }}</option>
+                            <option value="1">{{ 'TYPE_1' | translate }}</option>
+                            <option value="2">{{ 'TYPE_2' | translate }}</option>
+                            <option value="3">{{ 'TYPE_3' | translate }}</option>
+                        </select>
+                        <div class="alert alert-dismissable alert-danger" ng-show="form.type.$error.required">
+                            {{ 'TYPE_IS_REQUIRED' | translate }}
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-3">
-                <div class="form-group">
-                    <label>{{ 'TYPE' | translate }}</label>
-                    <select class="form-control" required name="application" ng-model="step.type">
-                        <option value="">{{ 'SELECT' | translate }}</option>
-                        <option value="1">{{ 'TYPE_1' | translate }}</option>
-                        <option value="2">{{ 'TYPE_2' | translate }}</option>
-                        <option value="3">{{ 'TYPE_3' | translate }}</option>
-                    </select>
+            <div class="panel-body">
+                <div class="col-lg-1">
+                    <div class="form-group">
+                        <label>{{ 'IDENTIFIER' | translate }}</label>
+                        <input class="form-control" name="identifier" ng-model="useCase.identifier" required/>
+                        <div class="alert alert-dismissable alert-danger" ng-show="form.identifier.$error.required">
+                            {{ 'IDENTIFIER_IS_REQUIRED' | translate }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="form-group">
+                        <label>{{ 'DESCRIPTION' | translate }}</label>
+                        <textarea class="form-control" name="description" ng-model="useCase.description" required></textarea>
+                        <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required">
+                            {{ 'DESCRIPTION_IS_REQUIRED' | translate }}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="panel-body">
-            <div class="col-lg-1">
-                <div class="form-group">
-                    <label>{{ 'IDENTIFIER' | translate }}</label>
-                    <input class="form-control" name="identifier" ng-model="step.identifier" required/>
-                </div>
-            </div>
-            <div class="col-lg-9">
-                <div class="form-group">
-                    <label>{{ 'DESCRIPTION' | translate }}</label>
-                    <textarea class="form-control" name="description" ng-model="step.description" required></textarea>
-                </div>
-            </div>
-        </div>
-        <div class="panel-body" ng-repeat="(index, step) in elements">
-            <div class="col-lg-3">
-                <div class="form-group" ng-show="index == 0">
-                    <label>{{ 'COMPLEMENTARY' | translate }}</label>
-                </div>
-                <div class="input-group">
-                    <select class="form-control">
-                        <option value="">{{ 'SELECT' | translate }}</option>
-                        <option ng-repeat="complementary in complementaries" value="{{complementary.id}}">
-                            {{complementary.identifier}} - {{complementary.description}}
-                        </option>
-                    </select>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newElementModal" ng-click="createComplementary()">+</button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="form-group" ng-show="index == 0">
-                    <label>{{ 'BUSINESS' | translate }}</label>
-                </div>
-                <div class="input-group">
-                    <select class="form-control">
-                        <option value="">{{ 'SELECT' | translate }}</option>
-                        <option ng-repeat="rule in rules" value="{{rule.id}}">
-                            {{rule.identifier}} - {{rule.description}}
-                        </option>
-                    </select>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newElementModal" ng-click="createRule()">+</button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="form-group" ng-show="index == 0">
-                    <label>{{ 'REFERENCE' | translate }}</label>
-                </div>
-                <div class="input-group">
-                    <select class="form-control">
-                        <option value="">{{ 'SELECT' | translate }}</option>
-                        <option ng-repeat="reference in references" value="{{reference.id}}">
-                            {{reference.identifier}} - {{reference.description}}
-                        </option>
-                    </select>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newElementModal" ng-click="createReference()">+</button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-lg-3" ng-show="index == 0">
-                <div class="form-group fix-top-button">
-                    <button type="button" class="btn btn-primary" ng-click="createNewElement()">
-                        <span title="Clicando nesse botão será possível vincular novas regras ao passo desejado">{{ 'NEW_LINE' | translate }}</span></button>
-                    <button type="button" class="btn btn-success" ng-click="createNewStep()">
-                        <span title="Após vincular todas as regras desejadas clique nesse botão para salvar o trabalho feito">
-                            {{ 'SAVE_STEP' | translate }}
+            <div class="panel-body" ng-repeat="step in elements track by $index">
+                <div class="col-lg-3">
+                    <div class="form-group" ng-show="$index == 0">
+                        <label>{{ 'COMPLEMENTARY' | translate }}</label>
+                    </div>
+                    <div class="input-group">
+                        <select class="form-control" name="complementary[{{$index}}]" ng-model="useCase.complementary[$index]">
+                            <option value="">{{ 'SELECT' | translate }}</option>
+                            <option ng-repeat="complementary in complementaries" value="{{complementary.identifier}}|{{complementary.description}}">
+                                {{complementary.identifier}} - {{complementary.description}}
+                            </option>
+                        </select>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newElementModal" ng-click="createComplementary()">+</button>
                         </span>
-                    </button>
+                    </div>
+                    <div class="input-group">
+                        <div class="form-group">
+                            <div class="alert alert-dismissable alert-danger" ng-show="form['complementary[' + $index + ']'].$error.required">
+                                {{ 'COMPLEMENTARY_IS_REQUIRED' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group" ng-show="$index == 0">
+                        <label>{{ 'BUSINESS' | translate }}</label>
+                    </div>
+                    <div class="input-group">
+                        <select class="form-control" name="business[{{$index}}]" ng-model="useCase.business[$index]">
+                            <option value="">{{ 'SELECT' | translate }}</option>
+                            <option ng-repeat="rule in rules" value="{{rule.identifier}}|{{rule.description}}">
+                                {{rule.identifier}} - {{rule.description}}
+                            </option>
+                        </select>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newElementModal" ng-click="createRule()">+</button>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <div class="form-group">
+                            <div class="alert alert-dismissable alert-danger" ng-show="form['business[' + $index + ']'].$error.required">
+                                {{ 'BUSINESS_IS_REQUIRED' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group" ng-show="$index == 0">
+                        <label>{{ 'REFERENCE' | translate }}</label>
+                    </div>
+                    <div class="input-group">
+                        <select class="form-control" name="reference[{{$index}}]" ng-model="useCase.reference[$index]">
+                            <option value="">{{ 'SELECT' | translate }}</option>
+                            <option ng-repeat="reference in references" value="{{reference.identifier}}|{{reference.description}}">
+                                {{reference.identifier}} - {{reference.description}}
+                            </option>
+                        </select>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newElementModal" ng-click="createReference()">+</button>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <div class="form-group">
+                            <div class="alert alert-dismissable alert-danger" ng-show="form['reference[' + $index + ']'].$error.required">
+                                {{ 'REFERENCE_IS_REQUIRED' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3" ng-show="$index == 0">
+                    <div class="form-group fix-top-button">
+                        <button type="button" class="btn btn-primary" ng-click="createNewElement()">
+                            <span title="Clicando nesse botão será possível vincular novas regras ao passo desejado">{{ 'NEW_LINE' | translate }}</span>
+                        </button>
+
+                        <button type="submit" class="btn btn-success" ng-disabled="form.$invalid">
+                            <span title="Após vincular todas as regras desejadas clique nesse botão para salvar o trabalho feito">
+                                {{ 'SAVE_STEP' | translate }}
+                            </span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
+
     <div class="panel panel-default">
         <div class="panel-heading">{{ 'USE_CASE' | translate }}</div>
         <div class="panel-body">
@@ -152,22 +191,22 @@
                     <h4 class="modal-title">{{ modal.title | translate }}</h4>
                 </div>
                 <div class="modal-body">
-                    <form role="form" ng-submit="createOption(modal.active)" name="form">
+                    <form role="form" ng-submit="createOption(modal.active)" name="formElement">
                         <div class="form-group">
                             <label>{{ 'IDENTIFIER' | translate }}</label>
                             <input class="form-control" name="identifier" ng-model="option.identifier" required ng-class=""/>
-                            <div class="alert alert-dismissable alert-danger" ng-show="form.identifier.$error.required">
+                            <div class="alert alert-dismissable alert-danger" ng-show="formElement.identifier.$error.required">
                                 {{ 'IDENTIFIER_IS_REQUIRED' | translate }}
                             </div>
                         </div>
                         <div class="form-group">
                             <label>{{ 'DESCRIPTION' | translate }}</label>
                             <textarea class="form-control" rows="3" name="description" ng-model="option.description" required></textarea>
-                            <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required">
+                            <div class="alert alert-dismissable alert-danger" ng-show="formElement.description.$error.required">
                                 {{ 'DESCRIPTION_IS_REQUIRED' | translate }}
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-default" ng-disabled="form.$invalid" modal-close>{{ 'SAVE' | translate }}</button>
+                        <button type="submit" class="btn btn-default" ng-disabled="formElement.$invalid" modal-close>{{ 'SAVE' | translate }}</button>
                     </form>
                 </div>
                 <div class="modal-footer">
