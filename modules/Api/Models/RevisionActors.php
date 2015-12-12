@@ -30,7 +30,7 @@ class RevisionActors extends Model
     {
         return $this->select('id_relacionamento_dados_revisao')
                 ->from('relacionamento_dados_revisao')
-                ->where('id_dados_revisao', $id);
+                ->where('id_revisao', $id);
     }
 
     /**

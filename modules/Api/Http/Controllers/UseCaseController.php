@@ -53,7 +53,7 @@ class UseCaseController extends Controller {
 
             $revision->delete();
 
-            $useCase = $this->useCase->find($id);
+            $useCase = $this->useCase->find($idUseCase);
             $useCase->delete();
         }
 
@@ -133,7 +133,7 @@ class UseCaseController extends Controller {
             $findRevision->id_caso_de_uso = $id;
             $findRevision->save();
 
-            $findActor = $this->revisionActors->findByRevision($request->input('id_dados_revisao'));
+            $findActor = $this->revisionActors->findByRevision($request->input('id_revisao'));
             $findActor->delete();
             
             foreach ($request->input('id_ator', []) as $id) {
