@@ -156,7 +156,7 @@ class UseCaseController extends Controller {
     public function getFetch()
     {
         return $this->getJsonResponse(
-            $this->useCase->get(),
+            $this->useCase->getByRevision()->get(),
             false
         );
     }

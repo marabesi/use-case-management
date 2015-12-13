@@ -8,26 +8,16 @@ use Modules\Api\Http\Controllers\ApplicationController;
 class ApplicationControllerTest extends \Tests\TestCase
 {
 
-    protected $baseUrl;
     private $application;
 
     public function setUp()
     {
-        parent::setUp();
-
-        $this->baseUrl = url();
         $this->application = $this->getMock('Modules\Api\Models\Application');
     }
 
     public function tearDown()
     {
         $this->application = null;
-    }
-
-    public function testAccessApplicationViaRoute()
-    {
-        $response = $this->call('GET', 'api/application');
-        $this->assertEquals(200, $response->status());
     }
 
     public function testShouldCallModelWithDefaultPaginationLimit()
@@ -43,9 +33,4 @@ class ApplicationControllerTest extends \Tests\TestCase
         $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
         $this->assertEquals('{}', $response->getContent());
     }
-
-    public function testShouldPaginateWithParamFromRequestObject()
-    {
-    }
-
 }

@@ -1,4 +1,5 @@
-app.controller('StepsController', ['$scope', 'UseCaseFactory', function($scope, UseCaseFactory) {
+app.controller('StepsController', ['$scope', 'UseCaseFactory', 'CrudFactory',
+    function($scope, UseCaseFactory, CrudFactory) {
     
     UseCaseFactory.fetch().then(function(data) {
         $scope.useCases = data;
@@ -24,6 +25,8 @@ app.controller('StepsController', ['$scope', 'UseCaseFactory', function($scope, 
     $scope.references = [];
     $scope.submitted = false;
     
+    var urlService = 'api/step';
+    
     $scope.createComplementary = function() {
         $scope.modal.title = 'COMPLEMENTARY';
         $scope.modal.active = 'complementary';
@@ -47,6 +50,9 @@ app.controller('StepsController', ['$scope', 'UseCaseFactory', function($scope, 
     
     $scope.create = function() {
         console.log($scope.useCase);
+        
+        CrudFactory.create(urlService, $scope.useCase);
+        
         $scope.submitted = true;
     }
     

@@ -72,19 +72,28 @@ class ApplicationController extends Controller {
      * @return Illuminate\Http\JsonResponse
      */
     public function putIndex($id, Request $request) {
-        $application = $this->application->find($id);
+        try {
+            $application = $this->application->find($id);
 
-        if ($application) {
+            if(!$application) {
+                throw new \Exception('COULD_NOT_FIND_APPLICATION');
+            }
+
             foreach ($request->input() as $key => $value) {
                 $application->$key = $value;
             }
 
             $application->save();
-        }
 
-        return $this->getJsonResponse(
-            $id
-        );
+            return $this->getJsonResponse(
+                $id
+            );
+        } catch (\Exception $exception) {
+            return $this->getJsonResponse([
+                'data' => $exception->getMessage(),
+                'error' => true
+            ], false);
+        }
     }
 
     /**

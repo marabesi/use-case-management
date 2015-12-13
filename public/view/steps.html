@@ -12,7 +12,7 @@
                         <label>{{ 'USE_CASE' | translate }}</label>
                         <select class="form-control" name="useCase" ng-model="useCase.useCase" required>
                             <option value="">{{ 'SELECT' | translate }}</option>
-                            <option ng-repeat="useCase in useCases" value="{{useCase.id_caso_de_uso}}">{{useCase.descricao}}</option>
+                            <option ng-repeat="useCase in useCases" value="{{useCase.id_revisao}}">{{useCase.descricao}}</option>
                         </select>
                         <div class="alert alert-dismissable alert-danger" ng-show="form.useCase.$error.required">
                             {{ 'USE_CASE_IS_REQUIRED' | translate }}

@@ -100,4 +100,15 @@ class UseCase extends Base
         return array_merge($hydrate, $atores);
     }
 
+    /**
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function getByRevision()
+    {
+        return $this->select('r.id_revisao', 'c.id_caso_de_uso', 
+            'r.id_dados_revisao', 'c.descricao')
+            ->from('revisao AS r')
+            ->join('caso_de_uso AS c', 'r.id_caso_de_uso', '=', 'c.id_caso_de_uso');
+    }
+
 }
