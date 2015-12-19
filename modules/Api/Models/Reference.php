@@ -22,4 +22,29 @@ class Reference extends Model
      */
     public $timestamps = false;
 
+    /**
+     * @param array $request
+     * @param int $id_passos
+     */
+    public function newSave($request, $id_passos)
+    {
+        if (count($request) > 0) {
+
+            foreach ($request as $value) {
+                $reference = new Reference();
+                $pieces = explode('|', $value);
+
+                $reference->identificador = $pieces[0];
+                $reference->descricao     = $pieces[1];
+                $reference->save();
+
+                $reference->id_referencia;
+
+                $steps = new ReferenceSteps();
+                $steps->id_referencia = $reference->id_referencia;
+                $steps->id_passos = $id_passos;
+                $steps->save();
+            }
+        }
+    }
 }

@@ -100,6 +100,8 @@ app.config(['$routeProvider', function ($routeProvider) {
             NEW_LINE: 'New line',
             USE_CASE_IS_REQUIRED: 'Use case is required',
             TYPE_IS_REQUIRED: 'Type is required',
+            PREVIEW: 'Preview',
+            LIST_STEP: 'Step list',
         })
         .translations('ptBR', {
             DASHBOARD: 'Painel',
@@ -179,6 +181,8 @@ app.config(['$routeProvider', function ($routeProvider) {
             NEW_LINE: 'Nova linha',
             USE_CASE_IS_REQUIRED: 'Caso de uso é obrigatório',
             TYPE_IS_REQUIRED: 'Tipo é obrigatório',
+            PREVIEW: 'Visualizar',
+            LIST_STEP: 'Lista de passos',
         });
         
         $translateProvider.preferredLanguage('ptBR');

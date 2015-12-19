@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Modules\Api\Models\Flow;
 use Modules\Api\Models\Step;
 use Modules\Api\Models\Complementary;
-use Modules\Api\Models\ComplementarySteps;
 use Modules\Api\Models\Business;
 use Modules\Api\Models\Reference;
 
@@ -19,23 +18,46 @@ class StepController extends Controller
     private $flow;
 
     /**
-     * @param Modules\Api\Models\Flow $flow
+     * @var Modules\Api\Models\Step
      */
-    public function __construct(Flow $flow)
+    private $step;
+
+    /**
+     * @param Modules\Api\Models\Flow $flow
+     * @param Modules\Api\Models\Step
+     */
+    public function __construct(Flow $flow, Step $step)
     {
         $this->flow = $flow;
+        $this->step = $step;
     }
-
+    
+    /**
+     * @param int $id
+     * @return Illuminate\Http\JsonResponse
+     */
     public function deleteIndex($id)
     {
-        
     }
-
+    
+    /**
+     * @param Illuminate\Http\Request $request
+     * @return Illuminate\Http\JsonResponse
+     */
     public function getIndex(Request $request)
     {
-        return $this->getJsonResponse([]);
+        $limit = $request->input('limit', \Modules\Api\Models\Base::DEFAULT_LIMIT);
+        
+        return $this->getJsonResponse(
+            $this->step->fetchAll($limit),
+            false
+        );
     }
-
+    
+    /**
+     * @param Illuminate\Http\Request $request
+     * @return Illuminate\Http\JsonResponse
+     */
     public function postIndex(Request $request)
     {
         try {
@@ -54,37 +76,30 @@ class StepController extends Controller
 
             $id_passos = $step->id_passos;
 
-            $complementary = $request->input('complementary', []);
-            if (count($complementary) > 0) {
-                
-                foreach ($complementary as $value) {
-                    $complementaryModel = new Complementary();
-                    $pieces = explode('|', $value);
+            $complementary = new Complementary();
+            $complementary->newSave($request->input('complementary', []), $id_passos);
+            
+            $business = new Business();
+            $business->newSave($request->input('business', []), $id_passos);
 
-                    $complementaryModel->identificador = $pieces[0];
-                    $complementaryModel->descricao     = $pieces[1];
-                    $complementaryModel->save();
+            $reference = new Reference();
+            $reference->newSave($request->input('reference', []), $id_passos);
 
-                    $complementaryModel->id_informacao_complementar;
-
-                    $steps = new ComplementarySteps();
-                    $steps->id_informacao_complementar = $complementaryModel->id_informacao_complementar;
-                    $steps->id_passos = $id_passos;
-                    $steps->save();
-                }
-            }
-
-            return $this->getJsonResponse([1]);
+            return $this->getJsonResponse($id_passos);
         } catch (\Exception $exception) {
-            $this->getJsonResponse([
+            return $this->getJsonResponse([
                 'data' => $exception->getMessage(),
-                'error' => true,
-            ]);
+                'error' => true
+            ], false);
         }
     }
-
+    
+    /**
+     * @param int $id
+     * @param Illuminate\Http\Request $request
+     * @return Illuminate\Http\JsonResponse
+     */
     public function putIndex($id, \Illuminate\Http\Request $request)
     {
-
     }
 }

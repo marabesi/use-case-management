@@ -141,46 +141,38 @@
         </form>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">{{ 'USE_CASE' | translate }}</div>
-        <div class="panel-body">
-            <ul>
-                <li>
-                    System
-                    <ul>
-                        <li>
-                            <ul>
-                                Caso de uso 1
-                                <li>
-                                    Fluxo basico
-                                    <ul>
-                                        <li>fluxo 1</li>
-                                        <li>fluxo 2</li>
-                                        <li>fluxo 3</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Fluxo alternativo
-                                    <ul>
-                                        <li>fluxo alter 1</li>
-                                        <li>fluxo alter 2</li>
-                                        <li>fluxo alter 3</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Fluxo exeção
-                                    <ul>
-                                        <li>fluxo exce 1</li>
-                                        <li>fluxo exce 2</li>
-                                        <li>fluxo exce 3</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </li>
-            </ul>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>{{ 'LIST_STEP' | translate }}</h2>
+            <div class="table-responsive">
+                <table ng-table="customConfigParams" class="table table-bordered table-hover tablesorter">
+                    <thead>
+                        <tr>
+                            <th>{{ 'USE_CASE' | translate }}</th>
+                            <th>{{ 'TYPE' | translate }}</th>
+                            <th>{{ 'IDENTIFIER' | translate }}</th>
+                            <th>{{ 'DESCRIPTION' | translate }}</th>
+                            <th>{{ 'ACTION' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="app in $data track by $index">
+                            <td>{{app.caso_de_uso_descricao}}</td>
+                            <td>{{ 'TYPE_' + app.tipo | translate }}</td>
+                            <td>{{app.identificador}}</td>
+                            <td>{{app.descricao}}</td>
+                            <td>
+                                <button class="btn btn-primary" ng-click="edit($index)">{{ 'EDIT' | translate }}</button>
+                                <button class="btn btn-info" ng-click="edit($index)">{{ 'PREVIEW' | translate }}</button>
+                                <button class="btn btn-danger" ng-click="remove(app.id_sistema)">{{ 'DELETE' | translate }}</button>
+                            </td>
+                        </tr>
+                        <tr ng-show="$data.length == 0" class="warning">
+                            <td align="center" colspan="2">{{ 'STEP_NOT_FOUND' | translate }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div id="newElementModal" class="modal fade" role="dialog">

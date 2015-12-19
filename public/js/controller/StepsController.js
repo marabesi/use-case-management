@@ -1,5 +1,6 @@
-app.controller('StepsController', ['$scope', 'UseCaseFactory', 'CrudFactory',
-    function($scope, UseCaseFactory, CrudFactory) {
+app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
+    'UseCaseFactory', 'CrudFactory',
+    function($scope, NgTableParams, TableFactory, UseCaseFactory, CrudFactory) {
     
     UseCaseFactory.fetch().then(function(data) {
         $scope.useCases = data;
@@ -27,6 +28,29 @@ app.controller('StepsController', ['$scope', 'UseCaseFactory', 'CrudFactory',
     
     var urlService = 'api/step';
     
+    function createTable() {
+        var initialSettings = {
+          count: TableFactory.DEFAULT_COUNT,
+          page: TableFactory.DEFAULT_PAGE,
+          getData: function($defer, params){
+            var request = {
+                page: params.page(),
+                limit: params.count()
+            };
+
+            TableFactory.getAll(urlService, request).success(function(result) {
+              $defer.resolve(result.data);
+              $scope.customConfigParams.total(result.total);
+            });
+          }
+        };
+
+        $scope.customConfigParams = new NgTableParams(
+            {count: TableFactory.DEFAULT_COUNT},
+            initialSettings
+        );
+    }
+    
     $scope.createComplementary = function() {
         $scope.modal.title = 'COMPLEMENTARY';
         $scope.modal.active = 'complementary';
@@ -49,8 +73,6 @@ app.controller('StepsController', ['$scope', 'UseCaseFactory', 'CrudFactory',
     }
     
     $scope.create = function() {
-        console.log($scope.useCase);
-        
         CrudFactory.create(urlService, $scope.useCase);
         
         $scope.submitted = true;
@@ -72,4 +94,6 @@ app.controller('StepsController', ['$scope', 'UseCaseFactory', 'CrudFactory',
         $scope.option = null;
         $scope.dismiss();
     }
+    
+    createTable();
 }]);
