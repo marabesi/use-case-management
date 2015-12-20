@@ -102,6 +102,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             TYPE_IS_REQUIRED: 'Type is required',
             PREVIEW: 'Preview',
             LIST_STEP: 'Step list',
+            NEXT: 'Next',
         })
         .translations('ptBR', {
             DASHBOARD: 'Painel',
@@ -183,6 +184,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             TYPE_IS_REQUIRED: 'Tipo é obrigatório',
             PREVIEW: 'Visualizar',
             LIST_STEP: 'Lista de passos',
+            NEXT: 'Próximo',
         });
         
         $translateProvider.preferredLanguage('ptBR');
