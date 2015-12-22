@@ -93,7 +93,23 @@ class StepController extends Controller
             ], false);
         }
     }
-    
+
+    /**
+     * 
+     */
+    public function getFetch($id)
+    {
+        $complementary = new \Modules\Api\Models\ComplementarySteps();
+        $business = new \Modules\Api\Models\BusinessSteps();
+        $reference = new \Modules\Api\Models\ReferenceSteps();
+
+        return $this->getJsonResponse([
+            'complementary' => $complementary->fetchAll($id),
+            'business' => $business->fetchAll($id),
+            'reference' => $reference->fetchAll($id)
+        ], false);
+    }
+
     /**
      * @param int $id
      * @param Illuminate\Http\Request $request

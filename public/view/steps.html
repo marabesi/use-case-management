@@ -12,7 +12,7 @@
                         <label>{{ 'USE_CASE' | translate }}</label>
                         <select class="form-control" name="useCase" ng-model="useCase.useCase" required>
                             <option value="">{{ 'SELECT' | translate }}</option>
-                            <option ng-repeat="useCase in useCases" value="{{useCase.id_revisao}}">{{useCase.descricao}}</option>
+                            <option ng-repeat="use in useCases" ng-selected="useCase.useCase" value="{{use.id_revisao}}" >{{use.descricao}}</option>
                         </select>
                         <div class="alert alert-dismissable alert-danger" ng-show="form.useCase.$error.required">
                             {{ 'USE_CASE_IS_REQUIRED' | translate }}
@@ -24,9 +24,9 @@
                         <label>{{ 'TYPE' | translate }}</label>
                         <select class="form-control" required name="type" ng-model="useCase.type">
                             <option value="">{{ 'SELECT' | translate }}</option>
-                            <option value="1">{{ 'TYPE_1' | translate }}</option>
-                            <option value="2">{{ 'TYPE_2' | translate }}</option>
-                            <option value="3">{{ 'TYPE_3' | translate }}</option>
+                            <option value="1" ng-selected="useCase.type">{{ 'TYPE_1' | translate }}</option>
+                            <option value="2" ng-selected="useCase.type">{{ 'TYPE_2' | translate }}</option>
+                            <option value="3" ng-selected="useCase.type">{{ 'TYPE_3' | translate }}</option>
                         </select>
                         <div class="alert alert-dismissable alert-danger" ng-show="form.type.$error.required">
                             {{ 'TYPE_IS_REQUIRED' | translate }}
@@ -127,14 +127,16 @@
                 <div class="col-lg-3" ng-show="$index == 0">
                     <div class="form-group fix-top-button">
                         <button type="button" class="btn btn-primary" ng-click="createNewElement()">
-                            <span title="Clicando nesse botão será possível vincular novas regras ao passo desejado">{{ 'NEW_LINE' | translate }}</span>
+                            <span>{{ 'NEW_LINE' | translate }}</span>
                         </button>
-
+                    </div>
+                    <div class="form-group fix-top-button">
                         <button type="submit" class="btn btn-success" ng-disabled="form.$invalid">
-                            <span title="Após vincular todas as regras desejadas clique nesse botão para salvar o trabalho feito">
-                                {{ 'SAVE_STEP' | translate }}
-                            </span>
+                            <span>{{ message | translate }}</span>
                         </button>
+                    </div>
+                    <div class="form-group fix-top-button">
+                        <button type="button" class="btn btn-danger" ng-show="useCase.useCase" ng-click="cancel()"> {{ 'CANCEL' | translate }}</button>
                     </div>
                 </div>
             </div>

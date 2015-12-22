@@ -1,6 +1,6 @@
 app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
-    'UseCaseFactory', 'CrudFactory',
-    function($scope, NgTableParams, TableFactory, UseCaseFactory, CrudFactory) {
+    'UseCaseFactory', 'CrudFactory', 'StepFactory',
+    function($scope, NgTableParams, TableFactory, UseCaseFactory, CrudFactory, StepFactory) {
     
     UseCaseFactory.fetch().then(function(data) {
         $scope.useCases = data;
@@ -25,6 +25,7 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
     $scope.rules = [];
     $scope.references = [];
     $scope.submitted = false;
+    $scope.message = 'SAVE_STEP';
     
     var urlService = 'api/step';
     
@@ -78,6 +79,27 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
         $scope.submitted = true;
     }
     
+    $scope.edit = function(index) {
+        if (index !== undefined) {
+            var data = $scope.customConfigParams.data[index];
+            
+            StepFactory.fetchStep(data.id_passos).then(function(response) {
+                $scope.useCase = {
+                    useCase: data.id_revisao,
+                    type: data.tipo,
+                    identifier: data.identificador,
+                    description: data.descricao,
+                };
+                
+                $scope.complementaries = response.complementary;
+                $scope.rules = response.business;
+                $scope.references = response.reference;
+            });
+            
+            $scope.message = 'UPDATE_STEP';
+        }
+    }
+    
     $scope.createOption = function(active) {
         switch(active) {
             case 'complementary' :
@@ -93,6 +115,11 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
         
         $scope.option = null;
         $scope.dismiss();
+    }
+    
+    $scope.cancel = function() {
+        $scope.message = 'SAVE_STEP';
+        $scope.useCase = null;
     }
     
     createTable();
