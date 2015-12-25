@@ -18,9 +18,11 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
     
     $scope.steps = [];
     
-    $scope.flow = {
-        type : 'basic'
-    }
+    $scope.types = [
+        {id: 1, description: 'TYPE_1'},
+        {id: 2, description: 'TYPE_2'},
+        {id: 3, description: 'TYPE_3'},
+    ];
     
     $scope.modal = {
         title: '',
@@ -32,6 +34,7 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
     $scope.references = [];
     $scope.submitted = false;
     $scope.message = 'SAVE_STEP';
+    $scope.error = false;
     
     var urlService = 'api/step';
     

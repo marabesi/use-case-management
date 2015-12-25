@@ -91,25 +91,26 @@ class Step extends Model
         if ($passos) {
             
             $complementary = new \Modules\Api\Models\ComplementarySteps();
-            if ($complementary->find($id_passos)) {
-                $complementary->delete();
+            
+            if ($rows = $complementary->find($id_passos)) {
+                $rows->delete();
             }
 
             $business = new \Modules\Api\Models\BusinessSteps();
-            if ($business->find($id_passos)) {
-                $business->delete();
+            if ($rows = $business->find($id_passos)) {
+                $rows->delete();
             }
 
             $reference = new \Modules\Api\Models\ReferenceSteps();
-            if ($reference->find($id_passos)) {
-                $reference->delete();
+            if ($rows = $reference->find($id_passos)) {
+                $rows->delete();
             }
 
             $passos->delete();
 
             $flow = new Flow();
-            if ($flow->find($id_fluxo)) {
-                $flow->delete();
+            if ($rows = $flow->find($id_fluxo)) {
+                $rows->delete();
             }
         }
     }

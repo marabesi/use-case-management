@@ -3,12 +3,16 @@
         <strong>{{ 'WELL_DONE' | translate }}</strong> {{ 'YOU_SUCCESSFULLY_CREATED_AN_STEP' | translate }}
     </success-message>
 
+    <error-message error="error">
+        <strong>{{ 'SORRY_SOMETHING_WENT_WRONG' | translate }}</strong> {{messageError}}
+    </error-message>
+
     <div class="panel panel-default">
         <div class="panel-heading">{{ 'STEP' | translate }}</div>
         <form role="form" ng-submit="create()" name="form">
             <input type="hidden" name="id_passos" value="{{useCase.id_passos}}"/>
             <input type="hidden" name="id_fluxo" value="{{useCase.id_fluxo}}"/>
-            
+
             <div class="panel-body">
                 <div class="col-lg-3">
                     <div class="form-group">
@@ -27,9 +31,7 @@
                         <label>{{ 'TYPE' | translate }}</label>
                         <select class="form-control" required name="type" ng-model="useCase.type">
                             <option value="">{{ 'SELECT' | translate }}</option>
-                            <option value="1" ng-selected="useCase.type">{{ 'TYPE_1' | translate }}</option>
-                            <option value="2" ng-selected="useCase.type">{{ 'TYPE_2' | translate }}</option>
-                            <option value="3" ng-selected="useCase.type">{{ 'TYPE_3' | translate }}</option>
+                            <option ng-repeat="type in types" ng-selected="useCase.type" value="{{type.id}}">{{type.description| translate}}</option>
                         </select>
                         <div class="alert alert-dismissable alert-danger" ng-show="form.type.$error.required">
                             {{ 'TYPE_IS_REQUIRED' | translate }}
