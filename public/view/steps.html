@@ -169,7 +169,7 @@
                             <td>
                                 <button class="btn btn-primary" ng-click="edit($index)">{{ 'EDIT' | translate }}</button>
                                 <button class="btn btn-info" ng-click="edit($index)">{{ 'PREVIEW' | translate }}</button>
-                                <button class="btn btn-danger" ng-click="remove(app.id_sistema)">{{ 'DELETE' | translate }}</button>
+                                <button class="btn btn-danger" ng-click="remove(app.id_passos, app.id_fluxo)">{{ 'DELETE' | translate }}</button>
                             </td>
                         </tr>
                         <tr ng-show="$data.length == 0" class="warning">

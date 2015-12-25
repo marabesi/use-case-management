@@ -23,6 +23,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'Modules\Api\Http\Controllers'],
     Route::resource('use-case', 'UseCaseController@putIndex');
     Route::controller('use-case', 'UseCaseController');
 
+    Route::delete('step/{id}', 'StepController@deleteIndex');
     Route::resource('step', 'StepController@putIndex');
     Route::controller('step', 'StepController');
 });

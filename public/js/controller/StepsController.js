@@ -1,6 +1,12 @@
 app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
-    'UseCaseFactory', 'CrudFactory', 'StepFactory',
-    function($scope, NgTableParams, TableFactory, UseCaseFactory, CrudFactory, StepFactory) {
+    'UseCaseFactory', 'CrudFactory', 'StepFactory', '$translate',
+    function($scope, 
+    NgTableParams, 
+    TableFactory,
+    UseCaseFactory, 
+    CrudFactory, 
+    StepFactory,
+    $translate) {
     
     UseCaseFactory.fetch().then(function(data) {
         $scope.useCases = data;
@@ -155,6 +161,25 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
         $scope.message = 'SAVE_STEP';
         $scope.useCase = null;
         $scope.elements = [{}];
+    }
+    
+    $scope.remove = function(step, flow) {
+        var message = $translate.instant('CONFIRM_DELETE');
+        
+        if (confirm(message)) {
+            var id = step + ',' + flow;
+            var http = CrudFactory.remove(urlService, id);
+            
+            http.success(function(data) {
+                if (data.error) {
+                    $scope.messageError = $translate.instant(data.data);
+                    $scope.error = true;
+                } else {
+                    createTable();
+                    $scope.customConfigParams.reload();
+                }
+            });
+        }
     }
     
     createTable();

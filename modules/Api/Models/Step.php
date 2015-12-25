@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\Api\Models\ComplementarySteps;
 use Modules\Api\Models\BusinessSteps;
 use Modules\Api\Models\ReferenceSteps;
+use Modules\Api\Models\Flow;
 
 class Step extends Model
 {
@@ -78,4 +79,39 @@ class Step extends Model
         $reference = new Reference();
         $reference->newSave($fields, $id_passos);
     }
+
+    /**
+     * @param int $id_passos
+     * @param int $id_fluxo
+     */
+    public function deleteAll($id_passos, $id_fluxo)
+    {
+        $passos = $this->find($id_passos);
+
+        if ($passos) {
+            
+            $complementary = new \Modules\Api\Models\ComplementarySteps();
+            if ($complementary->find($id_passos)) {
+                $complementary->delete();
+            }
+
+            $business = new \Modules\Api\Models\BusinessSteps();
+            if ($business->find($id_passos)) {
+                $business->delete();
+            }
+
+            $reference = new \Modules\Api\Models\ReferenceSteps();
+            if ($reference->find($id_passos)) {
+                $reference->delete();
+            }
+
+            $passos->delete();
+
+            $flow = new Flow();
+            if ($flow->find($id_fluxo)) {
+                $flow->delete();
+            }
+        }
+    }
+
 }

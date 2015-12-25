@@ -21,8 +21,6 @@ class StepController extends Controller
      * @var Modules\Api\Models\Step
      */
     private $step;
-    
-    private $complementaryStep;
 
     /**
      * @param Modules\Api\Models\Flow $flow
@@ -40,7 +38,18 @@ class StepController extends Controller
      */
     public function deleteIndex($id)
     {
-        
+        try {
+            list($id_passos, $id_fluxo) = explode(',', $id);
+
+            $this->step->deleteAll($id_passos, $id_fluxo);
+            
+            return $this->getJsonResponse($id_passos);
+        } catch (\Exception $exception) {
+             return $this->getJsonResponse([
+                'data' => $exception->getMessage(),
+                'error' => true
+            ], false);
+        }
     }
     
     /**
@@ -145,7 +154,9 @@ class StepController extends Controller
                 $request->input('reference', [])
             );
 
-            return $this->getJsonResponse(666);
+            return $this->getJsonResponse(
+                sprintf('%d,%d', $id_passos, $id_fluxo)
+            );
         } catch (\Exception $exception) {
             return $this->getJsonResponse([
                 'data' => $exception->getMessage(),

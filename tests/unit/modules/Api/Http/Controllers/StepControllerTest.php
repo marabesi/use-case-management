@@ -22,7 +22,7 @@ class StepControllerTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->setMethods([
                 'find', 'save', 'updateComplementaryRows',
-                'updateBusinessRows', 'updateReferenceRows'
+                'updateBusinessRows', 'updateReferenceRows', 'deleteAll'
             ])
             ->getMock();
     }
@@ -176,7 +176,16 @@ class StepControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testShouldDelete()
     {
+        $id = '666,666';
         
+        $this->steps->expects($this->once())
+            ->method('deleteAll');
+
+        $controller = new StepController($this->flow, $this->steps);
+        $response = $controller->deleteIndex($id);
+
+        $decodeResponse = $response->getData();
+        $this->assertFalse($decodeResponse->error);
     }
 
     public function invalidArguments()
