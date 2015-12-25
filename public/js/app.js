@@ -104,6 +104,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             PREVIEW: 'Preview',
             LIST_STEP: 'Step list',
             NEXT: 'Next',
+            STEP_NOT_FOUND: 'Step not found',
         })
         .translations('ptBR', {
             DASHBOARD: 'Painel',
@@ -187,6 +188,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             PREVIEW: 'Visualizar',
             LIST_STEP: 'Lista de passos',
             NEXT: 'Próximo',
+            STEP_NOT_FOUND: 'Nenhum passo encontrado',
         });
         
         $translateProvider.preferredLanguage('ptBR');

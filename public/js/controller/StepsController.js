@@ -91,9 +91,13 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
                     description: data.descricao,
                 };
                 
+                console.log(response);
+                
                 $scope.complementaries = response.complementary;
                 $scope.rules = response.business;
                 $scope.references = response.reference;
+                
+                $scope.elements = response.business;
             });
             
             $scope.message = 'UPDATE_STEP';
@@ -120,6 +124,7 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
     $scope.cancel = function() {
         $scope.message = 'SAVE_STEP';
         $scope.useCase = null;
+        $scope.elements = [{}];
     }
     
     createTable();
