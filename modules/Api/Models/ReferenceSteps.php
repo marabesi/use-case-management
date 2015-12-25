@@ -15,7 +15,7 @@ class ReferenceSteps extends Model
     /**
      * @var string
      */
-    protected $primaryKey = 'id_referencia';
+    protected $primaryKey = 'id_passos';
 
     /**
      * @var boolean

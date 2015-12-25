@@ -21,6 +21,8 @@ class StepController extends Controller
      * @var Modules\Api\Models\Step
      */
     private $step;
+    
+    private $complementaryStep;
 
     /**
      * @param Modules\Api\Models\Flow $flow
@@ -31,13 +33,14 @@ class StepController extends Controller
         $this->flow = $flow;
         $this->step = $step;
     }
-    
+
     /**
      * @param int $id
      * @return Illuminate\Http\JsonResponse
      */
     public function deleteIndex($id)
     {
+        
     }
     
     /**
@@ -95,7 +98,7 @@ class StepController extends Controller
     }
 
     /**
-     * 
+     * @param int $id
      */
     public function getFetch($id)
     {
@@ -117,5 +120,61 @@ class StepController extends Controller
      */
     public function putIndex($id, \Illuminate\Http\Request $request)
     {
+        try {
+            list($id_passos, $id_fluxo) = explode(',', $id);
+
+            if (!is_numeric($id_passos) || !is_numeric($id_fluxo)) {
+                throw new \InvalidArgumentException('Invalid argument');
+            }
+
+            $this->updateFlow($id_fluxo, $request);
+            $this->updateStep($id_passos, $request);
+
+            $this->step->updateComplementaryRows(
+                $id_passos,
+                $request->input('complementary', [])
+            );
+
+            $this->step->updateBusinessRows(
+                $id_passos,
+                $request->input('business', [])
+            );
+
+            $this->step->updateReferenceRows(
+                $id_passos,
+                $request->input('reference', [])
+            );
+
+            return $this->getJsonResponse(666);
+        } catch (\Exception $exception) {
+            return $this->getJsonResponse([
+                'data' => $exception->getMessage(),
+                'error' => true
+            ], false);
+        }
+    }
+
+    /**
+     * @param int $id_fluxo
+     * @param Request $request
+     */
+    protected function updateFlow($id_fluxo, Request $request)
+    {
+        $fluxo = $this->flow->find($id_fluxo);
+        $fluxo->tipo = $request->input('type');
+        $fluxo->id_revisao = $request->input('useCase');
+        $fluxo->save();
+    }
+
+    /**
+     * @param int $id_passos
+     * @param Request $request
+     */
+    protected function updateStep($id_passos, Request $request)
+    {
+        $passos = $this->step->find($id_passos);
+        $passos->identificador = $request->input('identifier');
+        $passos->descricao = $request->input('description');
+        $passos->save();
     }
 }

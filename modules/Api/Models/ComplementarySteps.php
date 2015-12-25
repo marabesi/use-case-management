@@ -14,7 +14,7 @@ class ComplementarySteps extends Model
     /**
      * @var string
      */
-    protected $primaryKey = 'id_informacao_complementar';
+    protected $primaryKey = 'id_passos';
 
     /**
      * @var boolean

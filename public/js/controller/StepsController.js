@@ -74,9 +74,19 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
     }
     
     $scope.create = function() {
-        CrudFactory.create(urlService, $scope.useCase);
+        if ($scope.useCase.id_passos !== undefined && $scope.useCase.id_fluxo !== undefined) {
+            var id = $scope.useCase.id_passos + ',' + $scope.useCase.id_fluxo;
+            
+            CrudFactory.edit(urlService, id, $scope.useCase);
+        } else {
+            CrudFactory.create(urlService, $scope.useCase);
+        }
         
         $scope.submitted = true;
+        $scope.cancel();
+        
+        createTable();
+        $scope.customConfigParams.reload();
     }
     
     $scope.edit = function(index) {
@@ -89,6 +99,8 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
                     type: data.tipo,
                     identifier: data.identificador,
                     description: data.descricao,
+                    id_passos: data.id_passos,
+                    id_fluxo: data.id_fluxo
                 };
 
                 $scope.useCase.complementary = hidrate(response.complementary);

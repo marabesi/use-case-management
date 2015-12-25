@@ -15,7 +15,7 @@ class BusinessSteps extends Model
     /**
      * @var string
      */
-    protected $primaryKey = 'id_regra_de_negocio';
+    protected $primaryKey = 'id_passos';
 
     /**
      * @var boolean

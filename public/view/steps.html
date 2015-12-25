@@ -6,6 +6,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">{{ 'STEP' | translate }}</div>
         <form role="form" ng-submit="create()" name="form">
+            <input type="hidden" name="id_passos" value="{{useCase.id_passos}}"/>
+            <input type="hidden" name="id_fluxo" value="{{useCase.id_fluxo}}"/>
+            
             <div class="panel-body">
                 <div class="col-lg-3">
                     <div class="form-group">
