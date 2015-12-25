@@ -27,7 +27,10 @@ class ComplementarySteps extends Model
      */
     public function fetchAll($id_passos)
     {
-        return $this->select('*')
+        return $this->select(
+            'r.id_informacao_complementar AS id',
+            'ci.identificador AS identifier',
+            'ci.descricao AS description')
             ->from('relacionamento_informacao_complementar AS r')
             ->join('informacao_complementar AS ci', 'r.id_informacao_complementar', '=' , 'ci.id_informacao_complementar')
             ->where('r.id_passos', $id_passos)

@@ -28,7 +28,9 @@ class BusinessSteps extends Model
      */
     public function fetchAll($id_passos)
     {
-        return $this->select('*')
+        return $this->select('r.id_regra_de_negocio AS id',
+            'rn.identificador AS identifier',
+            'rn.descricao AS description')
             ->from('relacionamento_regra_de_negocio AS r')
             ->join('regra_de_negocio AS rn', 'r.id_regra_de_negocio', '=' , 'rn.id_regra_de_negocio')
             ->where('r.id_passos', $id_passos)

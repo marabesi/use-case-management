@@ -90,8 +90,10 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
                     identifier: data.identificador,
                     description: data.descricao,
                 };
-                
-                console.log(response);
+
+                $scope.useCase.complementary = hidrate(response.complementary);
+                $scope.useCase.business = hidrate(response.business);
+                $scope.useCase.reference = hidrate(response.reference);
                 
                 $scope.complementaries = response.complementary;
                 $scope.rules = response.business;
@@ -102,6 +104,22 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
             
             $scope.message = 'UPDATE_STEP';
         }
+    }
+    
+    function hidrate(collection) {
+        data = [];
+        
+        for(item in collection) {
+            var element = collection[item].identifier + 
+                '|' + 
+                collection[item].description +
+                '|' +
+                collection[item].id;
+
+            data.push(element);
+        }
+        
+        return data;
     }
     
     $scope.createOption = function(active) {

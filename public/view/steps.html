@@ -62,7 +62,7 @@
                     <div class="input-group">
                         <select class="form-control" name="complementary[{{$index}}]" ng-model="useCase.complementary[$index]">
                             <option value="">{{ 'SELECT' | translate }}</option>
-                            <option ng-repeat="complementary in complementaries" value="{{complementary.identifier}}|{{complementary.description}}">
+                            <option ng-repeat="complementary in complementaries" value="{{complementary.identifier}}|{{complementary.description}}|{{complementary.id}}">
                                 {{complementary.identifier}} - {{complementary.description}}
                             </option>
                         </select>
@@ -85,7 +85,7 @@
                     <div class="input-group">
                         <select class="form-control" name="business[{{$index}}]" ng-model="useCase.business[$index]">
                             <option value="">{{ 'SELECT' | translate }}</option>
-                            <option ng-repeat="rule in rules" value="{{rule.identifier}}|{{rule.description}}">
+                            <option ng-repeat="rule in rules" value="{{rule.identifier}}|{{rule.description}}|{{rule.id}}">
                                 {{rule.identifier}} - {{rule.description}}
                             </option>
                         </select>
@@ -108,7 +108,7 @@
                     <div class="input-group">
                         <select class="form-control" name="reference[{{$index}}]" ng-model="useCase.reference[$index]">
                             <option value="">{{ 'SELECT' | translate }}</option>
-                            <option ng-repeat="reference in references" value="{{reference.identifier}}|{{reference.description}}">
+                            <option ng-repeat="reference in references" value="{{reference.identifier}}|{{reference.description}}|{{reference.id}}">
                                 {{reference.identifier}} - {{reference.description}}
                             </option>
                         </select>
