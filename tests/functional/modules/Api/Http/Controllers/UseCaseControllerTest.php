@@ -6,6 +6,7 @@ class UseCaseControllerTest extends \Tests\TestCase
 {
     
     use \Illuminate\Foundation\Testing\DatabaseTransactions;
+    use \Api\Http\UseCaseRequest;
 
     protected $baseUrl;
 
@@ -25,5 +26,24 @@ class UseCaseControllerTest extends \Tests\TestCase
     {
         $response = $this->call('GET', 'api/use-case');
         $this->assertEquals(200, $response->status());
+    }
+
+    public function testShouldPostNewUseCase()
+    {
+        $useCaseResponse = $this->postUseCase();
+        
+        $this->assertFalse($useCaseResponse['useCase']->error);
+    }
+
+    public function testShouldDeleteUseCase()
+    {
+        $useCaseResponse = $this->postUseCase();
+
+        $id = $useCaseResponse['useCase']->data . ',' . $useCaseResponse['actor']->data;
+
+        $this->delete('api/use-case/' . $id)->seeJson([
+            'data' => $id,
+            'error' => false
+        ]);
     }
 }

@@ -12,6 +12,10 @@ use Modules\Api\Models\Reference;
 
 class StepController extends Controller
 {
+    const BASIC       = 1;
+    const ALTERNATIVE = 2;
+    const EXCEPTION   = 3;
+
     /**
      * @var Modules\Api\Models\Flow
      */
@@ -43,7 +47,7 @@ class StepController extends Controller
 
             $this->step->deleteAll($id_passos, $id_fluxo);
             
-            return $this->getJsonResponse($id_passos);
+            return $this->getJsonResponse($id);
         } catch (\Exception $exception) {
              return $this->getJsonResponse([
                 'data' => $exception->getMessage(),
@@ -97,7 +101,9 @@ class StepController extends Controller
             $reference = new Reference();
             $reference->newSave($request->input('reference', []), $id_passos);
 
-            return $this->getJsonResponse($id_passos);
+            return $this->getJsonResponse(
+                $id_passos . ',' . $id_fluxo
+            );
         } catch (\Exception $exception) {
             return $this->getJsonResponse([
                 'data' => $exception->getMessage(),

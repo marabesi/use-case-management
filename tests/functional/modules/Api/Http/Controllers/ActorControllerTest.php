@@ -6,6 +6,7 @@ class ActorControllerTest extends \Tests\TestCase
 {
     
     use \Illuminate\Foundation\Testing\DatabaseTransactions;
+    use \Api\Http\UseCaseRequest;
 
     protected $baseUrl;
 
@@ -78,19 +79,15 @@ class ActorControllerTest extends \Tests\TestCase
 
     public function testShouldNotDeleteWhenActorhasRelationWithAnotherTable()
     {
-//        $requestActor = $this->call('POST', 'api/actor', [
-//            'name' => 'Test delete actor',
-//            'description' => 'Test delete actor'
-//        ]);
-//
-//        $responseActor = json_decode($requestActor->getContent());
-//
-//        $idActor = $responseActor = $responseActor->data;
-//
-//        $requestActor = $this->call('POST', 'api/use-case', [
-//            'name' => 'Test delete actor',
-//            'description' => 'Test delete actor'
-//        ]);
+        $useCaseResponse = $this->postUseCase();
+        
+        $this->assertFalse($useCaseResponse['useCase']->error);
+
+        $deleteActor = $this->call('DELETE', 'api/actor/' . $useCaseResponse['actor']->data);
+        $deleteResponse = json_decode($deleteActor->getContent());
+
+        $this->assertTrue($deleteResponse->error);
+        $this->assertEquals('COULD_NOT_DELETE_ACTOR', $deleteResponse->data);
     }
 
     public function postActor()

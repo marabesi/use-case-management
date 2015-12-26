@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class UseCaseController extends Controller {
 
+    const FINISHED    = 1;
+    const DELETED     = 2;
+    const DEVELOPMENT = 3;
+    const PENDENT     = 4;
+
     /**
      * @var Modules\Api\Models\UseCase
      */

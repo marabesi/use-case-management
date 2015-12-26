@@ -164,6 +164,9 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
         $scope.message = 'SAVE_STEP';
         $scope.useCase = null;
         $scope.elements = [{}];
+        $scope.complementaries = [];
+        $scope.rules = [];
+        $scope.references = [];
     }
     
     $scope.remove = function(step, flow) {
@@ -183,6 +186,9 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
                 }
             });
         }
+    }
+    
+    $scope.preview = function(id) {
     }
     
     createTable();
