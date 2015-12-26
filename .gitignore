@@ -13,3 +13,4 @@ humbuglog.txt
 storage/database/database.sqlite
 .php_cs.cache
 storage/data/
+storage/database/database.sqlite-journal

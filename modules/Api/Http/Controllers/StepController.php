@@ -199,6 +199,18 @@ class StepController extends Controller
     }
     
     /**
+     * @param int $id
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function getPreview($id)
+    {
+        return $this->getJsonResponse(
+            $this->step->preview($id),
+            false
+        );
+    }
+
+    /**
      * @param int $id_fluxo
      * @param Request $request
      */

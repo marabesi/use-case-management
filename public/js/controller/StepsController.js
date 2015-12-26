@@ -246,6 +246,11 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
             });
         }
     }
-
+    
+    $scope.preview = function(id) {
+        StepFactory.preview(id).then(function(response) {
+        });
+    }
+    
     createTable();
 }]);
