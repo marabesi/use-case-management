@@ -19,9 +19,9 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
     $scope.steps = [];
     
     $scope.types = [
-        {id: 1, description: 'TYPE_1'},
-        {id: 2, description: 'TYPE_2'},
-        {id: 3, description: 'TYPE_3'},
+        {id: 1, description: $translate.instant('TYPE_1')},
+        {id: 2, description: $translate.instant('TYPE_2')},
+        {id: 3, description: $translate.instant('TYPE_3')},
     ];
     
     $scope.modal = {
@@ -190,6 +190,7 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
     
     $scope.preview = function(id) {
         StepFactory.preview(id).then(function(response) {
+        	$scope.previewData = response;
         });
     }
     

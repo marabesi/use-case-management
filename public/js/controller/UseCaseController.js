@@ -25,6 +25,12 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory',
     $scope.useCase = {
         actor : []
     };
+    $scope.selectStatus = [
+       { id: 1, description: $translate.instant('1') },
+       { id: 2, description: $translate.instant('2') },
+       { id: 3, description: $translate.instant('3') },
+       { id: 4, description: $translate.instant('4') },
+    ];
     
     var urlService = 'api/use-case';
     

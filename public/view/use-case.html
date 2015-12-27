@@ -35,9 +35,13 @@
             </div>
             <div ng-repeat="element in actorsElements track by $index">
                 <div class="input-group">
-                    <select class="form-control" name="actor[{{$index}}]" ng-model="useCase.actor[$index]" required>
+                    <select 
+                    	class="form-control" 
+                    	name="actor[{{$index}}]" 
+                    	ng-model="useCase.actor[$index]" 
+                    	required
+                    	ng-options="actor.id_ator as actor.nome for actor in actors">
                         <option value="">{{ 'SELECT' | translate }}</option>
-                        <option ng-repeat="actor in actors" ng-selected="useCase.actor[$index]" value="{{actor.id_ator}}">{{actor.nome}}</option>
                     </select>
 
                     <span class="input-group-btn">
@@ -53,12 +57,13 @@
             </div>
             <div class="form-group">
                 <label>{{ 'USE_CASE_STATUS' | translate }}</label>
-                <select class="form-control" name="status" ng-model="useCase.status" required>
+                <select 
+                	class="form-control" 
+                	name="status" 
+                	ng-model="useCase.status" 
+                	required
+                	ng-options="st.id as st.description for st in selectStatus">
                     <option value="">{{ 'SELECT' | translate }}</option>
-                    <option value="1" ng-selected="useCase.status">{{ 1 | translate }}</option>
-                    <option value="2" ng-selected="useCase.status">{{ 2 | translate }}</option>
-                    <option value="3" ng-selected="useCase.status">{{ 3 | translate }}</option>
-                    <option value="4" ng-selected="useCase.status">{{ 4 | translate }}</option>
                 </select>
                 <div class="alert alert-dismissable alert-danger" ng-show="form.status.$error.required">
                     {{ 'USE_CASE_STATUS_IS_REQUIRED' | translate }}

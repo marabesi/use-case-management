@@ -17,9 +17,13 @@
                 <div class="col-lg-3">
                     <div class="form-group">
                         <label>{{ 'USE_CASE' | translate }}</label>
-                        <select class="form-control" name="useCase" ng-model="useCase.useCase" required>
+                        <select 
+	                        class="form-control" 
+	                        name="useCase" 
+	                        ng-model="useCase.useCase" 
+	                        required
+                        	ng-options="usec.id_revisao as usec.descricao for usec in useCases">
                             <option value="">{{ 'SELECT' | translate }}</option>
-                            <option ng-repeat="use in useCases" ng-selected="useCase.useCase" value="{{use.id_revisao}}" >{{use.descricao}}</option>
                         </select>
                         <div class="alert alert-dismissable alert-danger" ng-show="form.useCase.$error.required">
                             {{ 'USE_CASE_IS_REQUIRED' | translate }}
@@ -29,9 +33,13 @@
                 <div class="col-lg-3">
                     <div class="form-group">
                         <label>{{ 'TYPE' | translate }}</label>
-                        <select class="form-control" required name="type" ng-model="useCase.type">
+                        <select 
+                        	class="form-control" 
+                        	required 
+                        	name="type" 
+                        	ng-model="useCase.type"
+                        	ng-options="type.id as type.description for type in types">
                             <option value="">{{ 'SELECT' | translate }}</option>
-                            <option ng-repeat="type in types" ng-selected="useCase.type" value="{{type.id}}">{{type.description| translate}}</option>
                         </select>
                         <div class="alert alert-dismissable alert-danger" ng-show="form.type.$error.required">
                             {{ 'TYPE_IS_REQUIRED' | translate }}
@@ -223,7 +231,7 @@
                     <h4 class="modal-title">{{ 'PREVIEW' | translate }}</h4>
                 </div>
                 <div class="modal-body">
-                    
+                	
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'CLOSE' | translate }}</button>
