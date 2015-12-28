@@ -21,7 +21,15 @@ class Application extends Base
      * @var int
      */
     public $timestamps = false;
-
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function useCase()
+    {
+        return $this->belongsToMany('Modules\Api\Models\UseCase', 'id_sistema');
+    }
+    
     /**
      * @param int $limit
      * @return \Illuminate\Database\Eloquent\Collection

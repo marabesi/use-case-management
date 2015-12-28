@@ -21,7 +21,15 @@ class Actor extends Base
      * @var boolean
      */
     public $timestamps = false;
-
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function revisionActor()
+    {
+        return $this->belongsToMany('Modules\Api\Models\RevisionActors', 'id_ator');
+    }
+    
     /**
      * @param int $limit
      * @return \Illuminate\Database\Eloquent\Collection

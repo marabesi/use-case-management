@@ -21,7 +21,23 @@ class Revision extends Model
      * @var boolean
      */
     public $timestamps = false;
-
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function useCase()
+    {
+        return $this->hasMany('Modules\Api\Models\UseCase', 'id_caso_de_uso');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function revisionActors()
+    {
+        return $this->hasMany('Modules\Api\Models\RevisionActors', 'id_dados_revisao');
+    }
+    
     /**
      * @param int $id
      * @return Illuminate\Database\Eloquent\Collection

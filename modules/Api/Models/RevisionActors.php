@@ -21,7 +21,23 @@ class RevisionActors extends Model
      * @var boolean
      */
     public $timestamps    = false;
-
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function revision()
+    {
+        return $this->belongsTo('Modules\Api\Models\Revision', 'id_revisao');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function actor()
+    {
+        return $this->hasMany('Modules\Api\Models\Actor', 'id_actor');
+    }
+    
     /**
      * @param int $id
      * @return Illuminate\Database\Eloquent\Collection

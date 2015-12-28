@@ -21,7 +21,23 @@ class UseCase extends Base
      * @var boolean
      */
     public $timestamps = false;
-
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function application()
+    {
+        return $this->hasMany('Modules\Api\Models\Application', 'id_sistema');    
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function revision()
+    {
+        return $this->hasMany('Modules\Api\Models\Revision', 'id_caso_de_uso');
+    }
+    
     /**
      * @param int $limit
      * @return Illuminate\Database\Eloquent\Collection
