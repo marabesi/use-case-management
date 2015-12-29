@@ -7,4 +7,4 @@ npm-debug.log
 .buildpath
 .project
 .settings/
-
+.idea/
