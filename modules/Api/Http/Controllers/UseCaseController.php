@@ -50,10 +50,11 @@ class UseCaseController extends Controller {
     {
         list($idUseCase, $actor) = explode(',', $id);
 
-        $revision = $this->revision->findByUseCase($idUseCase);
+        $revision = $this->useCase->find($idUseCase)->revision();
 
         if ($revision) {
             $actors = $this->revisionActors->findByRevision($actor);
+//             $actors = $this->revisionActors->find($actor)->revision();
             $actors->delete();
 
             $revision->delete();

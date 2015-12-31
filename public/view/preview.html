@@ -2,27 +2,56 @@
     <div class="col-lg-12">
         <div class="form-group">
             <label>{{ 'APPLICATION' | translate }}</label>
-            <select class="form-control" required name="application" ng-model="preview.application" ng-change="build()">
+            <select class="form-control" name="application" ng-model="preview.application" ng-change="build()">
                 <option value="">{{ 'SELECT' | translate }}</option>
-                <option ng-repeat="app in application" ng-selected="preview.application" value="{{app.id_sistema}}">{{app.nome}}</option>
+                <option ng-repeat="app in application" value="{{app.id_sistema}}">{{app.nome}}</option>
             </select>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <ul ng-repeat="row in previewData">
-        <li>
-           {{row.nome}}
-            <ul ng-repeat="useCase in row.useCase">
-                <li><strong>{{useCase.descricao}}</strong></li>
+<div class="row" ng-show="!preview.application">
+    <div class="alert alert-info alert-dismissable">
+        {{ 'HELPER_PREVIEW' | translate }}
+    </div>
+</div>
 
-                <ul>
-                    <li ng-repeat="actor in useCase.revision.actors">
-                        {{actor.nome}}
-                    </li>
+<div class="row" ng-show="preview.application">
+    <ul>
+        <ul ng-repeat="row in previewData">
+            <li>
+                {{row.nome}}
+                <ul ng-repeat="useCase in row.useCase">
+                    <li><strong>{{useCase.descricao}}</strong></li>
+
+                    <ul>
+                        <li ng-repeat="actor in useCase.revision.actors">
+                            {{actor.nome}}
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <ul ng-repeat="flow in useCase.revision.flow">
+
+                            <li ng-repeat="(type, obj) in flow">
+                                <strong>{{ (type | uppercase) | translate }}</strong>
+                                <ul ng-repeat="(index, items) in obj">
+                                    <ul>
+                                        <li>{{index | translate}}
+                                            <ul>
+                                                <li ng-repeat="item in items">
+                                                    {{item.identifier}}
+                                                    <span>{{item.description}}</span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </ul>
+                            </li>
+                        </ul>
+                    </ul>
                 </ul>
-            </ul>
-        </li>
+            </li>
+        </ul>
     </ul>
 </div>

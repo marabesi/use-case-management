@@ -44,7 +44,7 @@ class Revision extends Model
      */
     public function findByUseCase($id)
     {
-        return $this->select('id_dados_revisao')
+        return $this->select('id_revisao', 'id_dados_revisao')
             ->from('revisao')
             ->where('id_caso_de_uso', $id);
     }

@@ -9,12 +9,16 @@ use Modules\Api\Models\Step;
 use Modules\Api\Models\Complementary;
 use Modules\Api\Models\Business;
 use Modules\Api\Models\Reference;
+use Modules\Api\Models\Application;
+use Modules\Api\Repositories\UseCaseRepository;
+use Modules\Api\Models\Revision;
+use Modules\Api\Models\RevisionActors;
 
 class StepController extends Controller
 {
-    const BASIC       = 1;
+    const BASIC = 1;
     const ALTERNATIVE = 2;
-    const EXCEPTION   = 3;
+    const EXCEPTION = 3;
 
     /**
      * @var Modules\Api\Models\Flow
@@ -46,16 +50,16 @@ class StepController extends Controller
             list($id_passos, $id_fluxo) = explode(',', $id);
 
             $this->step->deleteAll($id_passos, $id_fluxo);
-            
+
             return $this->getJsonResponse($id);
         } catch (\Exception $exception) {
-             return $this->getJsonResponse([
+            return $this->getJsonResponse([
                 'data' => $exception->getMessage(),
                 'error' => true
             ], false);
         }
     }
-    
+
     /**
      * @param Illuminate\Http\Request $request
      * @return Illuminate\Http\JsonResponse
@@ -63,13 +67,13 @@ class StepController extends Controller
     public function getIndex(Request $request)
     {
         $limit = $request->input('limit', \Modules\Api\Models\Base::DEFAULT_LIMIT);
-        
+
         return $this->getJsonResponse(
             $this->step->fetchAll($limit),
             false
         );
     }
-    
+
     /**
      * @param Illuminate\Http\Request $request
      * @return Illuminate\Http\JsonResponse
@@ -77,24 +81,24 @@ class StepController extends Controller
     public function postIndex(Request $request)
     {
         try {
-            $flow             = new Flow();
-            $flow->tipo       = $request->input('type');
+            $flow = new Flow();
+            $flow->tipo = $request->input('type');
             $flow->id_revisao = $request->input('useCase');
             $flow->save();
 
             $id_fluxo = $flow->id_fluxo;
 
-            $step                = new Step();
-            $step->id_fluxo      = $id_fluxo;
+            $step = new Step();
+            $step->id_fluxo = $id_fluxo;
             $step->identificador = $request->input('identifier');
-            $step->descricao     = $request->input('description');
+            $step->descricao = $request->input('description');
             $step->save();
 
             $id_passos = $step->id_passos;
 
             $complementary = new Complementary();
             $complementary->newSave($request->input('complementary', []), $id_passos);
-            
+
             $business = new Business();
             $business->newSave($request->input('business', []), $id_passos);
 
@@ -175,10 +179,59 @@ class StepController extends Controller
      * @param int $id
      * @return Illuminate\Http\JsonResponse
      */
-    public function getPreview($id)
+    public function getPreview($id, UseCaseRepository $useCaseRepository)
     {
+        $revision = new Revision();
+        $revisionActors = new RevisionActors();
+
+        $complementary = new \Modules\Api\Models\ComplementarySteps();
+        $business = new \Modules\Api\Models\BusinessSteps();
+        $reference = new \Modules\Api\Models\ReferenceSteps();
+
+        $result = [];
+
+        $app = new Application();
+        $array = $app->where('id_sistema', $id)->get();
+
+        foreach ($array as $application) {
+
+            $u = $useCaseRepository->findByIdSistema($application->id_sistema);
+
+            $a = $u->get()->toArray();
+
+            $result['app'] = $application->toArray();
+
+            foreach ($a as $useCaseMaroto) {
+                $arrayU = $u->get()->toArray();
+
+                foreach ( $arrayU as $key => $singleUseCase ) {
+                    $result['app']['useCase'][$key] = $singleUseCase;
+
+                    $revisionA = $revision->findByUseCase($singleUseCase['id_caso_de_uso'])->get()->toArray();
+
+                    foreach ($revisionA as $revisionData) {
+                        $result['app']['useCase'][$key]['revision'] = $revisionData;
+
+                        $result['app']['useCase'][$key]['revision']['actors'] = $revisionActors->findActorByRevision($revisionData['id_revisao'])->get()->toArray();
+
+                        $flow = $this->flow->where('id_revisao', $revisionData['id_revisao'])->get()->toArray();
+
+                        $compl = $complementary->findByUseCase($singleUseCase['id_caso_de_uso']);
+                        $bus = $business->findByUseCase($singleUseCase['id_caso_de_uso']);
+                        $ref = $reference->findByUseCase($singleUseCase['id_caso_de_uso']);
+
+                        $result['app']['useCase'][$key]['revision']['flow'][] = [
+                            'complementary' => $compl,
+                            'business' => $bus,
+                            'reference' => $ref
+                        ];
+                    }
+                }
+            }
+        }
+
         return $this->getJsonResponse(
-            $this->step->preview($id),
+            $result,
             false
         );
     }

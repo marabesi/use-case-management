@@ -73,6 +73,7 @@
         <script src="js/controller/StepsController.js"></script>
         <script src="js/controller/VersionController.js"></script>
         <script src="js/controller/LanguageMenuController.js"></script>
+        <script src="js/controller/PreviewController.js"></script>
         <script src="js/directive/SuccessMessage.js"></script>
         <script src="js/directive/ErrorMessage.js"></script>
         <script src="js/directive/ModalClose.js"></script>

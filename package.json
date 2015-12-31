@@ -1,14 +1,21 @@
 {
-    "name": "multitest",
-    "version": "0.0.0",
-    "description": "",
-    "main": "index.js",
-    "dependencies": {
-        "bower": "1.6.5"
-    },
-    "author": "",
-    "license": "ISC",
-    "scripts": {
-        "postinstall": "bower install"
-    }
+  "name": "multitest",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bower": "1.6.5"
+  },
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "postinstall": "bower install"
+  },
+  "devDependencies": {
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.16",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.2",
+    "phantomjs": "^1.9.19"
+  }
 }

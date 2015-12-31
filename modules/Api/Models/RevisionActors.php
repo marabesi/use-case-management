@@ -59,4 +59,17 @@ class RevisionActors extends Model
             ->from('relacionamento_dados_revisao')
             ->where('id_ator', $id);
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function findActorByRevision($id)
+    {
+        return $this->select('id_relacionamento_dados_revisao', 'ator.id_ator',
+            'nome', 'descricao')
+            ->from('relacionamento_dados_revisao')
+            ->join('ator', 'relacionamento_dados_revisao.id_ator', '=', 'ator.id_ator')
+            ->where('relacionamento_dados_revisao.id_revisao', $id);
+    }
 }

@@ -36,4 +36,35 @@ class ReferenceSteps extends Model
             ->where('r.id_passos', $id_passos)
             ->get();
     }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function findByUseCase($id)
+    {
+        $data =  $this->select('f.id_fluxo', 'f.tipo', 'p.id_passos',
+            'p.identificador', 'p.descricao', 'ref.identificador',
+            'ref.descricao')
+            ->from('fluxo AS f')
+            ->join('revisao AS r', 'f.id_revisao', '=', 'r.id_revisao')
+            ->join('passos AS p', 'f.id_fluxo', '=', 'p.id_fluxo')
+
+            ->join('relacionamento_referencia AS re', 're.id_passos', '=', 'p.id_passos')
+            ->join('referencia AS ref', 're.id_referencia', '=', 'ref.id_referencia')
+
+            ->where('r.id_caso_de_uso', $id)
+            ->get();
+
+        $result = [];
+
+        foreach ($data->toArray() as $array) {
+            $result[$array['tipo']][] =  [
+                'identifier' => $array['identificador'],
+                'description' => $array['descricao']
+            ];
+        }
+
+        return $result;
+    }
 }
