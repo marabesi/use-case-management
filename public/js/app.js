@@ -16,6 +16,9 @@ app.config(['$routeProvider', function ($routeProvider) {
         }).when('/version', {
             templateUrl: 'view/version.html',
             controller: 'VersionController'
+        }).when('/preview', {
+            templateUrl: 'view/preview.html',
+            controller: 'PreviewController'
         }).otherwise({
             templateUrl: 'view/dashboard.html',
             controller: 'DashboardController'

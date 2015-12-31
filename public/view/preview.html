@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-group">
+            <label>{{ 'APPLICATION' | translate }}</label>
+            <select class="form-control" required name="application" ng-model="preview.application" ng-change="build()">
+                <option value="">{{ 'SELECT' | translate }}</option>
+                <option ng-repeat="app in application" ng-selected="preview.application" value="{{app.id_sistema}}">{{app.nome}}</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <ul ng-repeat="row in previewData">
+        <li>
+           {{row.nome}}
+            <ul ng-repeat="useCase in row.useCase">
+                <li><strong>{{useCase.descricao}}</strong></li>
+
+                <ul>
+                    <li ng-repeat="actor in useCase.revision.actors">
+                        {{actor.nome}}
+                    </li>
+                </ul>
+            </ul>
+        </li>
+    </ul>
+</div>
