@@ -177,4 +177,24 @@ class UseCaseController extends Controller {
             false
         );
     }
+
+    /**
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function getTotalNotDeleted()
+    {
+        return $this->getJsonResponse(
+            $this->useCase->where('status', '!=', self::DELETED)->count()
+        );
+    }
+
+    /**
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function getTotalDeleted()
+    {
+        return $this->getJsonResponse(
+            $this->useCase->where('status', '=', self::DELETED)->count()
+        );
+    }
 }

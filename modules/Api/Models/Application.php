@@ -34,9 +34,15 @@ class Application extends Base
      * @param int $limit
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function fetchAll($limit)
+    public function fetchAll($limit, $sorting)
     {
-        return $this->paginate($limit);
+        $data = $this->select();
+
+        foreach ($sorting as $field => $value) {
+            $data->orderBy($field, $value);
+        }
+
+        return $data->paginate(parent::DEFAULT_LIMIT);
     }
 
 }

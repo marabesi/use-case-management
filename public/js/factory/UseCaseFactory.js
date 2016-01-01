@@ -18,6 +18,26 @@ app.factory('UseCaseFactory', ['$http', '$q', function($http, $q) {
             });
             
             return defer.promise;
+        },
+        fetchTotalNotDeleted: function() {
+            var defer = $q.defer();
+            var url = 'api/use-case/total-not-deleted';
+
+            $http.get(url).success(function(data) {
+                defer.resolve(data);
+            });
+
+            return defer.promise;
+        },
+        fetchTotalDeleted: function() {
+            var defer = $q.defer();
+            var url = 'api/use-case/total-deleted';
+
+            $http.get(url).success(function(data) {
+                defer.resolve(data);
+            });
+
+            return defer.promise;
         }
     }
 }]);

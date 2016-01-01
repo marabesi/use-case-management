@@ -27,8 +27,10 @@ class ApplicationController extends Controller {
     {
         $limit = $request->input('limit', \Modules\Api\Models\Base::DEFAULT_LIMIT);
 
+        $sorting = json_decode($request->input('sorting'), true);
+
         return $this->getJsonResponse(
-            $this->application->fetchAll($limit),
+            $this->application->fetchAll($limit, $sorting),
             false
         );
     }

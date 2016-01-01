@@ -109,6 +109,8 @@ app.config(['$routeProvider', function ($routeProvider) {
             NEXT: 'Next',
             STEP_NOT_FOUND: 'Step not found',
             HELPER_PREVIEW: 'Select one aplication to preview',
+            VIEW_ALL: 'View all',
+            DELETED_USE_CASE: 'Deleted use case',
         })
         .translations('ptBR', {
             DASHBOARD: 'Painel',
@@ -194,6 +196,8 @@ app.config(['$routeProvider', function ($routeProvider) {
             NEXT: 'Próximo',
             STEP_NOT_FOUND: 'Nenhum passo encontrado',
             HELPER_PREVIEW: 'Selecione um sistema para visualizar',
+            VIEW_ALL: 'Ver todos',
+            DELETED_USE_CASE: 'Caso de uso deletados',
         });
         
         $translateProvider.preferredLanguage('ptBR');

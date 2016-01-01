@@ -14,7 +14,8 @@ app.controller('ApplicationController', ['$scope', 'NgTableParams', 'TableFactor
           getData: function($defer, params){
             var request = {
                 page: params.page(),
-                limit: params.count()
+                limit: params.count(),
+                sorting: params.sorting(),
             };
 
             TableFactory.getAll(urlService, request).success(function(result) {
@@ -25,7 +26,9 @@ app.controller('ApplicationController', ['$scope', 'NgTableParams', 'TableFactor
         };
 
         $scope.customConfigParams = new NgTableParams(
-            {count: TableFactory.DEFAULT_COUNT},
+            {count: TableFactory.DEFAULT_COUNT, sorting: {
+                nome: 'ASC'
+            }},
             initialSettings
         );
     }

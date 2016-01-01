@@ -46,4 +46,18 @@ class UseCaseControllerTest extends \Tests\TestCase
             'error' => false
         ]);
     }
+
+    public function testShouldReturnUseCasesNotDeleted()
+    {
+        $this->get('api/use-case/total-not-deleted')->seeJson([
+            'error' => false
+        ]);
+    }
+
+    public function testShouldReturnUseCasesDeleted()
+    {
+        $this->get('api/use-case/total-deleted')->seeJson([
+            'error' => false
+        ]);
+    }
 }

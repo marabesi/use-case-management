@@ -7,16 +7,16 @@
                         <i class="fa fa-comments fa-5x"></i>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <p class="announcement-heading">456</p>
-                        <p class="announcement-text">Use case(s)</p>
+                        <p class="announcement-heading">{{total}}</p>
+                        <p class="announcement-text">{{ 'USE_CASE' | translate }}(s)</p>
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="#/use-case">
                 <div class="panel-footer announcement-bottom">
                     <div class="row">
                         <div class="col-xs-6">
-                            View all
+                            {{ 'VIEW_ALL' | translate }}
                         </div>
                         <div class="col-xs-6 text-right">
                             <i class="fa fa-arrow-circle-right"></i>
@@ -34,16 +34,16 @@
                         <i class="fa fa-tasks fa-5x"></i>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <p class="announcement-heading">18</p>
-                        <p class="announcement-text">Inactivate Use Case(s)</p>
+                        <p class="announcement-heading">{{totalDeleted}}</p>
+                        <p class="announcement-text">{{ 'DELETED_USE_CASE' | translate }}(s)</p>
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="#/use-case">
                 <div class="panel-footer announcement-bottom">
                     <div class="row">
                         <div class="col-xs-6">
-                            View all
+                            {{ 'VIEW_ALL' | translate }}
                         </div>
                         <div class="col-xs-6 text-right">
                             <i class="fa fa-arrow-circle-right"></i>
