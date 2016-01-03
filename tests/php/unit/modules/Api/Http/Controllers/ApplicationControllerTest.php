@@ -12,7 +12,7 @@ class ApplicationControllerTest extends \Tests\TestCase
 
     public function setUp()
     {
-        $this->application = $this->getMock('Modules\Api\Models\Application');
+        $this->application = $this->getMockRepostiory('Modules\Api\Repositories\ApplicationRepository');
     }
 
     public function tearDown()
@@ -32,5 +32,28 @@ class ApplicationControllerTest extends \Tests\TestCase
 
         $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
         $this->assertEquals('{}', $response->getContent());
+    }
+
+    public function testCreateNewApplication()
+    {
+        $model = $this->getMock('Modules\Api\Models\Application');
+
+        $this->application->expects($this->once())
+            ->method('create')
+            ->with([
+                'nome' => 'Application testing'
+            ])
+            ->will($this->returnValue($model));
+
+        $controller = new ApplicationController($this->application);
+        
+        $request = $this->getMock('Illuminate\Http\Request');
+        $request->expects($this->once())
+            ->method('input')
+            ->will($this->returnValue('Application testing'));
+
+        $response = $controller->postIndex($request);
+
+        $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
     }
 }

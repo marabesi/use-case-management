@@ -15,4 +15,13 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase {
             $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
             return $app;
     }
+
+    /**
+     * @param string $class
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    public function getMockRepostiory($class)
+    {
+        return $this->getMock($class, array(), array($this->createApplication()));
+    }
 }

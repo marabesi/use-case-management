@@ -4,6 +4,7 @@ namespace Modules\Api\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Container\Container as App;
+use Illuminate\Http\Request;
 
 /**
  * Class Repository
@@ -18,7 +19,7 @@ abstract class Repository implements RepositoryInterface {
     /**
      * @var
      */
-    protected $model;
+    private $model;
 
     /**
      * @param App $app
@@ -36,6 +37,13 @@ abstract class Repository implements RepositoryInterface {
      */
     abstract function model();
 
+    /**
+     * @return Illuminate\Database\Eloquent\Model
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
 
     public function all($columns = array('*')) {
         return $this->model->get($columns);
@@ -64,7 +72,7 @@ abstract class Repository implements RepositoryInterface {
      * @param string $attribute
      * @return mixed
      */
-    public function update(array $data, $id, $attribute="id") {
+    public function update(array $data, $id, $attribute = 'id') {
         return $this->model->where($attribute, '=', $id)->update($data);
     }
 
@@ -96,7 +104,7 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @return Model
+     * @return Illuminate\Database\Eloquent\Model
      * @throws RepositoryException
      */
     public function makeModel() {

@@ -13,10 +13,5 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-
-         $this->call(ApplicationSeeder::class);
-         $this->call(ActorSeeder::class);
-
-        Model::reguard();
     }
 }

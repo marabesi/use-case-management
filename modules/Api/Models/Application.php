@@ -18,6 +18,13 @@ class Application extends Base
     protected $primaryKey = 'id_sistema';
 
     /**
+     * @var array
+     */
+    protected $fillable = [
+        'nome'
+    ];
+
+    /**
      * @var int
      */
     public $timestamps = false;
@@ -29,20 +36,4 @@ class Application extends Base
     {
         return $this->belongsToMany('Modules\Api\Models\UseCase', 'id_sistema');
     }
-    
-    /**
-     * @param int $limit
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function fetchAll($limit, $sorting)
-    {
-        $data = $this->select();
-
-        foreach ($sorting as $field => $value) {
-            $data->orderBy($field, $value);
-        }
-
-        return $data->paginate(parent::DEFAULT_LIMIT);
-    }
-
 }

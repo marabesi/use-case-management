@@ -1,20 +1,20 @@
 <?php namespace Modules\Api\Http\Controllers;
 
-use Modules\Api\Models\Application;
+use Modules\Api\Repositories\ApplicationRepository;
 use Modules\Api\Http\Controllers\RestBaseController as Controller;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller {
 
     /**
-     * @var Modules\Api\Models\Application
+     * @var Modules\Api\Repositories\ApplicationRepository
      */
     private $application;
 
     /**
-     * @param Modules\Api\Models\Application $application
+     * @param Modules\Api\Repositories\ApplicationRepository
      */
-    public function __construct(Application $application)
+    public function __construct(ApplicationRepository $application)
     {
         $this->application = $application;
     }
@@ -27,7 +27,7 @@ class ApplicationController extends Controller {
     {
         $limit = $request->input('limit', \Modules\Api\Models\Base::DEFAULT_LIMIT);
 
-        $sorting = json_decode($request->input('sorting'), true);
+        $sorting = json_decode($request->input('sorting', '[]'), true);
 
         return $this->getJsonResponse(
             $this->application->fetchAll($limit, $sorting),
@@ -41,10 +41,9 @@ class ApplicationController extends Controller {
      */
     public function postIndex(Request $request)
     {
-        $application = new Application();
-
-        $application->nome = $request->input('name');
-        $application->save();
+        $application = $this->application->create([
+            'nome' => $request->input('name')
+        ]);
 
         return $this->getJsonResponse(
             $application->id_sistema
@@ -104,7 +103,7 @@ class ApplicationController extends Controller {
     public function getFetch()
     {
         return $this->getJsonResponse(
-            $this->application->get(),
+            $this->application->fetchAllWithOutPagination(),
             false
         );
     }

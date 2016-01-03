@@ -1,8 +1,8 @@
 {
     "name": "Api",
     "alias": "api",
-    "description": "",
-    "keywords": [],
+    "description": "Restful Api to be used by the front end",
+    "keywords": ["api", "restful"],
     "active": 1,
     "order": 0,
     "providers": [
