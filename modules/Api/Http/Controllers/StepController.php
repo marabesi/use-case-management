@@ -168,6 +168,8 @@ class StepController extends Controller
                 sprintf('%d,%d', $id_passos, $id_fluxo)
             );
         } catch (\Exception $exception) {
+            \Log::error($exception->getTraceAsString());
+
             return $this->getJsonResponse([
                 'data' => $exception->getMessage(),
                 'error' => true

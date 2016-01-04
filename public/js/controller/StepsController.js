@@ -93,7 +93,7 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
         
         $scope.submitted = true;
         $scope.cancel();
-        
+
         createTable();
         $scope.customConfigParams.reload();
     }

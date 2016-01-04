@@ -19,7 +19,7 @@ class UseCaseRepository extends Repository implements UseCaseWithActors
 
     public function findByIdSistema($id)
     {
-        return $this->model->where('id_sistema', $id);
+        return $this->getModel()->where('id_sistema', $id);
     }
 
     public function getData()

@@ -111,6 +111,8 @@ app.config(['$routeProvider', function ($routeProvider) {
             HELPER_PREVIEW: 'Select one aplication to preview',
             VIEW_ALL: 'View all',
             DELETED_USE_CASE: 'Deleted use case',
+            STEP_HELPER: 'Click here to visualize the result of your use case',
+            PREVIEW_HELPER_NO_USE_CASES: "There aren't use cases for the selected application",
         })
         .translations('ptBR', {
             DASHBOARD: 'Painel',
@@ -198,6 +200,8 @@ app.config(['$routeProvider', function ($routeProvider) {
             HELPER_PREVIEW: 'Selecione um sistema para visualizar',
             VIEW_ALL: 'Ver todos',
             DELETED_USE_CASE: 'Caso de uso deletados',
+            STEP_HELPER: 'Clique aqui para visualizar todo o caso de uso',
+            PREVIEW_HELPER_NO_USE_CASES: 'Não existe nenhum caso de uso para esse sistema',
         });
         
         $translateProvider.preferredLanguage('ptBR');

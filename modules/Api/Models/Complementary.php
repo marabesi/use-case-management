@@ -30,21 +30,22 @@ class Complementary extends Model
     public function newSave($request, $id_passos)
     {
         if (count($request) > 0) {
-
             foreach ($request as $value) {
-                $complementaryModel = new Complementary();
-                $pieces = explode('|', $value);
+                if ($value) {
+                    $complementaryModel = new Complementary();
+                    $pieces = explode('|', $value);
 
-                $complementaryModel->identificador = $pieces[0];
-                $complementaryModel->descricao     = $pieces[1];
-                $complementaryModel->save();
+                    $complementaryModel->identificador = $pieces[0];
+                    $complementaryModel->descricao     = $pieces[1];
+                    $complementaryModel->save();
 
-                $complementaryModel->id_informacao_complementar;
+                    $complementaryModel->id_informacao_complementar;
 
-                $steps = new ComplementarySteps();
-                $steps->id_informacao_complementar = $complementaryModel->id_informacao_complementar;
-                $steps->id_passos = $id_passos;
-                $steps->save();
+                    $steps = new ComplementarySteps();
+                    $steps->id_informacao_complementar = $complementaryModel->id_informacao_complementar;
+                    $steps->id_passos = $id_passos;
+                    $steps->save();
+                }
             }
         }
     }

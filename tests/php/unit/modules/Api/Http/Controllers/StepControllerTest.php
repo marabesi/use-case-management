@@ -161,6 +161,8 @@ class StepControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function testShouldValidateIncorrectArgumentWhenTryingUpdate($invalidArgument)
     {
+        \Log::shouldReceive('error')->once();
+
         $controller = new StepController($this->flow, $this->steps);
 
         $request = new Request();

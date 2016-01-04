@@ -64,7 +64,7 @@ class StepControllerTest extends \Tests\TestCase
         ]);
     }
 
-    public function testSgouldUpdateAstep()
+    public function testShouldUpdateAstep()
     {
         $decodedResponse = $this->postStep();
 
@@ -111,5 +111,22 @@ class StepControllerTest extends \Tests\TestCase
             ->dontSeejson([
                 'error' => true
             ]);
+    }
+
+    public function testShouldSaveJustComplementaryInformation()
+    {
+        $responseUseCase = $this->postUseCase();
+
+        $this->post('api/step', [
+            'type' => StepController::BASIC,
+            'useCase' => $responseUseCase['useCase']->data,
+            'identifier' => 'STEP 1',
+            'description' => 'STEP 1',
+            'complementary' => [
+                'REF COMP|REF COMP',
+            ],
+        ])->seeJson([
+            'error' => false
+        ]);
     }
 }

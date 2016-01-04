@@ -48,7 +48,11 @@ class Step extends Model
     public function updateComplementaryRows($id_passos, $fields = [])
     {
         $complementarySteps = new ComplementarySteps();
-        $complementarySteps->find($id_passos)->delete();
+        $find = $complementarySteps->find($id_passos);
+
+        if ($find) {
+            $find->delete();
+        }
 
         $complementary = new Complementary();
         $complementary->newSave($fields, $id_passos);
@@ -61,7 +65,11 @@ class Step extends Model
     public function updateBusinessRows($id_passos, $fields = [])
     {
         $businessSteps = new BusinessSteps();
-        $businessSteps->find($id_passos)->delete();
+        $find = $businessSteps->find($id_passos);
+
+        if ($find) {
+            $find->delete();
+        }
 
         $business = new Business();
         $business->newSave($fields, $id_passos);
@@ -74,7 +82,11 @@ class Step extends Model
     public function updateReferenceRows($id_passos, $fields = [])
     {
         $referenceSteps = new ReferenceSteps();
-        $referenceSteps->find($id_passos)->delete();
+        $find = $referenceSteps->find($id_passos);
+
+        if ($find) {
+            $find->delete();
+        }
 
         $reference = new Reference();
         $reference->newSave($fields, $id_passos);

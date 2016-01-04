@@ -16,7 +16,13 @@
     </div>
 </div>
 
-<div class="row" ng-show="preview.application">
+<div class="row" ng-show="!previewData.app.useCase.length && preview.application">
+    <div class="alert alert-danger alert-dismissable">
+        {{ 'PREVIEW_HELPER_NO_USE_CASES' | translate }}
+    </div>
+</div>
+
+<div class="row" ng-show="previewData.app.useCase.length > 0">
     <ul>
         <ul ng-repeat="row in previewData">
             <li>
