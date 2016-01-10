@@ -10,6 +10,7 @@ use Modules\Api\Models\Complementary;
 use Modules\Api\Models\Business;
 use Modules\Api\Models\Reference;
 use Modules\Api\Models\Application;
+use Modules\Api\Repositories\StepRepository;
 use Modules\Api\Repositories\UseCaseRepository;
 use Modules\Api\Models\Revision;
 use Modules\Api\Models\RevisionActors;
@@ -30,19 +31,22 @@ class StepController extends Controller
      */
     private $step;
 
+    private $stepRepository;
+
     /**
-     * @param Modules\Api\Models\Flow $flow
-     * @param Modules\Api\Models\Step
+     * @param \Modules\Api\Models\Flow $flow
+     * @param \Modules\Api\Models\Step
      */
-    public function __construct(Flow $flow, Step $step)
+    public function __construct(Flow $flow, Step $step, StepRepository $stepRepository)
     {
         $this->flow = $flow;
         $this->step = $step;
+        $this->stepRepository = $stepRepository;
     }
 
     /**
      * @param int $id
-     * @return Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function deleteIndex($id)
     {
@@ -61,8 +65,8 @@ class StepController extends Controller
     }
 
     /**
-     * @param Illuminate\Http\Request $request
-     * @return Illuminate\Http\JsonResponse
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getIndex(Request $request)
     {
@@ -75,8 +79,8 @@ class StepController extends Controller
     }
 
     /**
-     * @param Illuminate\Http\Request $request
-     * @return Illuminate\Http\JsonResponse
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postIndex(Request $request)
     {
@@ -118,24 +122,20 @@ class StepController extends Controller
 
     /**
      * @param int $id
+     * @return Illuminate\Http\JsonResponse
      */
     public function getFetch($id)
     {
-        $complementary = new \Modules\Api\Models\ComplementarySteps();
-        $business = new \Modules\Api\Models\BusinessSteps();
-        $reference = new \Modules\Api\Models\ReferenceSteps();
-
-        return $this->getJsonResponse([
-            'complementary' => $complementary->fetchAll($id),
-            'business' => $business->fetchAll($id),
-            'reference' => $reference->fetchAll($id)
-        ], false);
+        return $this->getJsonResponse(
+            $this->stepRepository->getDataToAngular($id),
+            false
+        );
     }
 
     /**
      * @param int $id
-     * @param Illuminate\Http\Request $request
-     * @return Illuminate\Http\JsonResponse
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function putIndex($id, \Illuminate\Http\Request $request)
     {
@@ -179,7 +179,7 @@ class StepController extends Controller
 
     /**
      * @param int $id
-     * @return Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getPreview($id, UseCaseRepository $useCaseRepository)
     {

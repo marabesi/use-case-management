@@ -103,6 +103,7 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
             var data = $scope.customConfigParams.data[index];
             
             StepFactory.fetchStep(data.id_passos).then(function(response) {
+                console.log(response);
                 $scope.useCase = {
                     useCase: data.id_revisao,
                     type: data.tipo,
@@ -126,8 +127,14 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
             $scope.message = 'UPDATE_STEP';
         }
     }
-    
+
+    /**
+     * Transform elements in the collection into array to be used in the view
+     * @param collection
+     * @returns {Array}
+     */
     function hidrate(collection) {
+        console.log(collection);
         data = [];
         
         for(item in collection) {

@@ -26,6 +26,19 @@ class Step extends Model
     public $timestamps = false;
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function complementary()
+    {
+        return $this->hasManyThrough(
+            'Modules\Api\Models\Complementary',
+            'Modules\Api\Models\ComplementarySteps',
+            'id_passos',
+            'id_informacao_complementar'
+        );
+    }
+
+    /**
      * @param int $limit
      * @return \Illuminate\Database\Eloquent\Collection
      */

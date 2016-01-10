@@ -5,12 +5,13 @@ namespace Tests\Modules\Api\Http\Controllers;
 use Modules\Api\Http\Controllers\StepController;
 use Illuminate\Http\Request;
 
-class StepControllerTest extends \PHPUnit_Framework_TestCase
+class StepControllerTest extends \Tests\TestCase
 {
 
     private $flow;
     private $steps;
-    
+    private $stepRepository;
+
     public function setUp()
     {
         $this->flow = $this->getMockBuilder('Modules\Api\Models\Flow')
@@ -25,6 +26,8 @@ class StepControllerTest extends \PHPUnit_Framework_TestCase
                 'updateBusinessRows', 'updateReferenceRows', 'deleteAll'
             ])
             ->getMock();
+
+        $this->stepRepository = $this->getMockRepostiory('Modules\Api\Repositories\StepRepository');
     }
 
     public function tearDown()
@@ -52,7 +55,7 @@ class StepControllerTest extends \PHPUnit_Framework_TestCase
             ->method('updateComplementaryRows')
             ->will($this->returnSelf());
 
-        $controller = new StepController($this->flow, $this->steps);
+        $controller = new StepController($this->flow, $this->steps, $this->stepRepository);
         
         $request = $this->getMock('Illuminate\Http\Request');
      
@@ -89,7 +92,7 @@ class StepControllerTest extends \PHPUnit_Framework_TestCase
             ->method('updateComplementaryRows')
             ->will($this->returnSelf());
 
-        $controller = new StepController($this->flow, $this->steps);
+        $controller = new StepController($this->flow, $this->steps, $this->stepRepository);
 
         $request = $this->getMock('Illuminate\Http\Request');
         $request->expects($this->at(0))
@@ -133,7 +136,7 @@ class StepControllerTest extends \PHPUnit_Framework_TestCase
             ->method('updateReferenceRows')
             ->will($this->returnSelf());
         
-        $controller = new StepController($this->flow, $this->steps);
+        $controller = new StepController($this->flow, $this->steps, $this->stepRepository);
 
         $request = $this->getMock('Illuminate\Http\Request');
         $request->expects($this->at(4))
@@ -163,7 +166,7 @@ class StepControllerTest extends \PHPUnit_Framework_TestCase
     {
         \Log::shouldReceive('error')->once();
 
-        $controller = new StepController($this->flow, $this->steps);
+        $controller = new StepController($this->flow, $this->steps, $this->stepRepository);
 
         $request = new Request();
         $response = $controller->putIndex($invalidArgument, $request);
@@ -183,7 +186,7 @@ class StepControllerTest extends \PHPUnit_Framework_TestCase
         $this->steps->expects($this->once())
             ->method('deleteAll');
 
-        $controller = new StepController($this->flow, $this->steps);
+        $controller = new StepController($this->flow, $this->steps, $this->stepRepository);
         $response = $controller->deleteIndex($id);
 
         $decodeResponse = $response->getData();
