@@ -15,6 +15,23 @@
             <div class="panel-body">
                 <div class="col-lg-3">
                     <div class="form-group">
+                        <label>{{ 'APPLICATION' | translate }}</label>
+                        <select class="form-control"
+                                required
+                                name="application"
+                                ng-model="useCase.application"
+                                ng-options="app.id_sistema as app.nome for app in application"
+                                ng-change="fetchUseCase()">
+
+                            <option value="">{{ 'SELECT' | translate }}</option>
+                        </select>
+                        <div class="alert alert-dismissable alert-danger" ng-show="form.application.$error.required">
+                            {{ 'APPLICATION_IS_REQUIRED' | translate }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
                         <label>{{ 'USE_CASE' | translate }}</label>
                         <select
 	                        class="form-control"

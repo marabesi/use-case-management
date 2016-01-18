@@ -1,17 +1,14 @@
 app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
-    'UseCaseFactory', 'CrudFactory', 'StepFactory', '$translate',
+    'UseCaseFactory', 'CrudFactory', 'StepFactory', '$translate', 'ApplicationFactory',
     function($scope, 
     NgTableParams, 
     TableFactory,
     UseCaseFactory, 
     CrudFactory, 
     StepFactory,
-    $translate) {
-    
-    UseCaseFactory.fetch().then(function(data) {
-        $scope.useCases = data;
-    });    
-    
+    $translate,
+    ApplicationFactory) {
+
     $scope.elements = [
         {},
     ];
@@ -37,7 +34,11 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
     $scope.error = false;
     
     var urlService = 'api/step';
-    
+
+    ApplicationFactory.fetch().then(function(data) {
+        $scope.application = data;
+    });
+
     function createTable() {
         var initialSettings = {
           count: TableFactory.DEFAULT_COUNT,
@@ -81,7 +82,15 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
         
         $scope.elements.push(step);
     }
-    
+
+    $scope.fetchUseCase = function() {
+        var id = $scope.useCase.application;
+
+        UseCaseFactory.fetch(id).then(function(data) {
+            $scope.useCases = data;
+        });
+    }
+
     $scope.create = function() {
         if ($scope.useCase.id_passos !== undefined && $scope.useCase.id_fluxo !== undefined) {
             var id = $scope.useCase.id_passos + ',' + $scope.useCase.id_fluxo;

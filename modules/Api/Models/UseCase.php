@@ -42,9 +42,9 @@ class UseCase extends Base
      * @param int $limit
      * @return Illuminate\Database\Eloquent\Collection
      */
-    public function fetchAll($limit)
+    public function fetchAll($limit, $filter)
     {
-        return $this->select(
+        $builder = $this->select(
             'c.id_caso_de_uso', 'c.id_sistema', 'c.descricao',
             'c.status', 'r.id_revisao', 'd.id_dados_revisao',
             'd.versao', 's.nome'
@@ -59,11 +59,17 @@ class UseCase extends Base
         ->join(
             'relacionamento_dados_revisao AS rdr', 'd.id_dados_revisao',
             '=', 'rdr.id_dados_revisao'
-        )
-        ->groupBy( 'c.id_caso_de_uso', 'c.id_sistema', 'c.descricao',
+        );
+
+        if (isset($filter['application'])){
+            $builder->where('c.id_sistema', $filter['application']);
+        }
+
+        $builder->groupBy( 'c.id_caso_de_uso', 'c.id_sistema', 'c.descricao',
             'c.status', 'r.id_revisao', 'd.id_dados_revisao',
-            'd.versao', 's.nome')
-        ->paginate($limit);
+            'd.versao', 's.nome');
+
+        return $builder->paginate($limit);
     }
 
     /**
@@ -117,14 +123,16 @@ class UseCase extends Base
     }
 
     /**
+     * @param int $id
      * @return Illuminate\Database\Eloquent\Collection
      */
-    public function getByRevision()
+    public function getByRevision($id)
     {
         return $this->select('r.id_revisao', 'c.id_caso_de_uso', 
             'r.id_dados_revisao', 'c.descricao')
             ->from('revisao AS r')
-            ->join('caso_de_uso AS c', 'r.id_caso_de_uso', '=', 'c.id_caso_de_uso');
+            ->join('caso_de_uso AS c', 'r.id_caso_de_uso', '=', 'c.id_caso_de_uso')
+            ->where('c.id_sistema', $id);
     }
 
 }

@@ -5,8 +5,17 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory',
     CrudFactory, $translate, ApplicationFactory, VersionFactory, ActorFactory,
     UseCaseFactory) {
 
+    $scope.applicationFilter = [];
+
     ApplicationFactory.fetch().then(function(data) {
         $scope.application = data;
+
+        for (obj in data) {
+            $scope.applicationFilter.push({
+                id: data[obj].id_sistema,
+                title: data[obj].nome
+            });
+        }
     });
     
     VersionFactory.fetch().then(function(data) {
@@ -31,7 +40,14 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory',
        { id: 3, description: $translate.instant('3') },
        { id: 4, description: $translate.instant('4') },
     ];
-    
+
+    $scope.tableHeader = [
+        $translate.instant('APPLICATION'),
+        $translate.instant('DESCRIPTION'),
+        $translate.instant('STATUS'),
+        $translate.instant('ACTION')
+    ];
+
     var urlService = 'api/use-case';
     
     function createTable() {
@@ -39,15 +55,17 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory',
         var initialSettings = {
           count: TableFactory.DEFAULT_COUNT,
           page: TableFactory.DEFAULT_PAGE,
+          filter: {},
           getData: function($defer, params){
             var request = {
                 page: params.page(),
-                limit: params.count()
+                limit: params.count(),
+                filter: params.filter()
             };
 
             TableFactory.getAll(urlService, request).success(function(result) {
-              $defer.resolve(result.data);
-              $scope.customConfigParams.total(result.total);
+                $defer.resolve(result.data);
+                $scope.customConfigParams.total(result.total);
             });
           }
         };

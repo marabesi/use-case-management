@@ -1,9 +1,9 @@
 app.factory('UseCaseFactory', ['$http', '$q', function($http, $q) {
     return {
-        fetch: function() {
+        fetch: function(id) {
             var defer = $q.defer();
             
-            $http.get('api/use-case/fetch').success(function(data) {
+            $http.get('api/use-case/fetch/' + id).success(function(data) {
                 defer.resolve(data);
             });
             

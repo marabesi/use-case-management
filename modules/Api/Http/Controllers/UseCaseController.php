@@ -75,9 +75,10 @@ class UseCaseController extends Controller {
     public function getIndex(Request $request)
     {
         $limit = $request->input('limit', \Modules\Api\Models\Base::DEFAULT_LIMIT);
+        $filter = json_decode($request->input('filter', '{}'), true);
 
         return $this->getJsonResponse(
-            $this->useCase->fetchAll($limit),
+            $this->useCase->fetchAll($limit, $filter),
             false
         );
     }
@@ -157,12 +158,13 @@ class UseCaseController extends Controller {
     }
 
     /**
+     * @param int $id
      * @return Illuminate\Http\JsonResponse
      */
-    public function getFetch()
+    public function getFetch($id)
     {
         return $this->getJsonResponse(
-            $this->useCase->getByRevision()->get(),
+            $this->useCase->getByRevision($id)->get(),
             false
         );
     }

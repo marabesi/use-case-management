@@ -19,7 +19,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'Modules\Api\Http\Controllers'],
     
     Route::get('use-case/total-deleted', 'UseCaseController@getTotalDeleted');
     Route::get('use-case/total-not-deleted', 'UseCaseController@getTotalNotDeleted');
-    Route::get('use-case/fetch', 'UseCaseController@getFetch');
+    Route::get('use-case/fetch/{id}', 'UseCaseController@getFetch');
     Route::get('use-case/fetch-use-case/{id}/revision/{revision}', 'UseCaseController@getFetchUseCase');
     Route::delete('use-case/{id}', 'UseCaseController@deleteIndex');
     Route::resource('use-case', 'UseCaseController@putIndex');
