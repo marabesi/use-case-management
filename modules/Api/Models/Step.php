@@ -44,7 +44,7 @@ class Step extends Model
      */
     public function fetchAll($limit)
     {
-        return $this->select('c.id_caso_de_uso', 'c.descricao AS caso_de_uso_descricao',
+        return $this->select('c.id_sistema', 'c.id_caso_de_uso', 'c.descricao AS caso_de_uso_descricao',
             'f.id_fluxo', 'f.tipo', 'p.id_passos', 'p.identificador', 'p.descricao',
             'r.id_revisao')
             ->from('fluxo AS f')

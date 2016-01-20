@@ -74,6 +74,14 @@
                 </div>
             </div>
             <div class="form-group">
+                <label>{{ 'PRE_CONDITION' | translate }}</label>
+                <textarea class="form-control" name="preCondition" ng-model="useCase.preCondition"></textarea>
+            </div>
+            <div class="form-group">
+                <label>{{ 'POS_CONDITION' | translate }}</label>
+                <textarea class="form-control" name="posCondition" ng-model="useCase.posCondition"></textarea>
+            </div>
+            <div class="form-group">
                 <label>{{ 'DESCRIPTION' | translate }}</label>
                 <textarea class="form-control" name="description" rows="3" required ng-model="useCase.description"></textarea>
                 <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required">

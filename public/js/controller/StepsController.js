@@ -110,10 +110,10 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
     $scope.edit = function(index) {
         if (index !== undefined) {
             var data = $scope.customConfigParams.data[index];
-            
+
             StepFactory.fetchStep(data.id_passos).then(function(response) {
-                console.log(response);
                 $scope.useCase = {
+                    application: data.id_sistema,
                     useCase: data.id_revisao,
                     type: data.tipo,
                     identifier: data.identificador,
@@ -143,7 +143,6 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
      * @returns {Array}
      */
     function hidrate(collection) {
-        console.log(collection);
         data = [];
         
         for(item in collection) {
