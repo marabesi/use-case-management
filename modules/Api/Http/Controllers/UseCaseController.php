@@ -14,23 +14,23 @@ class UseCaseController extends Controller {
     const PENDENT     = 4;
 
     /**
-     * @var Modules\Api\Models\UseCase
+     * @var \Modules\Api\Models\UseCase
      */
     private $useCase;
 
     /**
-     * @var Modules\Api\Models\Revision
+     * @var \Modules\Api\Models\Revision
      */
     private $revision;
 
     /**
-     * @var Modules\Api\Models\RevisionActors
+     * @var \Modules\Api\Models\RevisionActors
      */
     private $revisionActors;
 
     /**
-     * @param Modules\Api\Models\UseCase $useCase
-     * @param Modules\Api\Models\Revision $revision
+     * @param \Modules\Api\Models\UseCase $useCase
+     * @param \Modules\Api\Models\Revision $revision
      */
     public function __construct(
         UseCase $useCase,
@@ -44,7 +44,7 @@ class UseCaseController extends Controller {
 
     /**
      * @param int $id
-     * @return Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function deleteIndex($id)
     {
@@ -70,7 +70,7 @@ class UseCaseController extends Controller {
 
     /**
      * @param Request $request
-     * @return Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getIndex(Request $request)
     {
@@ -85,7 +85,7 @@ class UseCaseController extends Controller {
 
     /**
      * @param Request $request
-     * @return Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postIndex(Request $request)
     {
@@ -121,7 +121,7 @@ class UseCaseController extends Controller {
     /**
      * @param int $id
      * @param Request $request
-     * @return Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function putIndex($id, Request $request)
     {
@@ -159,7 +159,7 @@ class UseCaseController extends Controller {
 
     /**
      * @param int $id
-     * @return Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getFetch($id)
     {
@@ -170,7 +170,7 @@ class UseCaseController extends Controller {
     }
     
     /**
-     * @return Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getFetchUseCase($id, $revision)
     {
@@ -181,7 +181,18 @@ class UseCaseController extends Controller {
     }
 
     /**
-     * @return Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getFetchAllUseCase()
+    {
+        return $this->getJsonResponse(
+            $this->useCase->getAllUseCases()->get(),
+            false
+        );
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getTotalNotDeleted()
     {
@@ -191,7 +202,7 @@ class UseCaseController extends Controller {
     }
 
     /**
-     * @return Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getTotalDeleted()
     {

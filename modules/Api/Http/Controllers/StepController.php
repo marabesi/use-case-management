@@ -22,12 +22,12 @@ class StepController extends Controller
     const EXCEPTION = 3;
 
     /**
-     * @var Modules\Api\Models\Flow
+     * @var \Modules\Api\Models\Flow
      */
     private $flow;
 
     /**
-     * @var Modules\Api\Models\Step
+     * @var \Modules\Api\Models\Step
      */
     private $step;
 
@@ -71,9 +71,10 @@ class StepController extends Controller
     public function getIndex(Request $request)
     {
         $limit = $request->input('limit', \Modules\Api\Models\Base::DEFAULT_LIMIT);
+        $filter = json_decode($request->input('filter', '{}'), true);
 
         return $this->getJsonResponse(
-            $this->step->fetchAll($limit),
+            $this->step->fetchAll($limit, $filter),
             false
         );
     }
@@ -122,7 +123,7 @@ class StepController extends Controller
 
     /**
      * @param int $id
-     * @return Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getFetch($id)
     {

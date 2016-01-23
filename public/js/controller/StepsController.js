@@ -32,6 +32,7 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
     $scope.submitted = false;
     $scope.message = 'SAVE_STEP';
     $scope.error = false;
+    $scope.allUseCases = [];
     
     var urlService = 'api/step';
 
@@ -46,7 +47,8 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
           getData: function($defer, params){
             var request = {
                 page: params.page(),
-                limit: params.count()
+                limit: params.count(),
+                filter: params.filter()
             };
 
             TableFactory.getAll(urlService, request).success(function(result) {
@@ -61,7 +63,15 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
             initialSettings
         );
     }
-    
+
+    $scope.tableHeader = [
+        $translate.instant('USE_CASE'),
+        $translate.instant('TYPE'),
+        $translate.instant('IDENTIFIER'),
+        $translate.instant('DESCRIPTION'),
+        $translate.instant('ACTION')
+    ];
+
     $scope.createComplementary = function() {
         $scope.modal.title = 'COMPLEMENTARY';
         $scope.modal.active = 'complementary';
@@ -90,6 +100,15 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
             $scope.useCases = data;
         });
     }
+
+    UseCaseFactory.fetchAllUseCases().then(function(data) {
+        for (obj in data) {
+            $scope.allUseCases.push({
+                id: data[obj].id_caso_de_uso,
+                title: data[obj].descricao
+            });
+        }
+    });
 
     $scope.create = function() {
         if ($scope.useCase.id_passos !== undefined && $scope.useCase.id_fluxo !== undefined) {

@@ -42,16 +42,21 @@ class Step extends Model
      * @param int $limit
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function fetchAll($limit)
+    public function fetchAll($limit, $filter)
     {
-        return $this->select('c.id_sistema', 'c.id_caso_de_uso', 'c.descricao AS caso_de_uso_descricao',
+        $builder = $this->select('c.id_sistema', 'c.id_caso_de_uso', 'c.descricao AS caso_de_uso_descricao',
             'f.id_fluxo', 'f.tipo', 'p.id_passos', 'p.identificador', 'p.descricao',
             'r.id_revisao')
             ->from('fluxo AS f')
             ->join('passos AS p', 'f.id_fluxo', '=', 'p.id_fluxo')
             ->join('revisao AS r', 'r.id_revisao', '=', 'f.id_revisao')
-            ->join('caso_de_uso AS c', 'r.id_caso_de_uso', '=', 'c.id_caso_de_uso')
-            ->paginate($limit);
+            ->join('caso_de_uso AS c', 'r.id_caso_de_uso', '=', 'c.id_caso_de_uso');
+
+        if (isset($filter['useCase'])){
+            $builder->where('c.id_caso_de_uso', $filter['useCase']);
+        }
+
+        return $builder->paginate($limit);
     }
 
     /**

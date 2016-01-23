@@ -17,6 +17,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'Modules\Api\Http\Controllers'],
     Route::resource('actor', 'ActorController@putIndex');
     Route::controller('actor', 'ActorController');
     
+    Route::get('use-case/fetch-all-use-cases', 'UseCaseController@getFetchAllUseCase');
     Route::get('use-case/total-deleted', 'UseCaseController@getTotalDeleted');
     Route::get('use-case/total-not-deleted', 'UseCaseController@getTotalNotDeleted');
     Route::get('use-case/fetch/{id}', 'UseCaseController@getFetch');
