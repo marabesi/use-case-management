@@ -94,6 +94,8 @@ class UseCaseController extends Controller {
         $useCase->id_sistema = $request->input('application');
         $useCase->descricao = $request->input('description');
         $useCase->status = $request->input('status');
+        $useCase->pre_condicao = $request->input('preCondition');
+        $useCase->pos_condicao = $request->input('posCondition');
         $useCase->save();
 
         $idUseCase = $useCase->id_caso_de_uso;
@@ -131,6 +133,8 @@ class UseCaseController extends Controller {
             $useCase->id_sistema = $request->input('id_sistema');
             $useCase->descricao = $request->input('descricao');
             $useCase->status = $request->input('status');
+            $useCase->pre_condicao = $request->input('pre_condicao');
+            $useCase->pos_condicao = $request->input('pos_condicao');
             $useCase->save();
 
             $id_revisao = $request->input('id_revisao');

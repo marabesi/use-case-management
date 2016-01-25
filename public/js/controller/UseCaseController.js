@@ -85,7 +85,9 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory',
                 id_dados_revisao: $scope.useCase.version,
                 id_revisao: $scope.useCase.id_revision,
                 id_ator: $scope.useCase.actor,
-                id_relacionamento_dados_revisao: $scope.useCase.id_actor_revision
+                id_relacionamento_dados_revisao: $scope.useCase.id_actor_revision,
+                pre_condicao: $scope.useCase.preCondition,
+                pos_condicao: $scope.useCase.posCondition
             }
 
             CrudFactory.edit(urlService, $scope.useCase.id, app);
@@ -96,7 +98,9 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory',
                 status : $scope.useCase.status,
                 version : $scope.useCase.version,
                 actor: $scope.useCase.actor,
-                actorRevision: $scope.useCase.id_actor_revision
+                actorRevision: $scope.useCase.id_actor_revision,
+                preCondition: $scope.useCase.preCondition,
+                posCondition: $scope.useCase.posCondition
             };
 
             CrudFactory.create(urlService, useCase);
@@ -133,6 +137,8 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory',
                     application : data.id_sistema,
                     description : data.descricao,
                     status : data.status,
+                    preCondition: data.pre_condicao,
+                    posCondition: data.pos_condicao,
                     version : data.id_dados_revisao,
                     actor: data.atores
                 };

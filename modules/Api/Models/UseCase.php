@@ -81,7 +81,7 @@ class UseCase extends Base
     {
         $data = $this->select(
             'c.id_caso_de_uso', 'c.id_sistema', 'c.descricao',
-            'c.status', 'r.id_revisao', 'd.id_dados_revisao',
+            'c.status', 'c.pre_condicao', 'c.pos_condicao', 'r.id_revisao', 'd.id_dados_revisao',
             'd.versao', 's.nome', 'rdr.id_ator',
             'rdr.id_relacionamento_dados_revisao'
         )
@@ -109,6 +109,8 @@ class UseCase extends Base
                     'id_sistema' => $array['id_sistema'],
                     'descricao' => $array['descricao'],
                     'status' => $array['status'],
+                    'pre_condicao' => $array['pre_condicao'],
+                    'pos_condicao' => $array['pos_condicao'],
                     'id_revisao' => $array['id_revisao'],
                     'id_dados_revisao' => $array['id_dados_revisao'],
                     'versao' => $array['versao'],
