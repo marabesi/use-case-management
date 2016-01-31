@@ -120,6 +120,7 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory',
             CrudFactory.remove(urlService, [id, actor]);
 
             createTable();
+            $scope.cancel();
             $scope.customConfigParams.reload();
         }
     }

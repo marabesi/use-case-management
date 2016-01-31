@@ -115,6 +115,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             PREVIEW_HELPER_NO_USE_CASES: "There aren't use cases for the selected application",
             PRE_CONDITION: 'Pre-condition',
             POS_CONDITION: 'Pos-condition',
+            STEP_IS_REQUIRED: 'Step is required',
         })
         .translations('ptBR', {
             DASHBOARD: 'Painel',
@@ -206,6 +207,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             PREVIEW_HELPER_NO_USE_CASES: 'Não existe nenhum caso de uso para esse sistema',
             PRE_CONDITION: 'Pré-condição',
             POS_CONDITION: 'Pós-condição',
+            STEP_IS_REQUIRED: 'Passo é obrigatório',
         });
         
         $translateProvider.preferredLanguage('ptBR');

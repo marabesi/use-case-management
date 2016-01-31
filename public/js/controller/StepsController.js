@@ -216,6 +216,7 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
                     $scope.error = true;
                 } else {
                     createTable();
+                    $scope.cancel();
                     $scope.customConfigParams.reload();
                 }
             });

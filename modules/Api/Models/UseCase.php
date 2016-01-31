@@ -64,6 +64,8 @@ class UseCase extends Base
 
         if (isset($filter['application'])){
             $builder->where('c.id_sistema', $filter['application']);
+        } else {
+            $builder->whereNull('c.id_sistema');
         }
 
         $builder->groupBy( 'c.id_caso_de_uso', 'c.id_sistema', 'c.descricao',

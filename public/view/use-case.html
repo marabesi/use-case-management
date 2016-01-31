@@ -14,7 +14,8 @@
                     required
                     name="application"
                     ng-model="useCase.application"
-                    ng-options="app.id_sistema as app.nome for app in application">
+                    ng-options="app.id_sistema as app.nome for app in application"
+                    ng-disabled="useCase.id">
 
                     <option value="">{{ 'SELECT' | translate }}</option>
                 </select>
@@ -22,7 +23,13 @@
                     {{ 'APPLICATION_IS_REQUIRED' | translate }}
                 </div>
             </div>
-
+            <div class="form-group">
+                <label>{{ 'DESCRIPTION' | translate }}</label>
+                <textarea class="form-control" name="description" rows="3" required ng-model="useCase.description"></textarea>
+                <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required">
+                    {{ 'DESCRIPTION_IS_REQUIRED' | translate }}
+                </div>
+            </div>
             <div class="form-group">
                 <label>{{ 'VERSION' | translate }}</label>
                 <select class="form-control" name="version" ng-model="useCase.version" required>
@@ -81,14 +88,7 @@
                 <label>{{ 'POS_CONDITION' | translate }}</label>
                 <textarea class="form-control" name="posCondition" ng-model="useCase.posCondition"></textarea>
             </div>
-            <div class="form-group">
-                <label>{{ 'DESCRIPTION' | translate }}</label>
-                <textarea class="form-control" name="description" rows="3" required ng-model="useCase.description"></textarea>
-                <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required">
-                    {{ 'DESCRIPTION_IS_REQUIRED' | translate }}
-                </div>
-            </div>
-            <button type="submit" class="btn btn-default" ng-disabled="form.$invalid">{{ message | translate }}</button>
+            <button type="submit" class="btn btn-default btn-info" ng-disabled="form.$invalid">{{ message | translate }}</button>
             <button type="button" class="btn btn-danger" ng-show="useCase.id" ng-click="cancel()"> {{ 'CANCEL' | translate }}</button>
         </form>
     </div>

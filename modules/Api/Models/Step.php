@@ -54,6 +54,8 @@ class Step extends Model
 
         if (isset($filter['useCase'])){
             $builder->where('c.id_caso_de_uso', $filter['useCase']);
+        } else {
+            $builder->whereNull('c.id_caso_de_uso');
         }
 
         return $builder->paginate($limit);

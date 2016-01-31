@@ -62,6 +62,7 @@ app.controller('ApplicationController', ['$scope', 'NgTableParams', 'TableFactor
             CrudFactory.remove(urlService, id);
 
             createTable();
+            $scope.cancel();
             $scope.customConfigParams.reload();
         }
     }
