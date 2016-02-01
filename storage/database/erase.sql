@@ -1,0 +1,14 @@
+delete from relacionamento_regra_de_negocio;
+delete from relacionamento_referencia;
+delete from relacionamento_informacao_complementar;
+delete from relacionamento_dados_revisao;
+delete from regra_de_negocio;
+delete from referencia;
+delete from informacao_complementar;
+delete from revisao;
+delete from sistema;
+delete from passos;
+delete from fluxo;
+delete from dados_revisao;
+delete from caso_de_uso;
+delete from ator;
