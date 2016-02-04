@@ -7,12 +7,12 @@ use Illuminate\Http\JsonResponse;
 abstract class RestBaseController extends Controller {
 
     /**
-     * @param Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      */
     abstract public function getIndex(Request $request);
 
     /**
-     * @param Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      */
     abstract public function postIndex(Request $request);
 
@@ -23,7 +23,7 @@ abstract class RestBaseController extends Controller {
 
     /**
      * @param int $id
-     * @param Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      */
     abstract public function putIndex($id, Request $request);
 

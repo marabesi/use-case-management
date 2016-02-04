@@ -31,6 +31,7 @@ class UseCaseController extends Controller {
     /**
      * @param \Modules\Api\Models\UseCase $useCase
      * @param \Modules\Api\Models\Revision $revision
+     * @param \Modules\Api\Models\RevisionActors $revisionActors
      */
     public function __construct(
         UseCase $useCase,

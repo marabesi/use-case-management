@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 class ApplicationController extends Controller {
 
     /**
-     * @var Modules\Api\Repositories\ApplicationRepository
+     * @var \Modules\Api\Repositories\ApplicationRepository
      */
     private $application;
 
     /**
-     * @param Modules\Api\Repositories\ApplicationRepository
+     * @param \Modules\Api\Repositories\ApplicationRepository
      */
     public function __construct(ApplicationRepository $application)
     {
@@ -20,8 +20,8 @@ class ApplicationController extends Controller {
     }
 
     /**
-     * @param Illuminate\Http\Request $request
-     * @return Illuminate\Http\JsonResponse
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getIndex(Request $request)
     {
@@ -36,8 +36,8 @@ class ApplicationController extends Controller {
     }
 
     /**
-     * @param Illuminate\Http\Request $request
-     * @return Illuminate\Http\JsonResponse
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postIndex(Request $request)
     {
@@ -52,7 +52,7 @@ class ApplicationController extends Controller {
 
     /**
      * @param int $id
-     * @return Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function deleteIndex($id)
     {
@@ -69,8 +69,8 @@ class ApplicationController extends Controller {
 
     /**
      * @param int $id
-     * @param Illuminate\Http\Request $request
-     * @return Illuminate\Http\JsonResponse
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function putIndex($id, Request $request) {
         try {
@@ -98,7 +98,7 @@ class ApplicationController extends Controller {
     }
 
     /**
-     * @return Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getFetch()
     {

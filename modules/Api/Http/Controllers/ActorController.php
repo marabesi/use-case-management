@@ -8,17 +8,17 @@ use Illuminate\Http\Request;
 class ActorController extends Controller {
 
     /**
-     * @var Modules\Api\Models\Actor
+     * @var \Modules\Api\Models\Actor
      */
     private $actor;
 
     /**
-     * @var Modules\Api\Models\RevisionActors
+     * @var \Modules\Api\Models\RevisionActors
      */
     private $revisionActor;
     
     /**
-     * @param Modules\Api\Models\Actor $actor
+     * @param \Modules\Api\Models\Actor $actor
      */
     public function __construct(Actor $actor, RevisionActors $revisionActors)
     {
@@ -89,8 +89,8 @@ class ActorController extends Controller {
 
     /**
      * @param int $id
-     * @param Illuminate\Http\Request $request
-     * @return Illuminate\Http\JsonResponse
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function putIndex($id, Request $request)
     {
@@ -110,7 +110,7 @@ class ActorController extends Controller {
     }
 
     /**
-     * @return Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getFetch()
     {
