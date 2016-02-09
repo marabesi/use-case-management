@@ -128,7 +128,7 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
         if (index !== undefined) {
             var data = $scope.customConfigParams.data[index];
 
-            $scope.fetchUseCase(data.id_revisao);
+            $scope.fetchUseCase(data.id_sistema);
 
             StepFactory.fetchStep(data.id_passos).then(function(response) {
                 $scope.useCase = {
