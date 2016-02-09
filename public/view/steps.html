@@ -164,6 +164,10 @@
                         <button type="button" class="btn btn-danger" ng-show="useCase.id_passos" ng-click="cancel()"> {{ 'CANCEL' | translate }}</button>
                     </div>
                 </div>
+
+                <button type="button" class="btn btn-danger" ng-show="$index > 0" ng-click="removeElement($index)">
+                    <span>-</span>
+                </button>
             </div>
         </form>
     </div>

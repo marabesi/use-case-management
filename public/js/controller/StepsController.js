@@ -210,7 +210,11 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
         $scope.rules = [];
         $scope.references = [];
     }
-    
+
+    $scope.removeElement = function(index) {
+        $scope.elements.splice(index, 1);
+    }
+
     $scope.remove = function(step, flow) {
         var message = $translate.instant('CONFIRM_DELETE');
         
