@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "postinstall": "bower install"
+    "postinstall": "bower install --force-latest"
   },
   "devDependencies": {
     "jasmine-core": "^2.4.1",
