@@ -21,7 +21,7 @@
                                 name="application"
                                 ng-model="useCase.application"
                                 ng-options="app.id_sistema as app.nome for app in application"
-                                ng-change="fetchUseCase()">
+                                ng-change="fetchUseCase(useCase.application)">
 
                             <option value="">{{ 'SELECT' | translate }}</option>
                         </select>
@@ -161,7 +161,7 @@
                         <button type="submit" class="btn btn-success" ng-disabled="form.$invalid">
                             <span>{{ message | translate }}</span>
                         </button>
-                        <button type="button" class="btn btn-danger" ng-show="useCase.useCase" ng-click="cancel()"> {{ 'CANCEL' | translate }}</button>
+                        <button type="button" class="btn btn-danger" ng-show="useCase.id_passos" ng-click="cancel()"> {{ 'CANCEL' | translate }}</button>
                     </div>
                 </div>
             </div>

@@ -93,9 +93,7 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
         $scope.elements.push(step);
     }
 
-    $scope.fetchUseCase = function() {
-        var id = $scope.useCase.application;
-
+    $scope.fetchUseCase = function(id) {
         UseCaseFactory.fetch(id).then(function(data) {
             $scope.useCases = data;
         });
@@ -130,6 +128,8 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
         if (index !== undefined) {
             var data = $scope.customConfigParams.data[index];
 
+            $scope.fetchUseCase(data.id_revisao);
+
             StepFactory.fetchStep(data.id_passos).then(function(response) {
                 $scope.useCase = {
                     application: data.id_sistema,
@@ -148,8 +148,16 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
                 $scope.complementaries = response.complementary;
                 $scope.rules = response.business;
                 $scope.references = response.reference;
-                
-                $scope.elements = response.business;
+
+                if (response.business.length == 0) {
+                    $scope.elements = [
+                        {}
+                    ];
+
+                } else {
+                    $scope.elements = response.business;
+                }
+
             });
             
             $scope.message = 'UPDATE_STEP';
