@@ -26,7 +26,7 @@ class Reference extends Model
      * @param array $request
      * @param int $id_passos
      */
-    public function newSave($request, $id_passos)
+    public function newSave($request, $id_passos, $id_sistema)
     {
         if (count($request) > 0) {
 
@@ -36,6 +36,7 @@ class Reference extends Model
 
                 $reference->identificador = $pieces[0];
                 $reference->descricao     = $pieces[1];
+                $reference->id_sistema    = $id_sistema;
                 $reference->save();
 
                 $reference->id_referencia;

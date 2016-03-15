@@ -10,7 +10,8 @@ class StepControllerTest extends \Tests\TestCase
     use \Illuminate\Foundation\Testing\DatabaseTransactions;
     use \Api\Http\UseCaseRequest;
     use \Api\Http\StepRequest;
-    
+    use \Api\Http\ApplicationRequest;
+
     protected $baseUrl;
 
     public function setUp()
@@ -45,7 +46,10 @@ class StepControllerTest extends \Tests\TestCase
     {
         $responseUseCase = $this->postUseCase();
 
+        $responseApplication = $this->postApplication();
+
         $this->post('api/step', [
+            'application' => $responseApplication['data'],
             'type' => StepController::BASIC,
             'useCase' => $responseUseCase['useCase']->data,
             'identifier' => 'STEP 1',

@@ -27,7 +27,7 @@ class Business extends Model
      * @param array $request
      * @param int $id_passos
      */
-    public function newSave($request, $id_passos)
+    public function newSave($request, $id_passos, $id_sistema)
     {
         if (count($request) > 0) {
 
@@ -37,6 +37,7 @@ class Business extends Model
 
                 $business->identificador = $pieces[0];
                 $business->descricao     = $pieces[1];
+                $business->id_sistema    = $id_sistema;
                 $business->save();
 
                 $business->id_regra_de_negocio;

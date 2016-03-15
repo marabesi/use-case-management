@@ -10,6 +10,7 @@ use Modules\Api\Models\Complementary;
 use Modules\Api\Models\Business;
 use Modules\Api\Models\Reference;
 use Modules\Api\Models\Application;
+use Modules\Api\Repositories\ComplementaryRepository;
 use Modules\Api\Repositories\StepRepository;
 use Modules\Api\Repositories\UseCaseRepository;
 use Modules\Api\Models\Revision;
@@ -17,9 +18,9 @@ use Modules\Api\Models\RevisionActors;
 
 class StepController extends Controller
 {
-    const BASIC = 1;
+    const BASIC       = 1;
     const ALTERNATIVE = 2;
-    const EXCEPTION = 3;
+    const EXCEPTION   = 3;
 
     /**
      * @var \Modules\Api\Models\Flow
@@ -31,6 +32,9 @@ class StepController extends Controller
      */
     private $step;
 
+    /**
+     * @var StepRepository
+     */
     private $stepRepository;
 
     /**
@@ -101,14 +105,16 @@ class StepController extends Controller
 
             $id_passos = $step->id_passos;
 
+            $id_sistema = $request->input('application');
+
             $complementary = new Complementary();
-            $complementary->newSave($request->input('complementary', []), $id_passos);
+            $complementary->newSave($request->input('complementary', []), $id_passos, $id_sistema);
 
             $business = new Business();
-            $business->newSave($request->input('business', []), $id_passos);
+            $business->newSave($request->input('business', []), $id_passos, $id_sistema);
 
             $reference = new Reference();
-            $reference->newSave($request->input('reference', []), $id_passos);
+            $reference->newSave($request->input('reference', []), $id_passos, $id_sistema);
 
             return $this->getJsonResponse(
                 $id_passos . ',' . $id_fluxo
@@ -177,68 +183,7 @@ class StepController extends Controller
             ], false);
         }
     }
-
-    /**
-     * @param int $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getPreview($id, UseCaseRepository $useCaseRepository)
-    {
-        $revision = new Revision();
-        $revisionActors = new RevisionActors();
-
-        $complementary = new \Modules\Api\Models\ComplementarySteps();
-        $business = new \Modules\Api\Models\BusinessSteps();
-        $reference = new \Modules\Api\Models\ReferenceSteps();
-
-        $result = [];
-
-        $app = new Application();
-        $array = $app->where('id_sistema', $id)->get();
-
-        foreach ($array as $application) {
-
-            $u = $useCaseRepository->findByIdSistema($application->id_sistema);
-
-            $a = $u->get()->toArray();
-
-            $result['app'] = $application->toArray();
-
-            foreach ($a as $useCaseMaroto) {
-                $arrayU = $u->get()->toArray();
-
-                foreach ( $arrayU as $key => $singleUseCase ) {
-                    $result['app']['useCase'][$key] = $singleUseCase;
-
-                    $revisionA = $revision->findByUseCase($singleUseCase['id_caso_de_uso'])->get()->toArray();
-
-                    foreach ($revisionA as $revisionData) {
-                        $result['app']['useCase'][$key]['revision'] = $revisionData;
-
-                        $result['app']['useCase'][$key]['revision']['actors'] = $revisionActors->findActorByRevision($revisionData['id_revisao'])->get()->toArray();
-
-                        $flow = $this->flow->where('id_revisao', $revisionData['id_revisao'])->get()->toArray();
-
-                        $compl = $complementary->findByUseCase($singleUseCase['id_caso_de_uso']);
-                        $bus = $business->findByUseCase($singleUseCase['id_caso_de_uso']);
-                        $ref = $reference->findByUseCase($singleUseCase['id_caso_de_uso']);
-
-                        $result['app']['useCase'][$key]['revision']['flow'][] = [
-                            'complementary' => $compl,
-                            'business' => $bus,
-                            'reference' => $ref
-                        ];
-                    }
-                }
-            }
-        }
-
-        return $this->getJsonResponse(
-            $result,
-            false
-        );
-    }
-
+    
     /**
      * @param int $id_fluxo
      * @param Request $request
@@ -268,4 +213,15 @@ class StepController extends Controller
 
         $revisao = (new Revision())->find($fluxo->id_revisao);
     }
+
+    /**
+     * @param $id
+     * @param ComplementaryRepository $repository
+     * @return mixed
+     */
+    public function getComplementary($id, ComplementaryRepository $repository)
+    {
+        return $repository->findBy('id_sistema', $id);
+    }
+
 }

@@ -27,7 +27,7 @@ class Complementary extends Model
      * @param array $request
      * @param int $id_passos
      */
-    public function newSave($request, $id_passos)
+    public function newSave($request, $id_passos, $id_sistema)
     {
         if (count($request) > 0) {
             foreach ($request as $value) {
@@ -37,6 +37,7 @@ class Complementary extends Model
 
                     $complementaryModel->identificador = $pieces[0];
                     $complementaryModel->descricao     = $pieces[1];
+                    $complementaryModel->id_sistema    = $id_sistema;
                     $complementaryModel->save();
 
                     $complementaryModel->id_informacao_complementar;
