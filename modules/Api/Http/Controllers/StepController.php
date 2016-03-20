@@ -10,7 +10,9 @@ use Modules\Api\Models\Complementary;
 use Modules\Api\Models\Business;
 use Modules\Api\Models\Reference;
 use Modules\Api\Models\Application;
+use Modules\Api\Repositories\BusinessRuleRepository;
 use Modules\Api\Repositories\ComplementaryRepository;
+use Modules\Api\Repositories\ReferenceRepository;
 use Modules\Api\Repositories\StepRepository;
 use Modules\Api\Repositories\UseCaseRepository;
 use Modules\Api\Models\Revision;
@@ -153,22 +155,27 @@ class StepController extends Controller
                 throw new \InvalidArgumentException('Invalid argument');
             }
 
+            $id_sistema = $request->input('application');
+
             $this->updateFlow($id_fluxo, $request);
             $this->updateStep($id_passos, $request);
 
             $this->step->updateComplementaryRows(
                 $id_passos,
-                $request->input('complementary', [])
+                $request->input('complementary', []),
+                $id_sistema
             );
 
             $this->step->updateBusinessRows(
                 $id_passos,
-                $request->input('business', [])
+                $request->input('business', []),
+                $id_sistema
             );
 
             $this->step->updateReferenceRows(
                 $id_passos,
-                $request->input('reference', [])
+                $request->input('reference', []),
+                $id_sistema
             );
 
             return $this->getJsonResponse(
@@ -221,7 +228,26 @@ class StepController extends Controller
      */
     public function getComplementary($id, ComplementaryRepository $repository)
     {
-        return $repository->findBy('id_sistema', $id);
+        return $repository->getModel()->where('id_sistema', $id)->get();
     }
 
+    /**
+     * @param $id
+     * @param BusinessRuleRepository $repository
+     * @return mixed
+     */
+    public function getBusiness($id, BusinessRuleRepository $repository)
+    {
+        return $repository->getModel()->where('id_sistema', $id)->get();
+    }
+
+    /**
+     * @param $id
+     * @param ReferenceRepository $repository
+     * @return mixed
+     */
+    public function getReference($id, ReferenceRepository $repository)
+    {
+        return $repository->getModel()->where('id_sistema', $id)->get();
+    }
 }

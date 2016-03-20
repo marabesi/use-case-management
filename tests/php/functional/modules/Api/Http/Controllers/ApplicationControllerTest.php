@@ -2,10 +2,15 @@
 
 namespace Tests\Functional\Modules\Api\Http\Controllers;
 
+use Api\Http\ApplicationRequest;
+use Api\Http\UseCaseRequest;
+
 class ApplicationControllerTest extends \Tests\TestCase
 {
 
     use \Illuminate\Foundation\Testing\DatabaseTransactions;
+    use ApplicationRequest;
+    use UseCaseRequest;
     
     protected $baseUrl;
 
@@ -84,12 +89,16 @@ class ApplicationControllerTest extends \Tests\TestCase
         ]);
     }
 
-    public function postApplication()
+    public function testShouldNotAllowDeleteWhenItHasRelations()
     {
-        $request = $this->call('POST', 'api/application', [
-            'name' => 'Test update'
-        ]);
+//        $responseUseCase = $this->postUseCase();
+//
+//        $this->assertFalse($responseUseCase->error);
 
-        return json_decode($request->getContent());
+//        $this->delete('api/application/' . $response->data)
+//            ->seeJson([
+//                'data' => (string) $response->data,
+//                'error' => true
+//            ]);
     }
 }

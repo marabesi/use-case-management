@@ -25,6 +25,7 @@ class Reference extends Model
     /**
      * @param array $request
      * @param int $id_passos
+     * @param int $id_sistema
      */
     public function newSave($request, $id_passos, $id_sistema)
     {

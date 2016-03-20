@@ -97,6 +97,20 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
         UseCaseFactory.fetch(id).then(function(data) {
             $scope.useCases = data;
         });
+
+        var id_sistema = $scope.useCase.application;
+
+        StepFactory.complementary(id_sistema).then(function(data) {
+            $scope.complementaries = data;
+        });
+
+        StepFactory.business(id_sistema).then(function(data) {
+            $scope.rules = data;
+        });
+
+        StepFactory.reference(id_sistema).then(function(data) {
+            $scope.references = data;
+        });
     }
 
     UseCaseFactory.fetchAllUseCases().then(function(data) {

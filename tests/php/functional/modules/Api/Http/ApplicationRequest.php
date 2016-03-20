@@ -5,7 +5,7 @@ namespace Api\Http;
 trait ApplicationRequest
 {
 
-    public function postApplication()
+    protected function postApplication()
     {
         $request = $this->call('POST', 'api/application', [
             'name' => 'Test Application'

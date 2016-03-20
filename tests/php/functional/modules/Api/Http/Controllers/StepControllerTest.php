@@ -49,7 +49,7 @@ class StepControllerTest extends \Tests\TestCase
         $responseApplication = $this->postApplication();
 
         $this->post('api/step', [
-            'application' => $responseApplication['data'],
+            'application' => $responseApplication->data,
             'type' => StepController::BASIC,
             'useCase' => $responseUseCase['useCase']->data,
             'identifier' => 'STEP 1',
@@ -71,10 +71,12 @@ class StepControllerTest extends \Tests\TestCase
     public function testShouldUpdateAstep()
     {
         $decodedResponse = $this->postStep();
-
         $this->assertFalse($decodedResponse['step']->error);
 
+        $responseApplication = $this->postApplication();
+
         $this->put('api/step/' . $decodedResponse['step']->data, [
+            'application' => $responseApplication->data,
             'type' => StepController::EXCEPTION,
             'useCase' => $decodedResponse['useCase']->data,
             'identifier' => 'STEP 1 UPDATE',
@@ -121,7 +123,10 @@ class StepControllerTest extends \Tests\TestCase
     {
         $responseUseCase = $this->postUseCase();
 
+        $responseApplication = $this->postApplication();
+
         $this->post('api/step', [
+            'application' => $responseApplication->data,
             'type' => StepController::BASIC,
             'useCase' => $responseUseCase['useCase']->data,
             'identifier' => 'STEP 1',

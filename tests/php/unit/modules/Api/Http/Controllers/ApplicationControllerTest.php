@@ -10,9 +10,12 @@ class ApplicationControllerTest extends \Tests\TestCase
 
     private $application;
 
+    private $useCaseRepository;
+
     public function setUp()
     {
         $this->application = $this->getMockRepostiory('Modules\Api\Repositories\ApplicationRepository');
+        $this->useCaseRepository = $this->getMockRepostiory('Modules\Api\Repositories\UseCaseRepository');
     }
 
     public function tearDown()
@@ -25,8 +28,8 @@ class ApplicationControllerTest extends \Tests\TestCase
         $this->application->expects($this->once())
             ->method('fetchAll')
             ->with(\Modules\Api\Models\Base::DEFAULT_LIMIT);
-        
-        $controller = new ApplicationController($this->application);
+
+        $controller = new ApplicationController($this->application, $this->useCaseRepository);
 
         $response = $controller->getIndex(new Request());
 
@@ -45,7 +48,7 @@ class ApplicationControllerTest extends \Tests\TestCase
             ])
             ->will($this->returnValue($model));
 
-        $controller = new ApplicationController($this->application);
+        $controller = new ApplicationController($this->application, $this->useCaseRepository);
         
         $request = $this->getMock('Illuminate\Http\Request');
         $request->expects($this->once())

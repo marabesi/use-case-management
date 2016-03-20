@@ -3,6 +3,7 @@
 use Modules\Api\Repositories\ApplicationRepository;
 use Modules\Api\Http\Controllers\RestBaseController as Controller;
 use Illuminate\Http\Request;
+use Modules\Api\Repositories\UseCaseRepository;
 
 class ApplicationController extends Controller {
 
@@ -12,11 +13,18 @@ class ApplicationController extends Controller {
     private $application;
 
     /**
-     * @param \Modules\Api\Repositories\ApplicationRepository
+     * @var \Modules\Api\Repositories\UseCaseRepository
      */
-    public function __construct(ApplicationRepository $application)
+    private $useCaseRepository;
+
+    /**
+     * @param \Modules\Api\Repositories\ApplicationRepository
+     * @param \Modules\Api\Repositories\UseCaseRepository
+     */
+    public function __construct(ApplicationRepository $application, UseCaseRepository $useCaseRepository)
     {
         $this->application = $application;
+        $this->useCaseRepository = $useCaseRepository;
     }
 
     /**
@@ -56,6 +64,12 @@ class ApplicationController extends Controller {
      */
     public function deleteIndex($id)
     {
+        $find = $this->useCaseRepository->getModel()->where('id_sistema', $id);
+
+        if ($find->count() > 0) {
+            throw new \Exception('COULD_NOT_DELETE');
+        }
+
         $application = $this->application->find($id);
 
         if ($application) {

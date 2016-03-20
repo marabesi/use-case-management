@@ -65,7 +65,7 @@ class Step extends Model
      * @param int $id_passos
      * @param array $fields
      */
-    public function updateComplementaryRows($id_passos, $fields = [])
+    public function updateComplementaryRows($id_passos, $fields = [], $id_sistema)
     {
         $complementarySteps = new ComplementarySteps();
         $find = $complementarySteps->find($id_passos);
@@ -75,14 +75,14 @@ class Step extends Model
         }
 
         $complementary = new Complementary();
-        $complementary->newSave($fields, $id_passos);
+        $complementary->newSave($fields, $id_passos, $id_sistema);
     }
 
     /**
      * @param int $id_passos
      * @param array $fields
      */
-    public function updateBusinessRows($id_passos, $fields = [])
+    public function updateBusinessRows($id_passos, $fields = [], $id_sistema)
     {
         $businessSteps = new BusinessSteps();
         $find = $businessSteps->find($id_passos);
@@ -92,14 +92,14 @@ class Step extends Model
         }
 
         $business = new Business();
-        $business->newSave($fields, $id_passos);
+        $business->newSave($fields, $id_passos, $id_sistema);
     }
 
     /**
      * @param int $id_passos
      * @param array $fields
      */
-    public function updateReferenceRows($id_passos, $fields = [])
+    public function updateReferenceRows($id_passos, $fields = [], $id_sistema)
     {
         $referenceSteps = new ReferenceSteps();
         $find = $referenceSteps->find($id_passos);
@@ -109,7 +109,7 @@ class Step extends Model
         }
 
         $reference = new Reference();
-        $reference->newSave($fields, $id_passos);
+        $reference->newSave($fields, $id_passos, $id_sistema);
     }
 
     /**

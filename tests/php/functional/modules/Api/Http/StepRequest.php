@@ -9,9 +9,15 @@ trait StepRequest
 
     protected function postStep()
     {
+        /**
+         * @see ApplicationRequest
+         */
+        $aplicationRequest = $this->postApplication();
+
         $responseUseCase = $this->postUseCase();
         
         $requestStep = $this->call('POST', 'api/step', [
+            'application' => $aplicationRequest->data,
             'type' => StepController::BASIC,
             'useCase' => $responseUseCase['useCase']->data,
             'identifier' => 'STEP 1',
