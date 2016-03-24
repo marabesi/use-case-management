@@ -2,6 +2,7 @@
 
 namespace Tests\Modules\Api\Http\Controllers;
 
+use Illuminate\Support\Collection;
 use Modules\Api\Http\Controllers\StepController;
 use Illuminate\Http\Request;
 
@@ -196,7 +197,71 @@ class StepControllerTest extends \Tests\TestCase
         $response = $controller->deleteIndex($id);
 
         $decodeResponse = $response->getData();
+
         $this->assertFalse($decodeResponse->error);
+    }
+
+    /**
+     * @dataProvider models
+     */
+    public function testShouldHydrateComplementaryInformation($repository, $method, $collection)
+    {
+        $controller = new StepController($this->flow, $this->steps, $this->stepRepository);
+
+        $model = $this->getMockBuilder('\Illuminate\Database\Eloquent\Builder')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $model->expects($this->at(0))
+            ->method('where')
+            ->with('id_sistema', 11)
+            ->will($this->returnSelf());
+        $model->expects($this->at(1))
+            ->method('get')
+            ->will($this->returnValue($collection));
+
+        $repository = $this->getMockRepostiory($repository);
+        $repository->expects($this->once())
+            ->method('getModel')
+            ->will($this->returnValue($model));
+
+        $response =  $controller->$method(11, $repository);
+
+        $collection = $response->get(0);
+
+        $this->assertInstanceOf('Illuminate\Support\Collection', $response);
+
+        $this->assertEquals(1, $response->count());
+        $this->assertEquals(1, $collection->id);
+        $this->assertEquals('RF1', $collection->identifier);
+        $this->assertEquals('Unit test', $collection->description);
+    }
+
+    public function models()
+    {
+        return [
+            [\Modules\Api\Repositories\ComplementaryRepository::class, 'getComplementary', new Collection([
+                [
+                    'id_informacao_complementar' => 1,
+                    'identificador' => 'RF1',
+                    'descricao' => 'Unit test',
+                ]
+            ])],
+            [\Modules\Api\Repositories\BusinessRuleRepository::class, 'getBusiness', new Collection([
+                [
+                    'id_regra_de_negocio' => 1,
+                    'identificador' => 'RF1',
+                    'descricao' => 'Unit test',
+                ]
+            ])],
+            [\Modules\Api\Repositories\ReferenceRepository::class, 'getReference', new Collection([
+                [
+                    'id_referencia' => 1,
+                    'identificador' => 'RF1',
+                    'descricao' => 'Unit test',
+                ]
+            ])],
+        ];
     }
 
     public function invalidArguments()

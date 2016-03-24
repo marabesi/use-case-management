@@ -9,14 +9,14 @@ use Modules\Api\Models\Step;
 use Modules\Api\Models\Complementary;
 use Modules\Api\Models\Business;
 use Modules\Api\Models\Reference;
-use Modules\Api\Models\Application;
 use Modules\Api\Repositories\BusinessRuleRepository;
 use Modules\Api\Repositories\ComplementaryRepository;
 use Modules\Api\Repositories\ReferenceRepository;
 use Modules\Api\Repositories\StepRepository;
-use Modules\Api\Repositories\UseCaseRepository;
 use Modules\Api\Models\Revision;
-use Modules\Api\Models\RevisionActors;
+use Modules\Api\Services\Hydrator\BusinessHydrator;
+use Modules\Api\Services\Hydrator\ComplementaryHydrator;
+use Modules\Api\Services\Hydrator\ReferenceHydrator;
 
 class StepController extends Controller
 {
@@ -228,7 +228,11 @@ class StepController extends Controller
      */
     public function getComplementary($id, ComplementaryRepository $repository)
     {
-        return $repository->getModel()->where('id_sistema', $id)->get();
+        $hydrator = new ComplementaryHydrator();
+
+        return $hydrator->hydrate(
+            $repository->getModel()->where('id_sistema', $id)->get()
+        );
     }
 
     /**
@@ -238,7 +242,11 @@ class StepController extends Controller
      */
     public function getBusiness($id, BusinessRuleRepository $repository)
     {
-        return $repository->getModel()->where('id_sistema', $id)->get();
+        $hydrator = new BusinessHydrator();
+        
+        return $hydrator->hydrate(
+            $repository->getModel()->where('id_sistema', $id)->get()
+        );
     }
 
     /**
@@ -248,6 +256,10 @@ class StepController extends Controller
      */
     public function getReference($id, ReferenceRepository $repository)
     {
-        return $repository->getModel()->where('id_sistema', $id)->get();
+        $hydrator = new ReferenceHydrator();
+
+        return $hydrator->hydrate(
+            $repository->getModel()->where('id_sistema', $id)->get()
+        );
     }
 }
