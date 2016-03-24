@@ -25,7 +25,7 @@
 
                             <option value="">{{ 'SELECT' | translate }}</option>
                         </select>
-                        <div class="alert alert-dismissable alert-danger" ng-show="form.application.$error.required">
+                        <div class="alert alert-dismissable alert-danger" ng-show="form.application.$error.required && form.application.$dirty">
                             {{ 'APPLICATION_IS_REQUIRED' | translate }}
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                         	ng-options="usec.id_revisao as usec.descricao for usec in useCases">
                             <option value="">{{ 'SELECT' | translate }}</option>
                         </select>
-                        <div class="alert alert-dismissable alert-danger" ng-show="form.useCase.$error.required">
+                        <div class="alert alert-dismissable alert-danger" ng-show="form.useCase.$error.required && form.useCase.$dirty">
                             {{ 'USE_CASE_IS_REQUIRED' | translate }}
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         	ng-options="type.id as type.description for type in types">
                             <option value="">{{ 'SELECT' | translate }}</option>
                         </select>
-                        <div class="alert alert-dismissable alert-danger" ng-show="form.type.$error.required">
+                        <div class="alert alert-dismissable alert-danger" ng-show="form.type.$error.required && form.type.$dirty">
                             {{ 'TYPE_IS_REQUIRED' | translate }}
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                     <div class="form-group">
                         <label>{{ 'STEP' | translate }}</label>
                         <input class="form-control" name="identifier" ng-model="useCase.identifier" required/>
-                        <div class="alert alert-dismissable alert-danger" ng-show="form.identifier.$error.required">
+                        <div class="alert alert-dismissable alert-danger" ng-show="form.identifier.$error.required && form.identifier.$dirty">
                             {{ 'STEP_IS_REQUIRED' | translate }}
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                     <div class="form-group">
                         <label>{{ 'DESCRIPTION' | translate }}</label>
                         <textarea class="form-control" name="description" ng-model="useCase.description" required></textarea>
-                        <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required">
+                        <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required && form.description.$dirty">
                             {{ 'DESCRIPTION_IS_REQUIRED' | translate }}
                         </div>
                     </div>

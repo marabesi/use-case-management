@@ -19,14 +19,14 @@
 
                     <option value="">{{ 'SELECT' | translate }}</option>
                 </select>
-                <div class="alert alert-dismissable alert-danger" ng-show="form.application.$error.required">
+                <div class="alert alert-dismissable alert-danger" ng-show="form.application.$error.required && form.application.$dirty">
                     {{ 'APPLICATION_IS_REQUIRED' | translate }}
                 </div>
             </div>
             <div class="form-group">
                 <label>{{ 'DESCRIPTION' | translate }}</label>
                 <textarea class="form-control" name="description" rows="3" required ng-model="useCase.description"></textarea>
-                <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required">
+                <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required && form.description.$dirty">
                     {{ 'DESCRIPTION_IS_REQUIRED' | translate }}
                 </div>
             </div>
@@ -36,7 +36,7 @@
                     <option value="">{{ 'SELECT' | translate }}</option>
                     <option ng-repeat="option in version" ng-selected="useCase.version" value="{{option.id_dados_revisao}}">{{option.versao}}</option>
                 </select>
-                <div class="alert alert-dismissable alert-danger" ng-show="form.version.$error.required">
+                <div class="alert alert-dismissable alert-danger" ng-show="form.version.$error.required && form.version.$dirty">
                     {{ 'VERSION_IS_REQUIRED' | translate }}
                 </div>
             </div>
@@ -61,7 +61,7 @@
                     </span>
                 </div>
                 <div class="form-group">
-                    <div class="alert alert-dismissable alert-danger" ng-show="form['actor[' + $index + ']'].$error.required">
+                    <div class="alert alert-dismissable alert-danger" ng-show="form['actor[' + $index + ']'].$error.required && form['actor[' + $index + ']'].$dirty">
                         {{ 'ACTOR_IS_REQUIRED' | translate }}
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                 	ng-options="st.id as st.description for st in selectStatus">
                     <option value="">{{ 'SELECT' | translate }}</option>
                 </select>
-                <div class="alert alert-dismissable alert-danger" ng-show="form.status.$error.required">
+                <div class="alert alert-dismissable alert-danger" ng-show="form.status.$error.required && form.status.$dirty">
                     {{ 'USE_CASE_STATUS_IS_REQUIRED' | translate }}
                 </div>
             </div>

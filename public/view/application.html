@@ -8,7 +8,7 @@
             <div class="form-group">
                 <label>{{ 'NAME' | translate }}</label>
                 <input class="form-control" name="name" ng-model="application.name" required/>
-                <div class="alert alert-dismissable alert-danger" ng-show="form.name.$error.required">
+                <div class="alert alert-dismissable alert-danger" ng-show="form.name.$error.required && form.name.$dirty">
                     {{ 'NAME_IS_REQUIRED' | translate }}
                 </div>
             </div>

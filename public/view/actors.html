@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <label>{{ 'NAME' | translate }}</label>
                     <input class="form-control" name="name" ng-model="actor.name" required ng-class=""/>
-                    <div class="alert alert-dismissable alert-danger" ng-show="form.name.$error.required">
+                    <div class="alert alert-dismissable alert-danger" ng-show="form.name.$error.required && form.name.$dirty">
                         {{ 'NAME_IS_REQUIRED' | translate }}
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <label>{{ 'DESCRIPTION' | translate }}</label>
                     <textarea class="form-control" rows="3" name="description" ng-model="actor.description" required></textarea>
-                    <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required">
+                    <div class="alert alert-dismissable alert-danger" ng-show="form.description.$error.required && form.description.$dirty">
                         {{ 'DESCRIPTION_IS_REQUIRED' | translate }}
                     </div>
                 </div>
