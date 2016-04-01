@@ -5,8 +5,6 @@ namespace Tests\Functional\Modules\Api\Http\Controllers;
 class VersionControllerTest extends \Tests\TestCase
 {
     
-    use \Illuminate\Foundation\Testing\DatabaseTransactions;
-
     protected $baseUrl;
 
     public function setUp()

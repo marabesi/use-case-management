@@ -5,7 +5,6 @@ namespace Tests\Functional\Modules\Api\Http\Controllers;
 class ActorControllerTest extends \Tests\TestCase
 {
     
-    use \Illuminate\Foundation\Testing\DatabaseTransactions;
     use \Api\Http\UseCaseRequest;
 
     protected $baseUrl;
@@ -52,7 +51,7 @@ class ActorControllerTest extends \Tests\TestCase
     public function testUpdateActor()
     {
         $response = $this->postActor();
-        
+
         $this->assertFalse($response->error);
 
         $this->put('api/actor/' . $response->data, [
@@ -80,7 +79,7 @@ class ActorControllerTest extends \Tests\TestCase
     public function testShouldNotDeleteWhenActorhasRelationWithAnotherTable()
     {
         $useCaseResponse = $this->postUseCase();
-        
+
         $this->assertFalse($useCaseResponse['useCase']->error);
 
         $deleteActor = $this->call('DELETE', 'api/actor/' . $useCaseResponse['actor']->data);

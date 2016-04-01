@@ -8,7 +8,6 @@ use Api\Http\UseCaseRequest;
 class ApplicationControllerTest extends \Tests\TestCase
 {
 
-    use \Illuminate\Foundation\Testing\DatabaseTransactions;
     use ApplicationRequest;
     use UseCaseRequest;
     

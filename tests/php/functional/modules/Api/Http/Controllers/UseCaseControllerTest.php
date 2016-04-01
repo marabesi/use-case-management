@@ -5,7 +5,6 @@ namespace Tests\Functional\Modules\Api\Http\Controllers;
 class UseCaseControllerTest extends \Tests\TestCase
 {
     
-    use \Illuminate\Foundation\Testing\DatabaseTransactions;
     use \Api\Http\UseCaseRequest;
 
     protected $baseUrl;
