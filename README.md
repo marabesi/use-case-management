@@ -1,3 +1,5 @@
+[![Build Status](https://status.continuousphp.com/git-hub/marabesi/use-case-management?token=53dd4925-c14d-4eba-ad1e-c1c3af3a768e)](https://continuousphp.com/git-hub/marabesi/use-case-management)
+
 # UseCaseManagement (under development)
 
 UseCaseManagement is a project developed to help developers to keep requirements up to date. 
