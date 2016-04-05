@@ -17,9 +17,12 @@ use Modules\Api\Models\Revision;
 use Modules\Api\Services\Hydrator\BusinessHydrator;
 use Modules\Api\Services\Hydrator\ComplementaryHydrator;
 use Modules\Api\Services\Hydrator\ReferenceHydrator;
+use Modules\Api\Services\ObjectToArray;
 
 class StepController extends Controller
 {
+    use ObjectToArray;
+    
     const BASIC       = 1;
     const ALTERNATIVE = 2;
     const EXCEPTION   = 3;
@@ -77,7 +80,11 @@ class StepController extends Controller
     public function getIndex(Request $request)
     {
         $limit = $request->input('limit', \Modules\Api\Models\Base::DEFAULT_LIMIT);
-        $filter = json_decode($request->input('filter', '{}'), true);
+
+        // ensures what we get from json_decode is an array
+        $filter = $this->checkJsonDecode(
+            json_decode($request->input('filter', '{}'), true)
+        );
 
         return $this->getJsonResponse(
             $this->step->fetchAll($limit, $filter),

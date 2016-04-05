@@ -1,0 +1,11 @@
+{
+    "source": {
+        "directories": [
+            "modules\/Api"
+        ]
+    },
+    "timeout": 30,
+    "logs": {
+        "text": "humbuglog.txt"
+    }
+}

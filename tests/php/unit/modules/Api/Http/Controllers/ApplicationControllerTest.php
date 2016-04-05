@@ -49,7 +49,7 @@ class ApplicationControllerTest extends \Tests\TestCase
             ->will($this->returnValue($model));
 
         $controller = new ApplicationController($this->application, $this->useCaseRepository);
-        
+
         $request = $this->getMock('Illuminate\Http\Request');
         $request->expects($this->once())
             ->method('input')

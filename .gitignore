@@ -8,3 +8,5 @@ npm-debug.log
 .project
 .settings/
 .idea/
+humbuglog.txt
+storage/database/database.sqlite
