@@ -1,4 +1,5 @@
 [![Build Status](https://status.continuousphp.com/git-hub/marabesi/use-case-management?token=53dd4925-c14d-4eba-ad1e-c1c3af3a768e)](https://continuousphp.com/git-hub/marabesi/use-case-management)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f7ac33340a58440d83d4b991d04cd1f9)](https://www.codacy.com/app/matheus-marabesi/use-case-management?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=marabesi/use-case-management&amp;utm_campaign=Badge_Grade)
 
 # UseCaseManagement (under development)
 
