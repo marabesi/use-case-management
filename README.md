@@ -10,7 +10,9 @@ This tool has focus on use case and requirements, easy to update, easy to create
 ## Why ?
 
 The projects started as a prototype as a final paper to become a Software Engineer, 
-it was developed along the MBA Software Engineering course
+it was developed along the MBA Software Engineering course.
+
+More info and a brief tutorial can be found [here](https://marabesi.com/software%20engineering/2016/04/16/requirements-engineering-tool-use-case.html)
 
 ## Auhors
 
