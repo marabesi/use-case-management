@@ -12,3 +12,11 @@ before_script:
 script:
   - mkdir -p build/logs 
   - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
+os:
+  - linux
+  - osx
+
+matrix:
+  allow_failures:
+    - os: osx
