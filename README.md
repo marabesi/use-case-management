@@ -15,7 +15,7 @@ it was developed along the MBA Software Engineering course.
 
 More info and a brief tutorial can be found [here](https://marabesi.com/software%20engineering/2016/04/16/requirements-engineering-tool-use-case.html)
 
-## Auhors
+## Authors
 
 * Carlos Wilker
 * Carolina Camargo
