@@ -10,6 +10,7 @@ before_script:
   - composer install
 
 script:
+  - touch ./storage/database/database.sqlite
   - mkdir -p build/logs 
   - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
