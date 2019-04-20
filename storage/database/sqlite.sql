@@ -54,7 +54,7 @@ CREATE TABLE regra_de_negocio (
 );
 
 CREATE TABLE relacionamento_dados_revisao (
-    id_relacionamento_dados_revisao integer NOT NULL,
+    id_relacionamento_dados_revisao integer PRIMARY KEY AUTOINCREMENT,
     id_ator integer NOT NULL,
     id_dados_revisao integer NOT NULL,
     id_revisao integer NOT NULL
@@ -76,12 +76,12 @@ CREATE TABLE relacionamento_regra_de_negocio (
 );
 
 CREATE TABLE revisao (
-    id_revisao integer NOT NULL,
+    id_revisao integer PRIMARY KEY AUTOINCREMENT,
     id_caso_de_uso integer NOT NULL,
     id_dados_revisao integer NOT NULL
 );
 
 CREATE TABLE sistema (
-    id_sistema integer NOT NULL,
+    id_sistema integer PRIMARY KEY AUTOINCREMENT,
     nome character varying(80) NOT NULL
 );
