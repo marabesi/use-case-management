@@ -12,6 +12,7 @@ before_script:
 script:
   - touch ./storage/database/database.sqlite
   - php artisan cache:clear
+  - php artisan migrate --database=sqlite --force
   - mkdir -p build/logs 
   - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
