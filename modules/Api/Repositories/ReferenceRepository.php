@@ -8,7 +8,7 @@ class ReferenceRepository extends Repository
     /**
      * {@inheritdoc}
      */
-    function model()
+    public function model()
     {
         return '\Modules\Api\Models\Reference';
     }

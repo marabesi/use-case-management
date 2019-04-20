@@ -5,7 +5,8 @@ use Modules\Api\Models\RevisionActors;
 use Modules\Api\Http\Controllers\RestBaseController as Controller;
 use Illuminate\Http\Request;
 
-class ActorController extends Controller {
+class ActorController extends Controller
+{
 
     /**
      * @var \Modules\Api\Models\Actor

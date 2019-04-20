@@ -22,17 +22,19 @@ class ReferenceSteps extends Model
      */
     public $timestamps = false;
 
-        /**
+    /**
      * @param int $id_passos
      * @return type
      */
     public function fetchAll($id_passos)
     {
-        return $this->select('r.id_referencia AS id',
+        return $this->select(
+            'r.id_referencia AS id',
             'rf.identificador AS identifier',
-            'rf.descricao AS description')
+            'rf.descricao AS description'
+        )
             ->from('relacionamento_referencia AS r')
-            ->join('referencia AS rf', 'r.id_referencia', '=' , 'rf.id_referencia')
+            ->join('referencia AS rf', 'r.id_referencia', '=', 'rf.id_referencia')
             ->where('r.id_passos', $id_passos)
             ->get();
     }
@@ -43,9 +45,15 @@ class ReferenceSteps extends Model
      */
     public function findByUseCase($id)
     {
-        $data =  $this->select('f.id_fluxo', 'f.tipo', 'p.id_passos',
-            'p.identificador', 'p.descricao', 'ref.identificador',
-            'ref.descricao')
+        $data =  $this->select(
+            'f.id_fluxo',
+            'f.tipo',
+            'p.id_passos',
+            'p.identificador',
+            'p.descricao',
+            'ref.identificador',
+            'ref.descricao'
+        )
             ->from('fluxo AS f')
             ->join('revisao AS r', 'f.id_revisao', '=', 'r.id_revisao')
             ->join('passos AS p', 'f.id_fluxo', '=', 'p.id_fluxo')

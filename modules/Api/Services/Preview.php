@@ -24,7 +24,6 @@ class Preview
         $array = $app->where('id_sistema', $id)->get();
 
         foreach ($array as $application) {
-
             $u = $useCaseRepository->findByIdSistema($application->id_sistema);
 
             $a = $u->get()->toArray();

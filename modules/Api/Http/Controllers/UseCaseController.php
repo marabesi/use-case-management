@@ -7,8 +7,8 @@ use Modules\Api\Http\Controllers\RestBaseController as Controller;
 use Illuminate\Http\Request;
 use Modules\Api\Services\ObjectToArray;
 
-class UseCaseController extends Controller {
-
+class UseCaseController extends Controller
+{
     use ObjectToArray;
 
     const FINISHED    = 1;
@@ -39,8 +39,8 @@ class UseCaseController extends Controller {
     public function __construct(
         UseCase $useCase,
         Revision $revision,
-        RevisionActors $revisionActors)
-    {
+        RevisionActors $revisionActors
+    ) {
         $this->useCase        = $useCase;
         $this->revision       = $revision;
         $this->revisionActors = $revisionActors;

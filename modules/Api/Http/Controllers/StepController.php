@@ -222,7 +222,8 @@ class StepController extends Controller
         $passos->save();
     }
 
-    protected function updateApplication($id_fluxo) {
+    protected function updateApplication($id_fluxo)
+    {
         $fluxo = $this->flow->find($id_fluxo);
 
         $revisao = (new Revision())->find($fluxo->id_revisao);

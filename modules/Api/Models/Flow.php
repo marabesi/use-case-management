@@ -20,5 +20,4 @@ class Flow extends Model
      * @var boolean
      */
     public $timestamps = false;
-
 }

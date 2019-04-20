@@ -19,7 +19,7 @@ $factory->define(\Modules\Api\Models\Application::class, function (Faker\Generat
     ];
 });
 
-$factory->define(\Modules\Api\Models\Actor::class, function(Faker\Generator $faker) {
+$factory->define(\Modules\Api\Models\Actor::class, function (Faker\Generator $faker) {
     return [
         'nome' => $faker->name,
         'descricao' => $faker->text()

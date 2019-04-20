@@ -6,7 +6,6 @@ use Illuminate\Support\Collection;
 
 class BusinessHydrator implements HydratorInterface
 {
-
     public function hydrate(Collection $collection)
     {
         $newCollection = new Collection();

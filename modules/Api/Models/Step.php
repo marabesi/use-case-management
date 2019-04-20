@@ -44,15 +44,23 @@ class Step extends Model
      */
     public function fetchAll($limit, $filter)
     {
-        $builder = $this->select('c.id_sistema', 'c.id_caso_de_uso', 'c.descricao AS caso_de_uso_descricao',
-            'f.id_fluxo', 'f.tipo', 'p.id_passos', 'p.identificador', 'p.descricao',
-            'r.id_revisao')
+        $builder = $this->select(
+            'c.id_sistema',
+            'c.id_caso_de_uso',
+            'c.descricao AS caso_de_uso_descricao',
+            'f.id_fluxo',
+            'f.tipo',
+            'p.id_passos',
+            'p.identificador',
+            'p.descricao',
+            'r.id_revisao'
+        )
             ->from('fluxo AS f')
             ->join('passos AS p', 'f.id_fluxo', '=', 'p.id_fluxo')
             ->join('revisao AS r', 'r.id_revisao', '=', 'f.id_revisao')
             ->join('caso_de_uso AS c', 'r.id_caso_de_uso', '=', 'c.id_caso_de_uso');
 
-        if (isset($filter['useCase'])){
+        if (isset($filter['useCase'])) {
             $builder->where('c.id_caso_de_uso', $filter['useCase']);
         } else {
             $builder->whereNull('c.id_caso_de_uso');
@@ -121,7 +129,6 @@ class Step extends Model
         $passos = $this->find($id_passos);
 
         if ($passos) {
-            
             $complementary = new \Modules\Api\Models\ComplementarySteps();
             
             if ($rows = $complementary->find($id_passos)) {

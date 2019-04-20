@@ -4,8 +4,7 @@ namespace Modules\Api\Repositories;
 
 class BusinessRuleRepository extends Repository
 {
-
-    function model()
+    public function model()
     {
         return '\Modules\Api\Models\Business';
     }

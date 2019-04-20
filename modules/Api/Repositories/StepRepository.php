@@ -12,7 +12,7 @@ class StepRepository extends Repository
     /**
      * {@inheritdoc}
      */
-    function model()
+    public function model()
     {
         return 'Modules\Api\Models\Step';
     }
@@ -30,10 +30,9 @@ class StepRepository extends Repository
 
         $max = 0;
 
-        if (($complementary->count() > $business->count()) || $complementary->count() > $reference->count())
-        {
+        if (($complementary->count() > $business->count()) || $complementary->count() > $reference->count()) {
             $max = $complementary->count();
-        } else if (($business->count() > $reference->count()) || $business->count() > $complementary->count()) {
+        } elseif (($business->count() > $reference->count()) || $business->count() > $complementary->count()) {
             $max = $business->count();
         } else {
             $max = $reference->count();

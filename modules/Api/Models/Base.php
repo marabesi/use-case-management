@@ -18,5 +18,4 @@ abstract class Base extends Model
      * @var int
      */
     const DEFAULT_PAGE = 1;
-
 }

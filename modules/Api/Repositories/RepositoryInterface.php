@@ -4,7 +4,6 @@ namespace Modules\Api\Repositories;
 
 interface RepositoryInterface
 {
-
     public function all($columns = array('*'));
 
     public function paginate($perPage = 15, $columns = array('*'));

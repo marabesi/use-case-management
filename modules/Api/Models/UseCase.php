@@ -27,7 +27,7 @@ class UseCase extends Base
      */
     public function application()
     {
-        return $this->hasMany('Modules\Api\Models\Application', 'id_sistema');    
+        return $this->hasMany('Modules\Api\Models\Application', 'id_sistema');
     }
     
     /**
@@ -46,31 +46,47 @@ class UseCase extends Base
     public function fetchAll($limit, $filter)
     {
         $builder = $this->select(
-            'c.id_caso_de_uso', 'c.id_sistema', 'c.descricao',
-            'c.status', 'r.id_revisao', 'd.id_dados_revisao',
-            'd.versao', 's.nome'
+            'c.id_caso_de_uso',
+            'c.id_sistema',
+            'c.descricao',
+            'c.status',
+            'r.id_revisao',
+            'd.id_dados_revisao',
+            'd.versao',
+            's.nome'
         )
         ->from('caso_de_uso AS c')
         ->join('revisao AS r', 'r.id_caso_de_uso', '=', 'c.id_caso_de_uso')
         ->join(
-            'dados_revisao AS d', 'd.id_dados_revisao', '=',
+            'dados_revisao AS d',
+            'd.id_dados_revisao',
+            '=',
             'r.id_dados_revisao'
         )
         ->join('sistema AS s', 'c.id_sistema', '=', 's.id_sistema')
         ->join(
-            'relacionamento_dados_revisao AS rdr', 'd.id_dados_revisao',
-            '=', 'rdr.id_dados_revisao'
+            'relacionamento_dados_revisao AS rdr',
+            'd.id_dados_revisao',
+            '=',
+            'rdr.id_dados_revisao'
         );
 
-        if (isset($filter['application'])){
+        if (isset($filter['application'])) {
             $builder->where('c.id_sistema', $filter['application']);
         } else {
             $builder->whereNull('c.id_sistema');
         }
 
-        $builder->groupBy( 'c.id_caso_de_uso', 'c.id_sistema', 'c.descricao',
-            'c.status', 'r.id_revisao', 'd.id_dados_revisao',
-            'd.versao', 's.nome');
+        $builder->groupBy(
+            'c.id_caso_de_uso',
+            'c.id_sistema',
+            'c.descricao',
+            'c.status',
+            'r.id_revisao',
+            'd.id_dados_revisao',
+            'd.versao',
+            's.nome'
+        );
 
         return $builder->paginate($limit);
     }
@@ -82,21 +98,33 @@ class UseCase extends Base
     public function fetchUseCase($id, $revision)
     {
         $data = $this->select(
-            'c.id_caso_de_uso', 'c.id_sistema', 'c.descricao',
-            'c.status', 'c.pre_condicao', 'c.pos_condicao', 'r.id_revisao', 'd.id_dados_revisao',
-            'd.versao', 's.nome', 'rdr.id_ator',
+            'c.id_caso_de_uso',
+            'c.id_sistema',
+            'c.descricao',
+            'c.status',
+            'c.pre_condicao',
+            'c.pos_condicao',
+            'r.id_revisao',
+            'd.id_dados_revisao',
+            'd.versao',
+            's.nome',
+            'rdr.id_ator',
             'rdr.id_relacionamento_dados_revisao'
         )
         ->from('caso_de_uso AS c')
         ->join('revisao AS r', 'r.id_caso_de_uso', '=', 'c.id_caso_de_uso')
         ->join(
-            'dados_revisao AS d', 'd.id_dados_revisao', '=',
+            'dados_revisao AS d',
+            'd.id_dados_revisao',
+            '=',
             'r.id_dados_revisao'
         )
         ->join('sistema AS s', 'c.id_sistema', '=', 's.id_sistema')
         ->join(
-            'relacionamento_dados_revisao AS rdr', 'd.id_dados_revisao',
-            '=', 'rdr.id_dados_revisao'
+            'relacionamento_dados_revisao AS rdr',
+            'd.id_dados_revisao',
+            '=',
+            'rdr.id_dados_revisao'
         )
         ->where('c.id_caso_de_uso', $id)
         ->where('rdr.id_revisao', $revision);
@@ -133,8 +161,12 @@ class UseCase extends Base
      */
     public function getByRevision($id)
     {
-        return $this->select('r.id_revisao', 'c.id_caso_de_uso', 
-            'r.id_dados_revisao', 'c.descricao')
+        return $this->select(
+            'r.id_revisao',
+            'c.id_caso_de_uso',
+            'r.id_dados_revisao',
+            'c.descricao'
+        )
             ->from('revisao AS r')
             ->join('caso_de_uso AS c', 'r.id_caso_de_uso', '=', 'c.id_caso_de_uso')
             ->where('c.id_sistema', $id);
@@ -145,8 +177,12 @@ class UseCase extends Base
      */
     public function getAllUseCases()
     {
-        return $this->select('r.id_revisao', 'c.id_caso_de_uso',
-            'r.id_dados_revisao', 'c.descricao')
+        return $this->select(
+            'r.id_revisao',
+            'c.id_caso_de_uso',
+            'r.id_dados_revisao',
+            'c.descricao'
+        )
             ->from('revisao AS r')
             ->join('caso_de_uso AS c', 'r.id_caso_de_uso', '=', 'c.id_caso_de_uso');
     }

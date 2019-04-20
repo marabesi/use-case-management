@@ -4,7 +4,8 @@ use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
-abstract class RestBaseController extends Controller {
+abstract class RestBaseController extends Controller
+{
 
     /**
      * @param \Illuminate\Http\Request $request

@@ -5,7 +5,8 @@ use Modules\Api\Http\Controllers\RestBaseController as Controller;
 use Illuminate\Http\Request;
 use Modules\Api\Models\Revision;
 
-class VersionController extends Controller {
+class VersionController extends Controller
+{
 
     /**
      * @var Modules\Api\Models\Version

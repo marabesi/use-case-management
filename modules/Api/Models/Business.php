@@ -31,7 +31,6 @@ class Business extends Model
     public function newSave($request, $id_passos, $id_sistema)
     {
         if (count($request) > 0) {
-
             foreach ($request as $value) {
                 $business = new Business();
                 $pieces = explode('|', $value);

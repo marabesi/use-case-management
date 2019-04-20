@@ -6,6 +6,5 @@ use Illuminate\Support\Collection;
 
 interface HydratorInterface
 {
-    
     public function hydrate(Collection $collection);
 }

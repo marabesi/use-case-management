@@ -30,5 +30,4 @@ class Version extends Base
     {
         return $this->paginate($limit);
     }
-
 }

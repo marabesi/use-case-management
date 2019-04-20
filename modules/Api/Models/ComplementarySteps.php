@@ -30,9 +30,10 @@ class ComplementarySteps extends Model
         return $this->select(
             'r.id_informacao_complementar AS id',
             'ci.identificador AS identifier',
-            'ci.descricao AS description')
+            'ci.descricao AS description'
+        )
             ->from('relacionamento_informacao_complementar AS r')
-            ->join('informacao_complementar AS ci', 'r.id_informacao_complementar', '=' , 'ci.id_informacao_complementar')
+            ->join('informacao_complementar AS ci', 'r.id_informacao_complementar', '=', 'ci.id_informacao_complementar')
             ->where('r.id_passos', $id_passos)
             ->get();
     }
@@ -44,9 +45,15 @@ class ComplementarySteps extends Model
      */
     public function findByUseCase($id)
     {
-        $data =  $this->select('f.id_fluxo', 'f.tipo', 'p.id_passos',
-            'p.identificador', 'p.descricao', 'ic.identificador AS identificador_nome',
-            'ic.descricao AS complementar_descricao')
+        $data =  $this->select(
+            'f.id_fluxo',
+            'f.tipo',
+            'p.id_passos',
+            'p.identificador',
+            'p.descricao',
+            'ic.identificador AS identificador_nome',
+            'ic.descricao AS complementar_descricao'
+        )
             ->from('fluxo AS f')
             ->join('revisao AS r', 'f.id_revisao', '=', 'r.id_revisao')
             ->join('passos AS p', 'f.id_fluxo', '=', 'p.id_fluxo')

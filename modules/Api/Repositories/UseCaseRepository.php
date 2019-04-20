@@ -12,7 +12,7 @@ class UseCaseRepository extends Repository implements UseCaseWithActors
      *
      * @return mixed
      */
-    function model()
+    public function model()
     {
         return '\Modules\Api\Models\UseCase';
     }

@@ -4,8 +4,10 @@ use Modules\Api\Repositories\ApplicationRepository;
 use Modules\Api\Http\Controllers\RestBaseController as Controller;
 use Illuminate\Http\Request;
 use Modules\Api\Repositories\UseCaseRepository;
+use Exception;
 
-class ApplicationController extends Controller {
+class ApplicationController extends Controller
+{
 
     /**
      * @var \Modules\Api\Repositories\ApplicationRepository
@@ -67,7 +69,7 @@ class ApplicationController extends Controller {
         $find = $this->useCaseRepository->getModel()->where('id_sistema', $id);
 
         if ($find->count() > 0) {
-            throw new \Exception('COULD_NOT_DELETE');
+            throw new Exception('COULD_NOT_DELETE');
         }
 
         $application = $this->application->find($id);
@@ -86,12 +88,13 @@ class ApplicationController extends Controller {
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function putIndex($id, Request $request) {
+    public function putIndex($id, Request $request)
+    {
         try {
             $application = $this->application->find($id);
 
-            if(!$application) {
-                throw new \Exception('COULD_NOT_FIND_APPLICATION');
+            if (!$application) {
+                throw new Exception('COULD_NOT_FIND_APPLICATION');
             }
 
             foreach ($request->input() as $key => $value) {
@@ -103,7 +106,7 @@ class ApplicationController extends Controller {
             return $this->getJsonResponse(
                 $id
             );
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return $this->getJsonResponse([
                 'data' => $exception->getMessage(),
                 'error' => true

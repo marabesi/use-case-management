@@ -1,7 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'api', 'namespace' => 'Modules\Api\Http\Controllers'], function()
-{
+Route::group(['prefix' => 'api', 'namespace' => 'Modules\Api\Http\Controllers'], function () {
     Route::get('application/fetch', 'ApplicationController@getFetch');
     Route::delete('application/{id}', 'ApplicationController@deleteIndex');
     Route::resource('application', 'ApplicationController@putIndex');

@@ -30,7 +30,6 @@ class Reference extends Model
     public function newSave($request, $id_passos, $id_sistema)
     {
         if (count($request) > 0) {
-
             foreach ($request as $value) {
                 $reference = new Reference();
                 $pieces = explode('|', $value);
