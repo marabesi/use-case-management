@@ -2,6 +2,7 @@
 public/bower_components/
 vendor/
 .env
+.env.test
 node_modules/
 npm-debug.log
 .buildpath
@@ -10,3 +11,4 @@ npm-debug.log
 .idea/
 humbuglog.txt
 storage/database/database.sqlite
+.php_cs.cache

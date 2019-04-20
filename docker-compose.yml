@@ -1,0 +1,21 @@
+version: '2'
+services:
+  web:
+    image: 'nginx'
+    ports:
+      - '80:80'
+  app:
+    build: './docker'
+    volumes:
+      - './:/var/www/html'
+    links:
+      - web
+  database:
+    image: 'postgres:9.6.12'
+    ports:
+      - '5432:5432'
+    volumes:
+      - './storage/data:/data/db'
+    links:
+      - app
+
