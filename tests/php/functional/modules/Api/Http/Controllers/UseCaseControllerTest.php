@@ -2,24 +2,14 @@
 
 namespace Tests\Functional\Modules\Api\Http\Controllers;
 
+use Api\Http\UseCaseRequest;
+
 class UseCaseControllerTest extends \Tests\TestCase
 {
-    
-    use \Api\Http\UseCaseRequest;
+
+    use UseCaseRequest;
 
     protected $baseUrl;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->baseUrl = url();
-    }
-
-    public function tearDown()
-    {
-        $this->baseUrl = null;
-    }
 
     public function testAccessUseCaseViaRoute()
     {

@@ -2,24 +2,14 @@
 
 namespace Tests\Functional\Modules\Api\Http\Controllers;
 
-class ActorControllerTest extends \Tests\TestCase
-{
-    
-    use \Api\Http\UseCaseRequest;
+use Tests\TestCase;
+use Api\Http\UseCaseRequest;
 
+class ActorControllerTest extends TestCase
+{
     protected $baseUrl;
 
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->baseUrl = url();
-    }
-
-    public function tearDown()
-    {
-        $this->baseUrl = null;
-    }
+    use UseCaseRequest;
 
     public function testAccessActorsViaRoute()
     {

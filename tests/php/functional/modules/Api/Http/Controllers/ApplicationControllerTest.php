@@ -10,20 +10,8 @@ class ApplicationControllerTest extends \Tests\TestCase
 
     use ApplicationRequest;
     use UseCaseRequest;
-    
+
     protected $baseUrl;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->baseUrl = url();
-    }
-
-    public function tearDown()
-    {
-        $this->baseUrl = null;
-    }
 
     public function testAccessApplicationViaRoute()
     {

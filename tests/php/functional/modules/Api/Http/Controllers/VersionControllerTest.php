@@ -7,18 +7,6 @@ class VersionControllerTest extends \Tests\TestCase
     
     protected $baseUrl;
 
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->baseUrl = url();
-    }
-
-    public function tearDown()
-    {
-        $this->baseUrl = null;
-    }
-
     public function testAccessVersionViaRoute()
     {
         $response = $this->call('GET', 'api/version');

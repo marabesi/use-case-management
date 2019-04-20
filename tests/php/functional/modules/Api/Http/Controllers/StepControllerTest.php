@@ -2,7 +2,7 @@
 
 namespace Tests\Functional\Modules\Api\Http\Controllers;
 
-use \Modules\Api\Http\Controllers\StepController;
+use Modules\Api\Http\Controllers\StepController;
 
 class StepControllerTest extends \Tests\TestCase
 {
@@ -12,18 +12,6 @@ class StepControllerTest extends \Tests\TestCase
     use \Api\Http\ApplicationRequest;
 
     protected $baseUrl;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->baseUrl = url();
-    }
-
-    public function tearDown()
-    {
-        $this->baseUrl = null;
-    }
 
     public function testAccessStepViaRoute()
     {
@@ -37,7 +25,7 @@ class StepControllerTest extends \Tests\TestCase
             ->seeJson([
                 'current_page' => 1,
                 'prev_page_url' => null,
-                'from' => 1,
+                'from' => null,
             ]);
     }
 
