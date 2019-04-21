@@ -6,6 +6,7 @@ use Modules\Api\Models\RevisionActors;
 use Modules\Api\Http\Controllers\RestBaseController as Controller;
 use Illuminate\Http\Request;
 use Modules\Api\Services\ObjectToArray;
+use Modules\Api\Models\Base;
 
 class UseCaseController extends Controller
 {
@@ -58,7 +59,6 @@ class UseCaseController extends Controller
 
         if ($revision) {
             $actors = $this->revisionActors->findByRevision($actor);
-//             $actors = $this->revisionActors->find($actor)->revision();
             $actors->delete();
 
             $revision->delete();
@@ -78,9 +78,8 @@ class UseCaseController extends Controller
      */
     public function getIndex(Request $request)
     {
-        $limit = $request->input('limit', \Modules\Api\Models\Base::DEFAULT_LIMIT);
+        $limit = $request->input('limit', Base::DEFAULT_LIMIT);
 
-        // ensures what we get from json_decode is an array
         $filter = $this->checkJsonDecode(
             json_decode($request->input('filter', '{}'), true)
         );

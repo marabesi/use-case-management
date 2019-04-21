@@ -14,5 +14,7 @@ trait ObjectToArray
         if (is_object($data)) {
             return json_decode($data, true);
         }
+
+        return $data;
     }
 }
