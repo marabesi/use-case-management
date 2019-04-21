@@ -179,7 +179,7 @@ class Step extends Model
             'rn.id_regra_de_negocio',
             'rn.descricao as rn_descricao',
             'rn.identificador as rn_identificador',
-            
+
             'refe.id_referencia',
             'refe.identificador as referencia_identificador',
             'refe.descricao as referencia',
@@ -205,34 +205,34 @@ class Step extends Model
         ->join('ator as a', 'rdr.id_ator', '=', 'a.id_ator')
 
         ->join('sistema as s', 'cu.id_sistema', '=', 's.id_sistema')
-        ->where('p.id_passos', $id)
+        ->where('s.id_sistema', $id)
         ->get();
 
         $hidrate = [];
         foreach ($data as $array) {
-            $hidrate[$array['id_sistema']] = [
+            $hidrate[] = [
                 'sistema' => $array['sistema']
             ];
-            $hidrate[$array['id_sistema']]['caso_de_uso'][$array['id_caso_de_uso']] = [
+            $hidrate[$array['id_sistema']]['caso_de_uso'][] = [
                 'caso_de_uso' => $array['caso_de_uso'],
                 'caso_de_uso_status' => $array['caso_de_uso_status'],
                 'versao' => $array['versao'],
             ];
-            $hidrate[$array['id_sistema']]['atores'][$array['id_caso_de_uso']][$array['id_ator']] = [
+            $hidrate[$array['id_sistema']]['atores'][$array['id_caso_de_uso']][] = [
                 'nome' => $array['ator'],
                 'descricao' => $array['ator_descricao']
             ];
-            $hidrate[$array['id_sistema']]['complementar'][$array['id_caso_de_uso']][$array['id_informacao_complementar']] = [
+            $hidrate[$array['id_sistema']]['complementar'][$array['id_caso_de_uso']][] = [
                 'identificador' => $array['info_comple_identificador'],
                 'descricao' => $array['info_compl_descricao'],
             ];
             
-            $hidrate[$array['id_sistema']]['regra_de_negocio'][$array['id_caso_de_uso']][$array['id_regra_de_negocio']] = [
+            $hidrate[$array['id_sistema']]['regra_de_negocio'][$array['id_caso_de_uso']][] = [
                 'identificador' => $array['rn_identificador'],
                 'descricao' => $array['rn_descricao'],
             ];
             
-            $hidrate[$array['id_sistema']]['referencia'][$array['id_caso_de_uso']][$array['id_referencia']] = [
+            $hidrate[$array['id_sistema']]['referencia'][$array['id_caso_de_uso']][] = [
                 'identificador' => $array['referencia_identificador'],
                 'descricao' => $array['referencia'],
             ];

@@ -1,22 +1,30 @@
 <?php
 
-namespace Api\Services;
+namespace Modules\Api\Services;
+
+use Modules\Api\Models\Application;
+use Modules\Api\Models\BusinessSteps;
+use Modules\Api\Models\ComplementarySteps;
+use Modules\Api\Models\ReferenceSteps;
+use Modules\Api\Models\Revision;
+use Modules\Api\Models\RevisionActors;
+use Modules\Api\Repositories\UseCaseRepository;
 
 class Preview
 {
 
     /**
      * @param int $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return array
      */
     public function getPreview($id, UseCaseRepository $useCaseRepository)
     {
         $revision = new Revision();
         $revisionActors = new RevisionActors();
 
-        $complementary = new \Modules\Api\Models\ComplementarySteps();
-        $business = new \Modules\Api\Models\BusinessSteps();
-        $reference = new \Modules\Api\Models\ReferenceSteps();
+        $complementary = new ComplementarySteps();
+        $business = new BusinessSteps();
+        $reference = new ReferenceSteps();
 
         $result = [];
 
@@ -43,8 +51,6 @@ class Preview
 
                         $result['app']['useCase'][$key]['revision']['actors'] = $revisionActors->findActorByRevision($revisionData['id_revisao'])->get()->toArray();
 
-                        $flow = $this->flow->where('id_revisao', $revisionData['id_revisao'])->get()->toArray();
-
                         $compl = $complementary->findByUseCase($singleUseCase['id_caso_de_uso']);
                         $bus = $business->findByUseCase($singleUseCase['id_caso_de_uso']);
                         $ref = $reference->findByUseCase($singleUseCase['id_caso_de_uso']);
@@ -59,9 +65,6 @@ class Preview
             }
         }
 
-        return $this->getJsonResponse(
-            $result,
-            false
-        );
+        return $result;
     }
 }

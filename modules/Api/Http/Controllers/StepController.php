@@ -13,11 +13,13 @@ use Modules\Api\Repositories\BusinessRuleRepository;
 use Modules\Api\Repositories\ComplementaryRepository;
 use Modules\Api\Repositories\ReferenceRepository;
 use Modules\Api\Repositories\StepRepository;
+use Modules\Api\Repositories\UseCaseRepository;
 use Modules\Api\Models\Revision;
 use Modules\Api\Services\Hydrator\BusinessHydrator;
 use Modules\Api\Services\Hydrator\ComplementaryHydrator;
 use Modules\Api\Services\Hydrator\ReferenceHydrator;
 use Modules\Api\Services\ObjectToArray;
+use Modules\Api\Services\Preview;
 
 class StepController extends Controller
 {
@@ -46,8 +48,9 @@ class StepController extends Controller
      * @param \Modules\Api\Models\Flow $flow
      * @param \Modules\Api\Models\Step
      */
-    public function __construct(Flow $flow, Step $step, StepRepository $stepRepository)
+    public function __construct(Flow $flow, Step $step, StepRepository $stepRepository, UseCaseRepository $useCase)
     {
+        $this->useCase = $useCase;
         $this->flow = $flow;
         $this->step = $step;
         $this->stepRepository = $stepRepository;
@@ -204,8 +207,10 @@ class StepController extends Controller
      */
     public function getPreview($id)
     {
+        $preview = new Preview();
+        
         return $this->getJsonResponse(
-            $this->step->preview($id),
+            $preview->getPreview($id, $this->useCase),
             false
         );
     }
