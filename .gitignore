@@ -12,3 +12,4 @@ npm-debug.log
 humbuglog.txt
 storage/database/database.sqlite
 .php_cs.cache
+storage/data/
