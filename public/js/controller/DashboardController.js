@@ -4,11 +4,11 @@ app.controller('DashboardController',['$scope', 'UseCaseFactory', function($scop
 
     $scope.count = function() {
         UseCaseFactory.fetchTotalNotDeleted().then(function(response) {
-            $scope.total = response.data;
+            $scope.total = response.data.data;
         });
 
         UseCaseFactory.fetchTotalDeleted().then(function(response) {
-            $scope.totalDeleted = response.data;
+            $scope.totalDeleted = response.data.data;
         });
     }
 

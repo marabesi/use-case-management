@@ -3,7 +3,7 @@ app.factory('StepFactory', ['$http', '$q', function($http, $q) {
         fetchStep : function(id) {
             var defer = $q.defer();
             
-            $http.get('api/step/fetch/' + id).success(function(data) {
+            $http.get('api/step/fetch/' + id).then(function(data) {
                 defer.resolve(data);
             });
             
@@ -12,7 +12,7 @@ app.factory('StepFactory', ['$http', '$q', function($http, $q) {
         preview : function(id) {
             var defer = $q.defer();
             
-            $http.get('api/step/preview/' + id).success(function(data) {
+            $http.get('api/step/preview/' + id).then(function(data) {
                 defer.resolve(data);
             });
             
@@ -21,7 +21,7 @@ app.factory('StepFactory', ['$http', '$q', function($http, $q) {
         complementary : function(id) {
             var defer = $q.defer();
 
-            $http.get('api/step/complementary/' + id).success(function(data) {
+            $http.get('api/step/complementary/' + id).then(function(data) {
                 defer.resolve(data);
             });
 
@@ -30,7 +30,7 @@ app.factory('StepFactory', ['$http', '$q', function($http, $q) {
         business : function(id) {
             var defer = $q.defer();
 
-            $http.get('api/step/business/' + id).success(function(data) {
+            $http.get('api/step/business/' + id).then(function(data) {
                 defer.resolve(data);
             });
 
@@ -39,7 +39,7 @@ app.factory('StepFactory', ['$http', '$q', function($http, $q) {
         reference : function(id) {
             var defer = $q.defer();
 
-            $http.get('api/step/reference/' + id).success(function(data) {
+            $http.get('api/step/reference/' + id).then(function(data) {
                 defer.resolve(data);
             });
 

@@ -19,9 +19,9 @@ app.controller('ActorsController', ['$scope',  'NgTableParams', 'TableFactory', 
                 limit: params.count()
             };
 
-            TableFactory.getAll(urlService, request).success(function(result) {
-              $defer.resolve(result.data);
-              $scope.customConfigParams.total(result.total);
+            TableFactory.getAll(urlService, request).then(function(result) {
+              $defer.resolve(result.data.data);
+              $scope.customConfigParams.total(result.data.total);
             });
           }
         };
@@ -62,7 +62,7 @@ app.controller('ActorsController', ['$scope',  'NgTableParams', 'TableFactory', 
         if (confirm(message)) {
             var http = CrudFactory.remove(urlService, id);
             
-            http.success(function(data) {
+            http.then(function(data) {
                 if (data.error) {
                     $scope.messageError = $translate.instant(data.data);
                     $scope.error = true;

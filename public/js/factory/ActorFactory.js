@@ -3,7 +3,7 @@ app.factory('ActorFactory', ['$http', '$q', function ($http, $q) {
         fetch: function() {
             var defer = $q.defer();
             
-            $http.get('api/actor/fetch').success(function(data) {
+            $http.get('api/actor/fetch').then(function(data) {
                 defer.resolve(data);
             });
             

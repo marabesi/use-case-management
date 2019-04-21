@@ -8,22 +8,22 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory',
     $scope.applicationFilter = [];
 
     ApplicationFactory.fetch().then(function(data) {
-        $scope.application = data;
+        $scope.application = data.data;
 
-        for (obj in data) {
+        for (obj in data.data) {
             $scope.applicationFilter.push({
-                id: data[obj].id_sistema,
-                title: data[obj].nome
+                id: data.data[obj].id_sistema,
+                title: data.data[obj].nome
             });
         }
     });
     
     VersionFactory.fetch().then(function(data) {
-        $scope.version = data;
+        $scope.version = data.data;
     });
     
     ActorFactory.fetch().then(function(data) {
-        $scope.actors = data;
+        $scope.actors = data.data;
     });
     
     $scope.submitted = false;
@@ -63,9 +63,9 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory',
                 filter: params.filter()
             };
 
-            TableFactory.getAll(urlService, request).success(function(result) {
-                $defer.resolve(result.data);
-                $scope.customConfigParams.total(result.total);
+            TableFactory.getAll(urlService, request).then(function(result) {
+                $defer.resolve(result.data.data);
+                $scope.customConfigParams.total(result.data.total);
             });
           }
         };
@@ -130,7 +130,8 @@ app.controller('UseCaseController', ['$scope', 'NgTableParams', 'TableFactory',
             var id_caso_de_uso = $scope.customConfigParams.data[index].id_caso_de_uso;
             var id_revisao = $scope.customConfigParams.data[index].id_revisao;
             
-            UseCaseFactory.fetchUseCase(id_caso_de_uso, id_revisao).then(function(data) {
+            UseCaseFactory.fetchUseCase(id_caso_de_uso, id_revisao).then(function(result) {
+                var data = result.data;
                 $scope.useCase = {
                     id: data.id_caso_de_uso,
                     id_revision: data.id_revisao,

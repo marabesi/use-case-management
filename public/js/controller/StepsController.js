@@ -37,7 +37,7 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
     var urlService = 'api/step';
 
     ApplicationFactory.fetch().then(function(data) {
-        $scope.application = data;
+        $scope.application = data.data;
     });
 
     function createTable() {
@@ -51,9 +51,9 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
                 filter: params.filter()
             };
 
-            TableFactory.getAll(urlService, request).success(function(result) {
-              $defer.resolve(result.data);
-              $scope.customConfigParams.total(result.total);
+            TableFactory.getAll(urlService, request).then(function(result) {
+              $defer.resolve(result.data.data);
+              $scope.customConfigParams.total(result.data.total);
             });
           }
         };
@@ -95,27 +95,27 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
 
     $scope.fetchUseCase = function(id) {
         UseCaseFactory.fetch(id).then(function(data) {
-            $scope.useCases = data;
+            $scope.useCases = data.data;
         });
 
         StepFactory.complementary(id).then(function(data) {
-            $scope.complementaries = data;
+            $scope.complementaries = data.data;
         });
 
         StepFactory.business(id).then(function(data) {
-            $scope.rules = data;
+            $scope.rules = data.data;
         });
 
         StepFactory.reference(id).then(function(data) {
-            $scope.references = data;
+            $scope.references = data.data;
         });
     }
 
     UseCaseFactory.fetchAllUseCases().then(function(data) {
-        for (obj in data) {
+        for (obj in data.data) {
             $scope.allUseCases.push({
-                id: data[obj].id_caso_de_uso,
-                title: data[obj].descricao
+                id: data.data[obj].id_caso_de_uso,
+                title: data.data[obj].descricao
             });
         }
     });
@@ -153,21 +153,21 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
                     id_fluxo: data.id_fluxo
                 };
 
-                $scope.useCase.complementary = hidrate(response.complementary);
-                $scope.useCase.business = hidrate(response.business);
-                $scope.useCase.reference = hidrate(response.reference);
+                $scope.useCase.complementary = hidrate(response.data.complementary);
+                $scope.useCase.business = hidrate(response.data.business);
+                $scope.useCase.reference = hidrate(response.data.reference);
                 
-                $scope.complementaries = response.complementary;
-                $scope.rules = response.business;
-                $scope.references = response.reference;
+                $scope.complementaries = response.data.complementary;
+                $scope.rules = response.data.business;
+                $scope.references = response.data.reference;
 
-                if (response.business.length == 0) {
+                if (response.data.business.length == 0) {
                     $scope.elements = [
                         {}
                     ];
 
                 } else {
-                    $scope.elements = response.business;
+                    $scope.elements = response.data.business;
                 }
 
             });
@@ -194,7 +194,7 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
             data.push(element);
         }
         
-        return data;
+        return data.data;
     }
     
     $scope.createOption = function(active) {
@@ -234,7 +234,7 @@ app.controller('StepsController', ['$scope', 'NgTableParams', 'TableFactory',
             var id = step + ',' + flow;
             var http = CrudFactory.remove(urlService, id);
             
-            http.success(function(data) {
+            http.then(function(data) {
                 if (data.error) {
                     $scope.messageError = $translate.instant(data.data);
                     $scope.error = true;

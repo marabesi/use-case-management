@@ -5,7 +5,7 @@ app.factory('TableFactory', ['$http', function($http) {
         getAll :  function(url, params) {    
             return $http.get(url, {
                 params: params
-            }).success(function(response) {
+            }).then(function(response) {
                 return response;
             });
         }

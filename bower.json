@@ -14,13 +14,13 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.4.7",
-    "angular-route": "1.4.7",
+    "angular": "1.6.*",
+    "angular-route": "1.6.*",
     "angular-translate": "~2.8.1",
     "ng-table": "~0.8.3",
     "ng-resource": "~0.0.2"
   },
   "resolutions": {
-    "angular": "1.4.7"
+    "angular": "1.6.10"
   }
 }

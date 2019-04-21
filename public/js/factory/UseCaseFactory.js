@@ -3,7 +3,7 @@ app.factory('UseCaseFactory', ['$http', '$q', function($http, $q) {
         fetch: function(id) {
             var defer = $q.defer();
             
-            $http.get('api/use-case/fetch/' + id).success(function(data) {
+            $http.get('api/use-case/fetch/' + id).then(function(data) {
                 defer.resolve(data);
             });
             
@@ -14,7 +14,7 @@ app.factory('UseCaseFactory', ['$http', '$q', function($http, $q) {
             var defer = $q.defer();
             var url = 'api/use-case/fetch-use-case/' + id + '/revision/' + revision;
             
-            $http.get(url).success(function(data) {
+            $http.get(url).then(function(data) {
                 defer.resolve(data);
             });
             
@@ -25,7 +25,7 @@ app.factory('UseCaseFactory', ['$http', '$q', function($http, $q) {
             var defer = $q.defer();
             var url = 'api/use-case/total-not-deleted';
 
-            $http.get(url).success(function(data) {
+            $http.get(url).then(function(data) {
                 defer.resolve(data);
             });
 
@@ -36,7 +36,7 @@ app.factory('UseCaseFactory', ['$http', '$q', function($http, $q) {
             var defer = $q.defer();
             var url = 'api/use-case/total-deleted';
 
-            $http.get(url).success(function(data) {
+            $http.get(url).then(function(data) {
                 defer.resolve(data);
             });
 
@@ -46,7 +46,7 @@ app.factory('UseCaseFactory', ['$http', '$q', function($http, $q) {
         fetchAllUseCases : function() {
             var defer = $q.defer();
 
-            $http.get('api/use-case/fetch-all-use-cases').success(function(data) {
+            $http.get('api/use-case/fetch-all-use-cases').then(function(data) {
                 defer.resolve(data);
             });
 

@@ -3,7 +3,7 @@ app.factory('VersionFactory', ['$http', '$q', function($http, $q) {
         fetch: function() {
             var defer = $q.defer();
             
-            $http.get('api/version/fetch').success(function(data) {
+            $http.get('api/version/fetch').then(function(data) {
                 defer.resolve(data);
             });
             

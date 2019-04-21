@@ -18,9 +18,9 @@ app.controller('ApplicationController', ['$scope', 'NgTableParams', 'TableFactor
                 sorting: params.sorting(),
             };
 
-            TableFactory.getAll(urlService, request).success(function(result) {
-              $defer.resolve(result.data);
-              $scope.customConfigParams.total(result.total);
+            TableFactory.getAll(urlService, request).then(function(result) {
+              $defer.resolve(result.data.data);
+              $scope.customConfigParams.total(result.data.data.total);
             });
           }
         };

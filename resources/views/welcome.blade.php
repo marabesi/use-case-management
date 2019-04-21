@@ -24,16 +24,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/#/">@{{ 'USE_CASE_MANAGEMENT' | translate }}</a>
+                    <a class="navbar-brand" href="/#!/">@{{ 'USE_CASE_MANAGEMENT' | translate }}</a>
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
-                        <li><a href="/#/">@{{ 'DASHBOARD' | translate }}</a></li>
-                        <li><a href="/#/application/">@{{ 'APPLICATION' | translate }}</a></li>
-                        <li><a href="/#/actors/">@{{ 'ACTORS' | translate }}</a></li>
-                        <li><a href="/#/version/">@{{ 'VERSION' | translate }}</a></li>
-                        <li><a href="/#/use-case/"></i> @{{ 'USE_CASE' | translate }}</a></li>
-                        <li><a href="/#/steps/">@{{ 'STEPS' | translate }}</a></li>
+                        <li><a href="/#!/">@{{ 'DASHBOARD' | translate }}</a></li>
+                        <li><a href="/#!/application/">@{{ 'APPLICATION' | translate }}</a></li>
+                        <li><a href="/#!/actors/">@{{ 'ACTORS' | translate }}</a></li>
+                        <li><a href="/#!/version/">@{{ 'VERSION' | translate }}</a></li>
+                        <li><a href="/#!/use-case/"></i> @{{ 'USE_CASE' | translate }}</a></li>
+                        <li><a href="/#!/steps/">@{{ 'STEPS' | translate }}</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown alerts-dropdown">
