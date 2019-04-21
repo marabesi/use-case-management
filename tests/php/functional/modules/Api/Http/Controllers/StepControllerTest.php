@@ -3,10 +3,10 @@
 namespace Tests\Functional\Modules\Api\Http\Controllers;
 
 use Modules\Api\Http\Controllers\StepController;
+use Tests\TestCase;
 
-class StepControllerTest extends \Tests\TestCase
+class StepControllerTest extends TestCase
 {
-
     use \Api\Http\UseCaseRequest;
     use \Api\Http\StepRequest;
     use \Api\Http\ApplicationRequest;

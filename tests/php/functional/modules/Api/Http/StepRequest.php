@@ -6,7 +6,6 @@ use \Modules\Api\Http\Controllers\StepController;
 
 trait StepRequest
 {
-
     protected function postStep()
     {
         /**
@@ -37,6 +36,6 @@ trait StepRequest
 
         $responseUseCase['step'] = json_decode($response);
 
-         return $responseUseCase;
+        return $responseUseCase;
     }
 }

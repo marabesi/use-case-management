@@ -5,10 +5,10 @@ namespace Tests\Modules\Api\Http\Controllers;
 use Illuminate\Support\Collection;
 use Modules\Api\Http\Controllers\StepController;
 use Illuminate\Http\Request;
+use Tests\TestCase;
 
-class StepControllerTest extends \Tests\TestCase
+class StepControllerTest extends TestCase
 {
-
     private $flow;
     private $steps;
     private $stepRepository;
@@ -60,23 +60,9 @@ class StepControllerTest extends \Tests\TestCase
 
         $request = $this->getMock('Illuminate\Http\Request');
 
-//        $request->expects($this->at(0))
-//            ->method('input')
-//            ->with('application')
-//            ->will($this->returnValue(111));
-//
-//        $request->expects($this->at(2))
-//            ->method('input')
-//            ->with('identifier');
-//        $request->expects($this->at(3))
-//            ->method('input')
-//            ->with('description');
-
         $response = $controller->putIndex($id, $request);
 
         $decodeResponse = $response->getData();
-//        var_dump($decodeResponse);
-//exit();
         $this->assertFalse($decodeResponse->error);
     }
 
@@ -102,12 +88,6 @@ class StepControllerTest extends \Tests\TestCase
         $controller = new StepController($this->flow, $this->steps, $this->stepRepository);
 
         $request = $this->getMock('Illuminate\Http\Request');
-//        $request->expects($this->at(0))
-//            ->method('input')
-//            ->with('type');
-//        $request->expects($this->at(1))
-//            ->method('input')
-//            ->with('useCase');
 
         $response = $controller->putIndex($id, $request);
 
@@ -146,18 +126,6 @@ class StepControllerTest extends \Tests\TestCase
         $controller = new StepController($this->flow, $this->steps, $this->stepRepository);
 
         $request = $this->getMock('Illuminate\Http\Request');
-//        $request->expects($this->at(4))
-//            ->method('input')
-//            ->with('complementary', [])
-//            ->will($this->returnValue([]));
-//        $request->expects($this->at(5))
-//            ->method('input')
-//            ->with('business', [])
-//            ->will($this->returnValue([]));
-//        $request->expects($this->at(6))
-//            ->method('input')
-//            ->with('reference', [])
-//            ->will($this->returnValue([]));
 
         $response = $controller->putIndex($id, $request);
 

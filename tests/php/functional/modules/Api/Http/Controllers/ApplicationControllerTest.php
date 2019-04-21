@@ -4,10 +4,10 @@ namespace Tests\Functional\Modules\Api\Http\Controllers;
 
 use Api\Http\ApplicationRequest;
 use Api\Http\UseCaseRequest;
+use Tests\TestCase;
 
-class ApplicationControllerTest extends \Tests\TestCase
+class ApplicationControllerTest extends TestCase
 {
-
     use ApplicationRequest;
     use UseCaseRequest;
 

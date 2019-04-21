@@ -6,7 +6,6 @@ use Modules\Api\Http\Controllers\UseCaseController;
 
 trait UseCaseRequest
 {
-
     protected function postUseCase()
     {
         $requestApplication = $this->call('POST', 'api/application', [

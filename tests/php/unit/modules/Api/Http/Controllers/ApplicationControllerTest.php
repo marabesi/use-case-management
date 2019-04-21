@@ -5,9 +5,8 @@ namespace Tests\Modules\Api\Http\Controllers;
 use Illuminate\Http\Request;
 use Modules\Api\Http\Controllers\ApplicationController;
 
-class ApplicationControllerTest extends \Tests\TestCase
+class ApplicationControllerTest extends TestCase
 {
-
     private $application;
 
     private $useCaseRepository;

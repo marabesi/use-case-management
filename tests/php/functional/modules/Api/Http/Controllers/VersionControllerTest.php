@@ -2,9 +2,13 @@
 
 namespace Tests\Functional\Modules\Api\Http\Controllers;
 
-class VersionControllerTest extends \Tests\TestCase
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+
+class VersionControllerTest extends TestCase
 {
-    
+    use DatabaseMigrations;
+
     protected $baseUrl;
 
     public function testAccessVersionViaRoute()

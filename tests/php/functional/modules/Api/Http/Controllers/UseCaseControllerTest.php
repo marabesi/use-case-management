@@ -3,10 +3,10 @@
 namespace Tests\Functional\Modules\Api\Http\Controllers;
 
 use Api\Http\UseCaseRequest;
+use Tests\TestCase;
 
-class UseCaseControllerTest extends \Tests\TestCase
+class UseCaseControllerTest extends TestCase
 {
-
     use UseCaseRequest;
 
     protected $baseUrl;
