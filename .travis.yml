@@ -5,6 +5,9 @@ dist: trusty
 php:
   - 5.6
   - 7.0
+  - 7.1
+  - 7.2
+  - 7.3
   - 7.4snapshot
 
 before_script:
@@ -27,4 +30,8 @@ os:
 matrix:
   allow_failures:
     - os: osx
-    - php: 7.4snapshot
+    - php:
+        - 7.1
+        - 7.2
+        - 7.3
+        - 7.4snapshot
