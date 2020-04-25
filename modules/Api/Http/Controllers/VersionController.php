@@ -1,4 +1,6 @@
-<?php namespace Modules\Api\Http\Controllers;
+<?php
+
+namespace Modules\Api\Http\Controllers;
 
 use Modules\Api\Models\Version;
 use Modules\Api\Http\Controllers\RestBaseController as Controller;

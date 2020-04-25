@@ -7,7 +7,6 @@ app.controller('ApplicationController', ['$scope', 'NgTableParams', 'TableFactor
     var urlService = 'api/application';
     
     function createTable() {
-
         var initialSettings = {
           count: TableFactory.DEFAULT_COUNT,
           page: TableFactory.DEFAULT_PAGE,

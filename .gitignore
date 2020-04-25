@@ -1,5 +1,9 @@
 /nbproject/private/
 public/bower_components/
+public/view/
+public/css/
+public/js/
+public/fonts/
 vendor/
 .env
 .env.test
@@ -16,3 +20,4 @@ storage/data/
 storage/database/database.sqlite-journal
 .coveralls.yml
 coverage/
+.tmp/

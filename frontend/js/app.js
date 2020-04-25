@@ -25,6 +25,7 @@ app.config(['$routeProvider', function ($routeProvider) {
         });
     }])
     .config(function($translateProvider) {
+        $translateProvider.useSanitizeValueStrategy('escape');
         $translateProvider.translations('en', {
             DASHBOARD: 'Dashboard',
             APPLICATION: 'Application',

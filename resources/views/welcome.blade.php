@@ -3,15 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <link rel="icon" href="data:,">
 
         <title>@{{ 'USE_CASE_MANAGEMENT' | translate }}</title>
 
-        <link href="css/bootstrap.css" rel="stylesheet">
-
-        <link href="css/sb-admin.css" rel="stylesheet">
-        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style.min.css">
     </head>
 
     <body>
@@ -34,6 +30,7 @@
                         <li><a href="/#!/version/">@{{ 'VERSION' | translate }}</a></li>
                         <li><a href="/#!/use-case/"></i> @{{ 'USE_CASE' | translate }}</a></li>
                         <li><a href="/#!/steps/">@{{ 'STEPS' | translate }}</a></li>
+                        <li><a href="/#!/preview/">@{{ 'PREVIEW' | translate }}</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown alerts-dropdown">
@@ -59,34 +56,7 @@
             <div id="page-wrapper" ng-view></div>
         </div>
 
-        <script src="bower_components/angular/angular.min.js"></script>
-        <script src="bower_components/angular-route/angular-route.min.js"></script>
-        <script src="bower_components/angular-translate/angular-translate.min.js"></script>
-        <script src="bower_components/ng-table/dist/ng-table.min.js"></script>
-        <script src="bower_components/ng-resource/dist/ng-resource.min.js"></script>
+        <script src="js/vendor.js"></script>
         <script src="js/app.js"></script>
-        <script src="js/controller/DashboardController.js"></script>
-        <script src="js/controller/ApplicationController.js"></script>
-        <script src="js/controller/UseCaseController.js"></script>
-        <script src="js/controller/ActorsController.js"></script>
-        <script src="js/controller/StepsController.js"></script>
-        <script src="js/controller/VersionController.js"></script>
-        <script src="js/controller/LanguageMenuController.js"></script>
-        <script src="js/controller/PreviewController.js"></script>
-        <script src="js/directive/SuccessMessage.js"></script>
-        <script src="js/directive/ErrorMessage.js"></script>
-        <script src="js/directive/ModalClose.js"></script>
-        <script src="js/factory/TableFactory.js"></script>
-        <script src="js/factory/CrudFactory.js"></script>
-        <script src="js/factory/ApplicationFactory.js"></script>
-        <script src="js/factory/VersionFactory.js"></script>
-        <script src="js/factory/ActorFactory.js"></script>
-        <script src="js/factory/UseCaseFactory.js"></script>
-        <script src="js/factory/StepFactory.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="js/bootstrap.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-        <script src="js/tablesorter/jquery.tablesorter.js"></script>
-        <script src="js/tablesorter/tables.js"></script>
     </body>
 </html>

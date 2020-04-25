@@ -1,4 +1,6 @@
-<?php namespace Modules\Api\Http\Controllers;
+<?php
+
+namespace Modules\Api\Http\Controllers;
 
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;

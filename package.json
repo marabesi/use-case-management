@@ -4,18 +4,35 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "bower": "1.8.8"
+    "angular": "1.6.*",
+    "angular-resource": "0.0.2",
+    "angular-route": "^1.6.10",
+    "angular-translate": "^2.8.1",
+    "jquery": "^3.5.0",
+    "lodash": "^4.17.15",
+    "ng-table": "^0.8.3"
   },
   "author": "",
   "license": "ISC",
   "scripts": {
-    "postinstall": "bower install --force-latest"
+    "build": "grunt",
+    "postinstall": "npm run build"
   },
   "devDependencies": {
+    "grunt": "^1.1.0",
+    "grunt-angular-templates": "^1.2.0",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-connect": "^2.1.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-jshint": "^2.1.0",
+    "grunt-contrib-uglify": "^4.0.1",
+    "grunt-regarde": "^0.1.1",
     "jasmine-core": "^2.4.1",
-    "karma": "^0.13.16",
+    "karma": "^5.0.2",
     "karma-jasmine": "^0.3.6",
-    "karma-phantomjs-launcher": "^0.2.2",
+    "karma-phantomjs-launcher": "^1.0.4",
     "phantomjs": "^1.9.19"
   }
 }
