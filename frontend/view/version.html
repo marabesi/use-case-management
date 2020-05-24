@@ -48,7 +48,7 @@
                     <tr ng-repeat="version in $data track by $index">
                         <td>{{version.versao}}</td>
                         <td>{{version.descricao}}</td>
-                        <td>
+                        <td align="center">
                             <button class="btn btn-primary" ng-click="edit($index)">{{ 'EDIT' | translate }}</button> 
                             <button class="btn btn-danger" ng-click="remove(version.id_dados_revisao)">{{ 'DELETE' | translate }}</button>
                         </td>

@@ -102,7 +102,7 @@
                     <td data-title="tableHeader[0]" sortable="application" filter="{ 'application': 'select' }" filter-data="applicationFilter">{{useCase.nome}}</td>
                     <td data-title="tableHeader[1]">{{useCase.descricao}}</td>
                     <td data-title="tableHeader[2]">{{ useCase.status | translate }}</td>
-                    <td data-title="tableHeader[3]">
+                    <td data-title="tableHeader[3]" align="center">
                         <button class="btn btn-primary" ng-click="edit($index)">{{ 'EDIT' | translate }}</button>
                         <button class="btn btn-danger" ng-click="remove(useCase.id_caso_de_uso, useCase.id_revisao)">{{ 'DELETE' | translate }}</button>
                     </td>

@@ -1,4 +1,6 @@
-<?php namespace Modules\Api\Http\Controllers;
+<?php
+
+namespace Modules\Api\Http\Controllers;
 
 use Modules\Api\Models\Actor;
 use Modules\Api\Models\RevisionActors;
@@ -17,7 +19,7 @@ class ActorController extends Controller
      * @var \Modules\Api\Models\RevisionActors
      */
     private $revisionActor;
-    
+
     /**
      * @param \Modules\Api\Models\Actor $actor
      */
@@ -38,7 +40,7 @@ class ActorController extends Controller
             if ($count > 0) {
                 throw new \Exception('COULD_NOT_DELETE_ACTOR');
             }
-            
+
             $actor = $this->actor->find($id);
 
             if ($actor) {

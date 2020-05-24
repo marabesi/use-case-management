@@ -7,13 +7,13 @@ use Api\Http\UseCaseRequest;
 
 class ActorControllerTest extends TestCase
 {
-    protected $baseUrl;
+    protected $baseUrl = 'api/actor/';
 
     use UseCaseRequest;
 
     public function testAccessActorsViaRoute()
     {
-        $response = $this->call('GET', 'api/actor');
+        $response = $this->call('GET', $this->baseUrl);
         $this->assertEquals(200, $response->status());
     }
 
@@ -30,7 +30,7 @@ class ActorControllerTest extends TestCase
 
     public function testCreateNewActor()
     {
-        $this->post('api/actor', [
+        $this->post($this->baseUrl, [
             'name' => 'Test actor',
             'description' => 'Test description'
         ])->seeJson([
@@ -44,7 +44,7 @@ class ActorControllerTest extends TestCase
 
         $this->assertFalse($response->error);
 
-        $this->put('api/actor/' . $response->data, [
+        $this->put($this->baseUrl . $response->data, [
             'nome' => 'new name actor',
             'descricao' => 'new description actor'
         ])->seeJson([
@@ -61,9 +61,9 @@ class ActorControllerTest extends TestCase
 
         $this->delete('api/actor/' . $response->data)
             ->seeJson([
-            'data' => (string) $response->data,
-            'error' => false
-        ]);
+                'data' => (string) $response->data,
+                'error' => false
+            ]);
     }
 
     public function testShouldNotDeleteWhenActorhasRelationWithAnotherTable()

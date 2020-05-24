@@ -71,6 +71,7 @@ module.exports = function (grunt) {
             'frontend/js/tablesorter/**/*.js',
           ],
           '.tmp/css/style.css': [
+            'node_modules/ng-table/dist/ng-table.css',
             'frontend/vendor/js-uml/build/css/UDStyle.css',
             'frontend/css/bootstrap.css',
             'frontend/css/sb-admin.css',

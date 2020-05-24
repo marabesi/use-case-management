@@ -15,6 +15,7 @@ app.controller('ApplicationController', ['$scope', 'NgTableParams', 'TableFactor
                 page: params.page(),
                 limit: params.count(),
                 sorting: params.sorting(),
+                filter: params.filter(),
             };
 
             TableFactory.getAll(urlService, request).then(function(result) {

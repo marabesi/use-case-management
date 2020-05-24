@@ -21,3 +21,5 @@ storage/database/database.sqlite-journal
 .coveralls.yml
 coverage/
 .tmp/
+._*
+.DS_Store
