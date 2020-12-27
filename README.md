@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/marabesi/use-case-management.svg?branch=master)](https://travis-ci.org/marabesi/use-case-management)
 [![HitCount](http://hits.dwyl.io/marabesi/use-case-management.svg)](http://hits.dwyl.io/marabesi/use-case-management)
 
-# UseCaseManagement (under development)
+# UseCaseManagement
 
 UseCaseManagement is a project developed to help developers to keep requirements up to date. 
 This tool has focus on use case and requirements, easy to update, easy to create and manage use cases.
@@ -51,8 +51,8 @@ Make sure to set up the permissions correctly, as follows:
 
 ```
 chmod -R 755 storage/logs/ &&
-chmod 755 storage/framework &&
-chmod 755 bootstrap/cache
+chmod -R 755 storage/framework &&
+chmod -R 755 bootstrap/cache
 ```
 
 Run all tests (to be sure everything is ok)

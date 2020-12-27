@@ -6,6 +6,7 @@ use Modules\Api\Models\Actor;
 use Modules\Api\Models\RevisionActors;
 use Modules\Api\Http\Controllers\RestBaseController as Controller;
 use Illuminate\Http\Request;
+//use UseCaseManagement\Http\Controllers\Controller;
 
 class ActorController extends Controller
 {
@@ -90,11 +91,6 @@ class ActorController extends Controller
         );
     }
 
-    /**
-     * @param int $id
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function putIndex($id, Request $request)
     {
         $actor = $this->actor->find($id);

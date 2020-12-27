@@ -13,7 +13,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'Modules\Api\Http\Controllers'],
 
     Route::get('actor/fetch', 'ActorController@getFetch');
     Route::delete('actor/{id}', 'ActorController@deleteIndex');
-    Route::resource('actor', 'ActorController@putIndex');
+    Route::put('actor/{id}', 'ActorController@putIndex');
     Route::controller('actor', 'ActorController');
     
     Route::get('use-case/fetch-all-use-cases', 'UseCaseController@getFetchAllUseCase');
