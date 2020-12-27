@@ -49,8 +49,8 @@ module.exports = function (grunt) {
       dist: {
         files: {
           'public/js/vendor.js': [
-            'frontend/vendor/js-uml/build/UDCore.js',
-            'frontend/vendor/js-uml/build/UDModules.js',
+            'frontend/vendor/js-uml/UDCore.js',
+            'frontend/vendor/js-uml/UDModules.js',
             'node_modules/lodash/lodash.js',
             'node_modules/jquery/dist/jquery.js',
             'frontend/tablesorter/jquery.tablesorter.js',
@@ -58,7 +58,7 @@ module.exports = function (grunt) {
             'node_modules/angular-route/angular-route.js',
             'node_modules/angular-translate/dist/angular-translate.js',
             'node_modules/ng-table/dist/ng-table.js',
-            'frontend/vendor/ng-resource/dist/ng-resource.js',
+            'node_modules/angular-resource/angular-resource.js',
           ],
           'public/js/app.js': [
             tempDir + '/js/template.js',
@@ -72,7 +72,7 @@ module.exports = function (grunt) {
           ],
           '.tmp/css/style.css': [
             'node_modules/ng-table/dist/ng-table.css',
-            'frontend/vendor/js-uml/build/css/UDStyle.css',
+            'frontend/vendor/js-uml/css/UDStyle.css',
             'frontend/css/bootstrap.css',
             'frontend/css/sb-admin.css',
             'frontend/css/font-awesome.css',
@@ -130,7 +130,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
-  grunt.registerTask('default', ['copy', 'ngtemplates', 'concat', 'cssmin', 'uglify', 'clean']);
+  grunt.registerTask('default', ['copy', 'ngtemplates', 'concat', 'cssmin', 'clean']);
   grunt.registerTask('rebuild-dev', ['default']);
   grunt.registerTask('server', ['rebuild-dev', 'connect', 'regarde']);
 };

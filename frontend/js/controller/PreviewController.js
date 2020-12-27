@@ -38,7 +38,7 @@ app.controller('PreviewController', ['$scope', 'StepFactory', 'ApplicationFactor
 
       filterActors = _.flatMap(filterActors);
 
-      const actorsToDraw = _.groupBy(filterActors, 'id_ator')
+      const actorsToDraw = _.groupBy(filterActors, 'id_ator');
 
       const usedActors = [];
       let y = 0;

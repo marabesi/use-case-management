@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "angular": "1.6.*",
-    "angular-resource": "0.0.2",
+    "angular-resource": "1.6.*",
     "angular-route": "^1.6.10",
     "angular-translate": "^2.8.1",
     "jquery": "^3.5.0",

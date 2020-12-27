@@ -47,6 +47,14 @@ DB_USERNAME=postgres
 DB_PASSWORD=123456
 ```
 
+Make sure to set up the permissions correctly, as follows:
+
+```
+chmod -R 755 storage/logs/ &&
+chmod 755 storage/framework &&
+chmod 755 bootstrap/cache
+```
+
 Run all tests (to be sure everything is ok)
 
 ```

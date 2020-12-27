@@ -1,0 +1,952 @@
+/**
+ ** MODULE NAME: 
+ **	  core.css
+ **
+ ** DESCRIPTION:
+ **   Styles necessary to position the layers of canvas html5 elements
+ **
+ ** DEVELOPED BY:
+ **   Martin Vega-Leal Ordonez (MVL)
+ **   Alejandro Arrabal Hidalgo (AAH)
+ **
+ ** SUPERVISED BY:
+ **		José Raúl Romero, PhD (Associate Professor, University of Córdoba, Spain)
+ **
+ ** HISTORY:
+ ** 	000 - Feb 2011 - MVL - First version release
+ **
+ ** CONTACT INFO:
+ ** 	José Raúl Romero, http://www.jrromero.net
+ **
+ ** NOTES:
+ **
+ ** LICENSE & DISCLAIMER:
+ **    Copyright (C) 2011 The authors
+ **
+ **    This program is free software: you can redistribute it and/or modify
+ **    it under the terms of the GNU General Public License as published by
+ **    the Free Software Foundation, either version 3 of the License, or
+ **    (at your option) any later version.
+ **
+ **    This program is distributed in the hope that it will be useful,
+ **    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ **    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ **    GNU General Public License for more details.
+ **
+ **    You should have received a copy of the GNU General Public License
+ **    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ **
+**/
+
+
+
+/*****************************************
+ [UDCore] Div container for Canvas
+*****************************************/
+div.ud_diagram_div {
+  position: relative;
+  float: left;
+  background: #ffffff;
+  border-radius: 3px 3px 3px 3px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border: 1px solid #000000;
+  -webkit-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.51);
+  -moz-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.51);
+  box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.51);
+}
+
+
+
+/*****************************************
+ [UDCore] Canvas elements style
+*****************************************/
+canvas.ud_diagram_canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+
+
+
+/*****************************************
+  [UDCore] Pop-up Windows Styles
+*****************************************/
+.ud_popup {
+  min-width: 300px;
+  margin: .4em 0;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  padding: 10px;
+  background: #8799AF;
+  opacity: 0.93;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=93);
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border: 1px solid #000000;
+  font-size: 0.8em;  
+}
+
+.ud_popupDirection {
+  min-width: 200px;
+  height: 100px;
+  margin: .4em 0;
+  aling: center;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  padding: 10px;
+  background: #8799AF;
+  opacity: 0.93;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=93);
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border: 0px solid #000000;
+  font-size: 0.8em;  
+}
+
+.ud_popupColor {
+  min-width: 150px;
+  height: 120px;
+  margin: .4em 0;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  padding: 10px;
+  background: #8799AF;
+  opacity: 0.93;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=93);
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border: 0px solid #000000;
+  font-size: 0.8em;  
+  clear: both;
+  -webkit-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  -moz-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+}
+
+.ud_popupStyle {
+  min-width: 150px;
+  height: 240px;
+  margin: .4em 0;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  padding: 10px;
+  background: #8799AF;
+  opacity: 0.93;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=93);
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border: 0px solid #000000;
+  font-size: 0.8em;  
+  clear: both;
+  -webkit-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  -moz-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+}
+
+.ud_popupLineStyle {
+  min-width: 150px;
+  height: 190px;
+  margin: .4em 0;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  padding: 20px;
+  background: #8799AF;
+  opacity: 0.93;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=93);
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border: 0px solid #000000;
+  font-size: 0.8em;  
+  clear: both;
+  -webkit-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  -moz-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+}
+
+#divBlock1 {
+  float: left;
+  display: inline;
+  min-width: 150px;
+  height: 100px;
+}
+
+#divBlock2 {
+  float: left;
+  display: inline;
+  min-width: 100px;
+  height: 100px;
+}
+
+#divNavegability {
+  float: center;
+  margin: .4em 0;
+}  
+
+.ud_contextualMenu {
+  min-width: 100px;
+  margin: .4em 0;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  background: #8799AF;
+  opacity: 0.90;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=90);
+  border-radius: 2px 2px 2px 2px;
+  -moz-border-radius: 2px 2px 2px 2px;
+  -webkit-border-radius: 2px 2px 2px 2px;
+  border: 1px solid #000000;
+  font-size: 0.8em;  
+  -webkit-box-shadow: 6px 6px 13px -4px rgba(0,0,0,0.79);
+  -moz-box-shadow: 6px 6px 13px -4px rgba(0,0,0,0.79);
+  box-shadow: 6px 6px 13px -4px rgba(0,0,0,0.79);
+}
+
+.ud_contextualMenuItem {
+  min-height: 20px;
+  min-width: 100px;
+  padding: 1px;
+}
+
+.ud_contextualMenuItem span{
+  min-height: 20px;
+  min-width: 100px;
+  padding: 3px;
+}
+
+.ud_contextualMenuItem:hover{
+  background: #E4E4E4;
+  color:#C40000;
+}
+
+.ud_popup label {
+  width: 30%;
+  float: left;
+}
+
+.ud_popupLineStyle input{
+  margin: 10px 10px;
+}
+
+#divNavegability input{
+  margin: 10px;
+  
+ }
+ 
+@media only screen and (max-width: 350px), only screen and (max-device-width: 350px){
+  .ud_popup {
+    min-width: 300px;
+    margin: .4em 0;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    padding: 10px;
+
+    border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    border: 1px solid #000000;
+    font-size: 0.8em;  
+    -webkit-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+    -moz-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+    box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  }
+
+  .ud_popupDirection {
+    min-width: 100px;
+    height: 150px;
+    margin: .4em 0;
+    aling: center;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    padding: 10px;
+
+    border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    border: 0px solid #000000;
+    font-size: 0.8em;  
+    -webkit-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+    -moz-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+    box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  }
+
+  .ud_popupColor {
+    min-width: 100px;
+    height: 200px;
+    margin: .4em 0;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    padding: 10px;
+    border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    border: 0px solid #000000;
+    font-size: 0.8em;  
+    clear: both;
+    -webkit-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+    -moz-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+    box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  }
+
+  .ud_popupStyle {
+    width: 100px;
+    height: 400px;
+    margin: .4em 0;
+    top: 0px;
+    left: 0px;
+    position: center;
+    padding: 10px;
+    border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    border: 0px solid #000000;
+    font-size: 0.8em;  
+    clear: both;
+    -webkit-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+    -moz-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+    box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  }
+
+  .ud_popupLineStyle {
+    min-width: 100px;
+    height: 260px;
+    margin: .4em 0;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    padding: 20px;
+    border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    border: 0px solid #000000;
+    font-size: 0.8em;  
+    clear: both;
+    -webkit-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+    -moz-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+    box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  }
+
+  #divBlock1 {
+  float: left;
+  display: inline;
+  min-width: 150px;
+  height: 100px;
+  }
+
+  #divBlock2 {
+    visibility:hidden;
+  }
+
+  #divNavegability {
+    float: center;
+    margin: .4em 0;
+  }  
+
+  .ud_contextualMenu {
+    min-width: 100px;
+    margin: .4em 0;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    border: 1px solid #000000;
+    font-size: 1.2em;  
+    -webkit-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+    -moz-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+    box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  }
+
+  .ud_contextualMenuItem {
+    min-height: 20px;
+    min-width: 100px;
+    padding: 1px;
+  }
+
+  .ud_contextualMenuItem span{
+    min-height: 20px;
+    min-width: 100px;
+    padding: 3px;
+  }
+
+  .ud_contextualMenuItem:hover{
+    background: #ccccff;
+    color:#C40000;
+  }
+
+  .ud_popup label {
+    width: 30%;
+    float: left;
+  }
+
+  .ud_popupLineStyle input{
+    aling: center;
+    display: inline-block;
+  }
+  
+  .ud_popupStyle label{
+   aling: center;
+   display: inline-block;
+   }
+
+ 
+  .ud_popupStyle div{
+   aling: center;
+   display: inline-block;
+  }
+
+	
+  #divNavegability input{
+    margin: 10px;
+  
+   }
+}
+
+@media only screen and (max-width: 600px), only screen and (max-device-width: 600px){
+.ud_popup {
+  min-width: 300px;
+  margin: .4em 0;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  padding: 10px;
+  background: #8799AF;
+  opacity: 0.93;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=93);
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border: 1px solid #000000;
+  font-size: 0.8em;  
+  -webkit-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  -moz-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+}
+
+.ud_popupDirection {
+  min-width: 200px;
+  height: 100px;
+  margin: .4em 0;
+  aling: center;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  padding: 10px;
+  background: #8799AF;
+  opacity: 0.93;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=93);
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border: 0px solid #000000;
+  font-size: 0.8em;  
+  -webkit-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  -moz-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+
+}
+
+.ud_popupColor {
+  min-width: 150px;
+  height: 120px;
+  margin: .4em 0;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  padding: 10px;
+  background: #8799AF;
+  opacity: 0.93;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=93);
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border: 0px solid #000000;
+  font-size: 0.8em;  
+  clear: both;
+  -webkit-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  -moz-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+}
+
+.ud_popupStyle {
+  min-width: 150px;
+  height: 400px;
+  margin: .4em 0;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  padding: 10px;
+  background: #8799AF;
+  opacity: 0.93;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=93);
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border: 0px solid #000000;
+  font-size: 0.8em;  
+  clear: both;
+  -webkit-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  -moz-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+}
+
+.ud_popupLineStyle {
+  min-width: 150px;
+  height: 190px;
+  margin: .4em 0;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  padding: 20px;
+  background: #8799AF;
+  opacity: 0.93;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=93);
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border: 0px solid #000000;
+  font-size: 0.8em;  
+  clear: both;
+  -webkit-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  -moz-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+}
+
+#divBlock1 {
+  float: left;
+  min-width: 150px;
+  height: 100px;
+}
+
+#divBlock2 {
+  float: left;
+  position: relative;
+  top: -100px;
+  left: 300px;
+  min-width: 100px;
+  height: 100px;
+}
+
+#divNavegability {
+  float: center;
+  margin: .4em 0;
+}  
+
+.ud_contextualMenu {
+  min-width: 100px;
+  margin: .4em 0;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  background: #8799AF;
+  opacity: 0.93;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=93);
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border: 0px solid #000000;
+  font-size: 1.2em; 
+  -webkit-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  -moz-box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79);
+  box-shadow: 6px 6px 13px -2px rgba(0,0,0,0.79); 
+}
+
+.ud_contextualMenuItem {
+  min-height: 20px;
+  min-width: 100px;
+  padding: 1px;
+}
+
+.ud_contextualMenuItem span{
+  min-height: 20px;
+  min-width: 100px;
+  padding: 3px;
+}
+
+.ud_contextualMenuItem:hover{
+  background: #ccccff;
+  color:#C40000;
+}
+
+.ud_popup label {
+  width: 30%;
+  float: left;
+}
+
+.ud_popupLineStyle input{
+  margin: 10px 10px;
+}
+
+#divNavegability input{
+  margin: 10px;  
+ }
+}body {
+  background: url('../img/app/back.jpg');
+  background-repeat: repeat;
+  /*  background-color: #DADADC; */
+  font-family: 'Times New Roman', Georgia, Serif; 
+}
+
+input[type=submit] {padding:3px 5px; margin:3px 3px; background:#ccc; border:1px none;
+    cursor:pointer;
+    border-radius: 3px; 
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-transition: all 0.12s ease-in-out;
+    -ms-transition: all 0.12s ease-in-out;
+    -moz-transition: all 0.12s ease-in-out;
+    -o-transition: all 0.12s ease-in-out;
+    transition: all 0.12s ease-in-out;}
+
+input[type=submit]:hover {
+    background:#9D9DA8;
+}
+input[type=color] {padding:1px 1px; margin:3px 3px; background:#ccc; border:1px none;
+    cursor:pointer;
+    border-radius: 3px; 
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-transition: all 0.12s ease-in-out;
+    -ms-transition: all 0.12s ease-in-out;
+    -moz-transition: all 0.12s ease-in-out;
+    -o-transition: all 0.12s ease-in-out;
+    transition: all 0.12s ease-in-out;}
+
+input[type=color]:hover {
+    background:#9D9DA8;
+}
+
+
+/********************
+ main layout
+*********************/
+/*esto no funciona aun*/
+
+
+div .ud_popup {
+  border-radius: 8px 8px 8px 8px;
+  -moz-border-radius: 8px 8px 8px 8px;
+  -webkit-border-radius: 8px 8px 8px 8px;
+  border: 0px solid #000000;
+}
+
+div#ud_tools_div {
+  width: 200px;
+  float: left;
+}
+
+
+div#ud_container_div {
+  float: left;
+}
+
+
+div#ud_selector_div {
+  min-height: 25px;
+  max-width: 900px;
+}
+
+
+/*****************************
+ Tools menu
+******************************/
+
+ul#ud_tools_ul1 {
+  margin: 0;
+  padding: 0;
+}
+
+ul#ud_tools_ul1 li a {
+  margin-left: 10px;
+}
+ul#ud_tools_ul1 li {
+  padding: 3px;
+  list-style: none;
+  font-size: 0.75em;
+
+}
+
+ul#ud_tools_ul1 li:hover {
+  cursor: pointer;
+  background: white;
+  color: #C40000;
+}
+
+
+ul#ud_tools_ul2 {
+  margin: 0;
+  padding: 0;
+  max-height: 200px;
+  overflow: auto;
+}
+
+ul#ud_tools_ul2 li a {
+  margin-left: 10px;
+}
+ul#ud_tools_ul2 li {
+  padding: 3px;
+  list-style: none;
+  font-size: 0.75em;
+}
+
+ul#ud_tools_ul2 li:hover {
+  cursor: pointer;
+  background: white;
+  color: #C40000;
+}
+
+
+div#ud_tools_div h1 {
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+
+
+/*****************************
+ Selector Diagram menu
+******************************/
+div#ud_selector_div {
+ /* border-left: 1px solid black; */
+}
+
+
+ul#ud_selector_ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+
+ul#ud_selector_ul li {
+  float: left;
+  min-width: 100px;
+  border: 1px solid black;
+  border-bottom: none;
+  /*border-left: none;*/
+  background: #ccd5d9;
+  
+  font-size: 0.7em;
+ 
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+  -webkit-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+ul#ud_selector_ul li:hover {
+  background: #92A9B2;
+}
+
+
+ul#ud_selector_ul li a {
+  display: block;
+  margin: 5px;
+  text-decoration: none;
+  color: black;
+}
+
+
+/*
+ul#ud_selector_ul li:hover {
+  background: #fff4ac;
+}*/
+
+
+ul#ud_selector_ul li.active {
+  font-size: 0.72em;
+
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+
+  background: #fff4ac;
+}
+ul#ud_selector_ul li.active:hover {
+
+  background: #F4CE88;
+}
+
+.active { 
+    -webkit-animation-duration: 1s; 
+    animation-duration: 1s; 
+    -webkit-animation-fill-mode: both; 
+    animation-fill-mode: both; 
+} 
+
+@-webkit-keyframes flipInX { 
+    0% { 
+        -webkit-transform: perspective(400px) rotateX(90deg); 
+        opacity: 0; 
+    } 
+    40% { 
+        -webkit-transform: perspective(400px) rotateX(-10deg); 
+    } 
+    70% { 
+        -webkit-transform: perspective(400px) rotateX(10deg); 
+    } 
+    100% { 
+        -webkit-transform: perspective(400px) rotateX(0deg); 
+        opacity: 1; 
+    } 
+} 
+@keyframes flipInX { 
+    0% { 
+        transform: perspective(400px) rotateX(90deg); 
+        opacity: 0; 
+    } 
+    40% { 
+        transform: perspective(400px) rotateX(-10deg); 
+    } 
+    70% { 
+        transform: perspective(400px) rotateX(10deg); 
+    } 
+    100% { 
+        transform: perspective(400px) rotateX(0deg); 
+        opacity: 1; 
+    } 
+} 
+.pulse { 
+    -webkit-backface-visibility: visible !important; 
+    -webkit-animation-name: flipInX; 
+    backface-visibility: visible !important; 
+    animation-name: flipInX; 
+}
+
+
+
+/*********************
+ delete button
+**********************/
+div#ud_delete_div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  
+  width: 17px;
+  height: 17px;
+  
+  /*border: 1px solid black;
+  border-right: none;
+  border-top: none;
+
+  background: url('../img/app/delete_button.png') no-repeat;
+  */
+  
+  background: url('../img/app/close-icon.png') no-repeat;
+
+  -webkit-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+div#ud_delete_div:hover {
+  background-color: #EC8E8E;
+}
+
+/*********************
+ update button
+**********************/
+div#ud_update_div {
+  cursor:pointer;
+  position: absolute;
+  top: 0;
+/*
+  right: 15;
+*/
+  padding: 2px 3px;
+  width: 15px;
+  height: 15px;
+  
+  /*border: 1px solid black;
+  border-right: none;
+  border-top: none;*/
+  
+  background: url('../img/app/update_button.png') no-repeat;
+}
+
+/*div#ud_update_div:hover {
+  background-color: #fff4ac;
+}*/
+
+.close {
+  float:right;
+  width: 17px;
+  height: 17px;
+
+  -webkit-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.close:hover {
+  background-color: #DC7A7A;
+}
+
+.about {
+cursor: help;
+position: absolute;
+top: 0;
+right: 0;
+width: 100px;
+height: 20px;
+}
+.about:hover{
+
+}
+
+@media only screen and (min-height: 1080px), only screen and (min-device-width: 1080px){
+  ul#ud_tools_ul2 {
+  margin: 0;
+  padding: 0;
+  max-height: 200px;
+  overflow: auto;
+  
+}
+}
+
+
+div#ud_tools_div{
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+
+  -o-user-select: none;
+  user-select: none; 
+}
+div#ud_selector_div{
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+
+  -o-user-select: none;
+  user-select: none; 
+}
