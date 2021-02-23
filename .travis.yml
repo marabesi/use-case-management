@@ -26,3 +26,4 @@ os:
 jobs:
   allow_failures:
     - php: 7.4
+    - php: 7.3
